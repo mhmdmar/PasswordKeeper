@@ -2,6 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 
+const storageNamespace = {
+  user: 'User',
+  loggedIn: 'loggedIn'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,13 +16,13 @@ export class AuthService {
   private loggedInStatues;
 
   constructor(private http: HttpClient) {
-    const userInSession: any = localStorage.getItem('User');
+    const userInSession: any = localStorage.getItem(storageNamespace.user);
     const sessionExists: boolean = userInSession !== null;
     this.setLoggedIn(sessionExists, JSON.parse(userInSession));
   }
 
   userChanged(value) {
-    const userInfo = localStorage.getItem('User');
+    const userInfo = localStorage.getItem(storageNamespace.user);
     this.user = value && userInfo !== null ? JSON.parse(userInfo) : undefined;
     this.userChange.next(this.user);
   }
@@ -31,12 +36,12 @@ export class AuthService {
 
   assignToLocalStorage(value, user = {}) {
     if (value) {
-      localStorage.setItem('loggedIn', 'true');
-      localStorage.setItem('User', JSON.stringify(user));
+      localStorage.setItem(storageNamespace.loggedIn, 'true');
+      localStorage.setItem(storageNamespace.user, JSON.stringify(user));
       this.user = user;
     } else {
-      localStorage.removeItem('loggedIn');
-      localStorage.removeItem('User');
+      localStorage.removeItem(storageNamespace.loggedIn);
+      localStorage.removeItem(storageNamespace.user);
     }
   }
 
