@@ -16,8 +16,4 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  clickDefault() {
-    console.log('A');
-  }
 }

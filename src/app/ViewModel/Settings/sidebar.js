@@ -1,19 +1,13 @@
 export const settings = [{
-  title: 'AAA',
+  title: 'Table',
+  route: 'passwordTable',
   clickEvent() {
-    console.log(this);
   },
 },
   {
-    title: 'BBB',
+    title: 'Home',
+    route: 'home',
     clickEvent() {
-      console.log(this);
-    },
-  },
-  {
-    title: 'CCC',
-    clickEvent() {
-      console.log(this);
     },
   }
 ];

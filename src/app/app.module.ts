@@ -5,25 +5,24 @@ import {AppComponent} from './app.component';
 import {BoardComponent} from './ViewModel/board/board.component';
 import {TopBarComponent} from './ViewModel/top-bar/top-bar.component';
 import {SideBarComponent} from './ViewModel/side-bar/side-bar.component';
-import {FormComponent} from './ViewModel/form/form.component';
 import {AccountComponent} from './ViewModel/account/account.component';
 import {LoginComponent} from './ViewModel/login/login.component';
-import {HomeComponent} from './ViewModel/home/home.component';
 import {RouterModule} from '@angular/router';
 import {AuthService} from './auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './auth.guard';
 import {PasswordsTableComponent} from './ViewModel/passwords-table/passwords-table.component';
+import { HomeComponent } from './ViewModel/home/home.component';
 
 const routes = [
   {
-    path: '',
+    path: 'passwordTable',
     component: PasswordsTableComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginComponent
   },
   {
     path: 'home',
@@ -38,11 +37,10 @@ const routes = [
     BoardComponent,
     TopBarComponent,
     SideBarComponent,
-    FormComponent,
     AccountComponent,
     LoginComponent,
-    HomeComponent,
     PasswordsTableComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
