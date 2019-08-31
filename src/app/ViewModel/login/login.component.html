@@ -1,0 +1,9 @@
+<div class="login-form">
+  <form>
+    <input type="text" name="field1" placeholder="Full Name" [value]="username"
+           (input)="username = $event.target.value"/>
+    <input type="password" name="field2" placeholder="Password" [value]="password"
+           (input)="password= $event.target.value"/>
+    <input type="button" value="login" (click)="login()"/>
+  </form>
+</div>

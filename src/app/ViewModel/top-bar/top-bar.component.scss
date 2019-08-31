@@ -1,0 +1,48 @@
+@import "../states";
+
+ul {
+  background-color: #0079ef;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 1px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li {
+  padding: 0.5em;
+  flex: 2;
+}
+
+.item-app-title {
+  flex: 0;
+  background-color: #014272;
+}
+.app-title {
+  @include unselectable();
+
+  color: #ffffff;
+  text-overflow: ellipsis;
+  font-size: 22px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "MetricWeb-Semibold", Calibri, sans-serif;
+  font-weight: bold;
+  padding: 0 20px;
+  height: 22px;
+  line-height: 22px;
+}
+
+ul li a {
+  text-decoration: none;
+  display: block;
+}
+
+.right {
+  float: right;
+}

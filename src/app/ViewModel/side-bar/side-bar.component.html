@@ -1,0 +1,5 @@
+<ul class="flex-container column">
+  <li class="flex-item" *ngFor="let data of settings">
+    <a (click)="data.clickEvent()" routerLinkActive="active-link" [innerText]="data.title"></a>
+  </li>
+</ul>

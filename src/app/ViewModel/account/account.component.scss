@@ -1,0 +1,17 @@
+.right {
+  margin-right: 20px;
+  float: right;
+}
+
+a {
+  border: 1px;
+  color: black;
+
+  &:hover {
+    color: red;
+  }
+
+  &:not([href]):not([tabindex]) {
+    color: black;
+  }
+}
