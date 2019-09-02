@@ -1,5 +1,6 @@
-<ul class="flex-container column">
+<ul *ngIf="Auth.loggedIn" class="flex-container column">
   <li class="flex-item" *ngFor="let data of settings">
-    <a (click)="data.clickEvent()" [routerLink]="data.route" routerLinkActive="active-link" [innerText]="data.title"></a>
+    <a (click)="data.clickEvent()" [routerLink]="data.route" routerLinkActive="active-link"
+       [innerText]="data.title"></a>
   </li>
 </ul>

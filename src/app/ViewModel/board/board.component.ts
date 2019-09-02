@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../auth.service';
+import {Router} from '@angular/router';
+import {routesNames} from '../../routesNames';
 
 @Component({
   selector: 'app-board',
@@ -6,35 +9,19 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-
   private settings: any;
 
-  constructor() {
-    this.settings = {
-      sidebarSettings: [
-        {
-          title: 'AAA',
-          clickEvent() {
-            window.alert('AAA');
-          },
-        },
-        {
-          title: 'BBB',
-          clickEvent() {
-            window.alert('BBB');
-          },
-        },
-        {
-          title: 'CCC',
-          clickEvent() {
-            window.alert('CCC');
-          },
-        },
-      ]
-    };
+  constructor(private Auth: AuthService, private router: Router) {
+  }
+
+  onLoginOrSignUp() {
+    return this.router.url === routesNames.login || this.router.url === routesNames.signUp;
   }
 
   ngOnInit() {
+    if (!this.Auth.loggedIn && !this.onLoginOrSignUp()) {
+      this.router.navigate([routesNames.login]);
+    }
   }
 }
 

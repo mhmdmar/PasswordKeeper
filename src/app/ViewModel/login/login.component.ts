@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
+import {routesNames} from '../../routesNames';
 
 interface UserData {
   success: boolean;
@@ -13,13 +14,20 @@ interface UserData {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private username: string;
-  private password: string;
-  private email: string;
-  private confirmPassword: string;
+  private signUpText: string;
+  private routesNames: any;
 
   constructor(private Auth: AuthService, private route: Router) {
-    this.username = this.password = this.email = this.confirmPassword = '';
+    this.routesNames = routesNames;
+    this.username = this.password = '';
+    this.signUpText = 'Click here to signUp';
+  }
+
+  public username: string;
+  public password: string;
+
+  static logInError() {
+    alert('Username or Password are incorrect');
   }
 
   ngOnInit() {
@@ -28,9 +36,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.Auth.getUserDetails(this.username, this.password).subscribe((data: UserData) => {
       if (data.success) {
-        this.route.navigate(['']);
+        this.route.navigate([this.routesNames.default]);
         this.Auth.setLoggedIn(true, data.result);
+      } else {
+        LoginComponent.logInError();
       }
     });
+  }
+
+  signUp() {
+    this.route.navigate([this.routesNames.signUp]);
   }
 }

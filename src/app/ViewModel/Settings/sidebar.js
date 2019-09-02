@@ -1,12 +1,13 @@
-export const settings = [{
-  title: 'Table',
-  route: 'passwordTable',
-  clickEvent() {
-  },
-},
+export const settings = [
   {
     title: 'Home',
     route: 'home',
+    clickEvent() {
+    },
+  },
+  {
+    title: 'Table',
+    route: 'passwordTable',
     clickEvent() {
     },
   }

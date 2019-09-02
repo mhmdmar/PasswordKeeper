@@ -8,12 +8,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  private user: any;
+  public user: any;
   private userSubscription: any;
-  private accountInfoVisible = false;
+  public accountInfoVisible = false;
+  private loginText: string;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.user = Auth.user;
+    this.loginText = 'Login';
   }
 
   ngOnInit() {

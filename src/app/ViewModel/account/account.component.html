@@ -1,6 +1,6 @@
 <div class="right">
-  <a class="custom-hyperlink" *ngIf="!user;" (click)="navigateToLogin()"
-     [innerHTML]="'Signin'"></a>
+  <a class="custom-link" *ngIf="!Auth.loggedIn;" (click)="navigateToLogin()"
+     [innerHTML]="loginText"></a>
   <div *ngIf="user">
     <a class="custom-hyperlink" (click)="showAccountInfo()" [innerHTML]="user.username"></a>
     <div *ngIf="accountInfoVisible">
@@ -8,4 +8,3 @@
     </div>
   </div>
 </div>
-

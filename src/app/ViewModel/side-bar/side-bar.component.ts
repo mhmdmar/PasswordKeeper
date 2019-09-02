@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {settings} from '../Settings/sidebar';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,7 +11,7 @@ export class SideBarComponent implements OnInit {
 
   private settings: any;
 
-  constructor() {
+  constructor(private Auth: AuthService) {
     this.settings = settings;
   }
 

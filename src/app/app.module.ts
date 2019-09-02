@@ -12,23 +12,34 @@ import {AuthService} from './auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './auth.guard';
 import {PasswordsTableComponent} from './ViewModel/passwords-table/passwords-table.component';
-import { HomeComponent } from './ViewModel/home/home.component';
+import {HomeComponent} from './ViewModel/home/home.component';
+import {routesNames} from './routesNames';
+import {SignupComponent} from './ViewModel/signup/signup.component';
 
 const routes = [
   {
-    path: 'passwordTable',
+    path: routesNames.passwordTable,
     component: PasswordsTableComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'login',
+    path: routesNames.home,
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: routesNames.login,
     component: LoginComponent
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  }
+    path: routesNames.signUp,
+    component: SignupComponent
+  },
 ];
 
 @NgModule({
@@ -41,6 +52,7 @@ const routes = [
     LoginComponent,
     PasswordsTableComponent,
     HomeComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
