@@ -28,11 +28,11 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  showAccountInfo() {
+  toggleAccountInfo(): void {
     this.accountInfoVisible = !this.accountInfoVisible;
   }
 
-  signOut() {
+  signOut(): void {
     this.Auth.setLoggedIn(false);
     this.accountInfoVisible = false;
     this.navigateToLogin();

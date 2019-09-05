@@ -11,32 +11,29 @@ interface UserData {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../CSS/form.scss', './login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private signUpText: string;
-  private routesNames: any;
-
-  constructor(private Auth: AuthService, private route: Router) {
-    this.routesNames = routesNames;
-    this.username = this.password = '';
-    this.signUpText = 'Click here to signUp';
-  }
-
+  public signUpText: string;
   public username: string;
   public password: string;
 
-  static logInError() {
+  constructor(private Auth: AuthService, private route: Router) {
+    this.username = this.password = '';
+    this.signUpText = 'click to sign up';
+  }
+
+  static logInError(): void {
     alert('Username or Password are incorrect');
   }
 
   ngOnInit() {
   }
 
-  login() {
-    this.Auth.getUserDetails(this.username, this.password).subscribe((data: UserData) => {
+  login(): void {
+    this.Auth.login(this.username, this.password).subscribe((data: UserData) => {
       if (data.success) {
-        this.route.navigate([this.routesNames.default]);
+        this.route.navigate([routesNames.default]);
         this.Auth.setLoggedIn(true, data.result);
       } else {
         LoginComponent.logInError();
@@ -44,7 +41,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  signUp() {
-    this.route.navigate([this.routesNames.signUp]);
+  signUp(): void {
+    this.route.navigate([routesNames.signUp]);
   }
 }

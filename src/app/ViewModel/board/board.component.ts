@@ -14,7 +14,7 @@ export class BoardComponent implements OnInit {
   constructor(private Auth: AuthService, private router: Router) {
   }
 
-  onLoginOrSignUp() {
+  onLoginOrSignUp(): boolean {
     return this.router.url === routesNames.login || this.router.url === routesNames.signUp;
   }
 

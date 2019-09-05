@@ -1,6 +1,5 @@
 const Username = require("./User");
 const secretPassword = "admin";
-const messages = require("../Utils/Messages");
 
 module.exports = class UsersList {
   constructor(list) {
@@ -21,7 +20,7 @@ module.exports = class UsersList {
     }
   }
 
-  getUserIndex(username, password = secretPassword) {
+  _getUserIndex(username, password = secretPassword) {
     let index = -1;
     this._forEachUserInList((user, i) => {
       if (user.username === username && (password === secretPassword || user.password === password)) {
@@ -31,79 +30,44 @@ module.exports = class UsersList {
     return index;
   }
 
-  getUser(username, password) {
-    const userIndex = this.getUserIndex(username, password);
-    const found = userIndex !== -1;
-    return {
-      success: found,
-      result: found ? this._users[userIndex] : messages.warning.userDoesntExist
-    };
+  _usernameExists(username) {
+    return this._getUserIndex(username) > -1;
   }
 
-  static checkArguments(args) {
-    for (let i = 0, len = args.length; i < len; i++) {
-      const curArgument = args[i];
-      if (!curArgument || curArgument === '') {
-        return false;
-      }
-    }
-    return true;
+  getUser(username, password) {
+    const index = this._getUserIndex(username, password);
+    return this._users[index];
   }
 
   addUser(username, password, email, passwordsList = []) {
-    const validArguments = UsersList.checkArguments([username, password, email]);
-    if (!validArguments) {
-      return messages.errors.invalidArguments;
+    let success = true;
+    if (this._usernameExists(username)) {
+      success = false;
+    } else {
+      this._users.push(new Username(username, password, email, passwordsList));
     }
-
-    if (this.userNameTaken(username)) {
-      return messages.warning.usernameTaken;
-    }
-    this._users.push(new Username(username, password, email, passwordsList));
-    return messages.success.entry;
-  }
-
-  addUsers(list) {
-    if (!Array.isArray(list)) {
-      return messages.errors.invalidArguments;
-    }
-    const resultMessages = [];
-    for (let i = 0, len = list.length; i < len; i++) {
-      const curUser = list[i];
-      const resultMessage = this.addUser(curUser.username, curUser.password, curUser.email, curUser.passwordsList);
-      resultMessages.push(curUser.username.concat("   ", resultMessage));
-    }
-    return resultMessages;
+    return success;
   }
 
   removeUser(username, password) {
-    const userIndex = this.getUserIndex(username, password);
-    if (userIndex === -1) {
-      return messages.warning.userDoesntExist;
+    const index = this._getUserIndex(username, password);
+    let success = false;
+    if (index !== -1) {
+      success = true;
+      this._users.splice(index, 1);
     }
-    this._users.splice(userIndex, 1);
-    return messages.success.deletion;
+    return success;
   }
 
-  removeUsers(list) {
-    if (!Array.isArray(list)) {
-      return messages.errors.invalidArguments;
+  updateUser(username, password, attribute, value) {
+    let success = false;
+    const index = this._getUserIndex(username, password);
+    const user = this._users[index];
+    if (user && user[attribute]) {
+      success = true;
+      user[attribute] = value;
     }
-    const resultMessages = [];
-    for (let i = 0, len = list.length; i < len; i++) {
-      const curUser = list[i];
-      const resultMessage = this.removeUser(curUser.username, curUser.password);
-      resultMessages.push(curUser.username.concat("   ", resultMessage));
-    }
-    return resultMessages;
-  }
-
-  userNameTaken(username) {
-    return this.getUserIndex(username) > -1;
-  }
-
-  userExists(username, password) {
-    return this.getUserIndex(username, password) > -1;
+    return success;
   }
 
 };

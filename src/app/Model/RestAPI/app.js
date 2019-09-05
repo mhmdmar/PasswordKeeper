@@ -9,6 +9,5 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', express.json(), routes);
-app.use('/getUsers', express.json(), routes);
 module.exports = app;
 

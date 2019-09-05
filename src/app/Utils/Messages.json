@@ -10,7 +10,8 @@
     "usernameTaken": "Username already exists"
   },
   "success": {
-    "entry": "the database was added successfully",
-    "deletion": "User was deleted successfully"
+    "entry": "the user was added to the database successfully",
+    "deletion": "User was deleted successfully",
+    "update": "User was updated successfully"
   }
 }

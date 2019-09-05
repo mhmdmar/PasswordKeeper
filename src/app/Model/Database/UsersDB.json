@@ -1,1 +1,97 @@
-{"Users":[{"username":"admin","password":"admin","email":"admin@admin","permission":1,"passwords":[{"domain":"google.co.il","account":"mhmdmar@gmail.com","password":"1234567asd"},{"domain":"laptop","account":"temp","password":"temp"},{"domain":"facebook","account":"ttt","password":"ttt"}]},{"username":"mhmdmar","password":"1234567asd","email":"mhmdmar@gmail.com","permission":1,"passwords":[{"domain":"google.co.il","account":"mhmdmar@gmail.com","password":"1234567asd"},{"domain":"laptop","account":"temp","password":"temp"},{"domain":"facebook","account":"ttt","password":"ttt"}]},{"username":"abc","password":"abc","email":"abc@abc","permission":3,"passwords":[{"domain":"google.co.il","account":"mhmdmar@gmail.com","password":"1234567asd"},{"domain":"laptop","account":"temp","password":"temp"},{"domain":"facebook","account":"ttt","password":"ttt"}]},{"username":"DD","password":"BBB","email":"CCC","passwordsList":[]},{"username":"ff","password":"BBB","email":"CCC","passwordsList":[]},{"username":"xx","password":"BBB","email":"CCC","passwordsList":[]}]}
+{
+  "Users": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "email": "admin",
+      "permission": 1,
+      "passwords": [
+        {
+          "domain": "google.co.il",
+          "account": "mhmdmar@gmail.com",
+          "password": "1234567asd"
+        },
+        {
+          "domain": "laptop",
+          "account": "temp",
+          "password": "temp"
+        },
+        {
+          "domain": "facebook",
+          "account": "ttt",
+          "password": "ttt"
+        }
+      ]
+    },
+    {
+      "username": "mhmdmar",
+      "password": "1234567asd",
+      "email": "mhmdmar@gmail.com",
+      "permission": 1,
+      "passwords": [
+        {
+          "domain": "google.co.il",
+          "account": "mhmdmar@gmail.com",
+          "password": "1234567asd"
+        },
+        {
+          "domain": "laptop",
+          "account": "temp",
+          "password": "temp"
+        },
+        {
+          "domain": "facebook",
+          "account": "ttt",
+          "password": "ttt"
+        }
+      ]
+    },
+    {
+      "username": "abc",
+      "password": "abc",
+      "email": "abc@abc",
+      "permission": 3,
+      "passwords": [
+        {
+          "domain": "google.co.il",
+          "account": "mhmdmar@gmail.com",
+          "password": "1234567asd"
+        },
+        {
+          "domain": "laptop",
+          "account": "temp",
+          "password": "temp"
+        },
+        {
+          "domain": "facebook",
+          "account": "ttt",
+          "password": "ttt"
+        }
+      ]
+    },
+    {
+      "username": "DD",
+      "password": "BBB",
+      "email": "CCC",
+      "passwordsList": []
+    },
+    {
+      "username": "ff",
+      "password": "BBB",
+      "email": "CCC",
+      "passwordsList": []
+    },
+    {
+      "username": "xx",
+      "password": "BBB",
+      "email": "CCC",
+      "passwordsList": []
+    },
+    {
+      "username": "fffff",
+      "password": "admin",
+      "email": "admin",
+      "passwordsList": []
+    }
+  ]
+}

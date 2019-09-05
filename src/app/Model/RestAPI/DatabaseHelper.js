@@ -4,9 +4,8 @@ const encoding = "utf8";
 const databasePath = path.DatabasePath.concat("/", path.UsersDB);
 const DB = require(databasePath);
 const UsersList = require("../UsersList");
-
-module.exports = DB;
-
+const messages = require("../../Utils/Messages");
+const Response = require("../../Utils/Response");
 class DatabaseHelper {
   constructor() {
     this._DB = DB;
@@ -26,36 +25,29 @@ class DatabaseHelper {
     });
   }
 
-  _forEachUserInDB(callback) {
-    for (const user in this._DB) {
-      if (this._DB.hasOwnProperty(user)) {
-        callback(this._DB[user]);
-      }
-    }
-  }
-
   getUsers() {
     return this._usersList;
   }
 
   getUser(username, password) {
-    return this._usersList.getUser(username, password);
+    const user = this._usersList.getUser(username, password);
+    const success = user !== undefined;
+    return new Response(success, success ? user : messages.warning.userDoesntExist);
   }
 
   insertUser(username, password, email, passwordsList = []) {
-    return this._usersList.addUser(username, password, email, passwordsList);
-  }
-
-  insertUsers(list) {
-    return this._usersList.addUsers(list);
+    const userAdded = this._usersList.addUser(username, password, email, passwordsList);
+    return new Response(userAdded, userAdded ? messages.success.entry : messages.warning.usernameTaken);
   }
 
   removeUser(username, password) {
-    return this._usersList.removeUser(username, password);
+    const userRemoved = this._usersList.removeUser(username,password);
+    return new Response(userRemoved, userRemoved ? messages.success.deletion : messages.warning.userDoesntExist);
   }
 
-  removeUsers(list) {
-    return this._usersList.removeUsers(list);
+  updateUser(username, password, attribute, value) {
+    const userUpdated = this._usersList.updateUser(username, password, attribute, value);
+    return new Response(userUpdated, userUpdated ? messages.success.update: messages.warning.userDoesntExist);
   }
 }
 

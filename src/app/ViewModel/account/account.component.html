@@ -2,7 +2,7 @@
   <a class="custom-link" *ngIf="!Auth.loggedIn;" (click)="navigateToLogin()"
      [innerHTML]="loginText"></a>
   <div *ngIf="user">
-    <a class="custom-hyperlink" (click)="showAccountInfo()" [innerHTML]="user.username"></a>
+    <a class="custom-hyperlink" (click)="toggleAccountInfo()" [innerHTML]="user.username"></a>
     <div *ngIf="accountInfoVisible">
       <a class="custom-hyperlink" (click)="signOut()" [innerHTML]="'Logout'"></a>
     </div>

@@ -49,9 +49,19 @@ export class AuthService {
     return this.loggedInStatues;
   }
 
-  getUserDetails(username: string, password: string) {
+  login(username: string, password: string) {
     return this.http.post('/api/getUser', {
       username, password
     });
+  }
+
+  registerUserDetails(email: string, username: string, password: string) {
+    return this.http.post('/api/insertUser', {
+      email, username, password
+    });
+  }
+
+  updateUserDetails() {
+
   }
 }
