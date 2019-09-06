@@ -16,7 +16,7 @@ import {HomeComponent} from './ViewModel/home/home.component';
 import {routesNames} from './routeNames';
 import {SignupComponent} from './ViewModel/signup/signup.component';
 
-const routes = [
+export const routes = [
   {
     path: routesNames.passwordTable,
     component: PasswordsTableComponent,
@@ -24,8 +24,7 @@ const routes = [
   },
   {
     path: routesNames.home,
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    component: HomeComponent
   },
   {
     path: '',

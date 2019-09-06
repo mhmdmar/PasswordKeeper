@@ -5,7 +5,7 @@ import {routesNames} from '../../routeNames';
 
 interface UserData {
   success: boolean;
-  result: any;
+  response: any;
 }
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.Auth.login(this.username, this.password).subscribe((data: UserData) => {
       if (data.success) {
         this.route.navigate([routesNames.default]);
-        this.Auth.setLoggedIn(true, data.result);
+        this.Auth.setLoggedIn(true, data.response);
       } else {
         LoginComponent.logInError();
       }

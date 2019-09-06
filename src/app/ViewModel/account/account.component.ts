@@ -41,4 +41,8 @@ export class AccountComponent implements OnInit, OnDestroy {
   navigateToLogin() {
     this.route.navigate(['login']);
   }
+
+  void() {
+    return null;
+  }
 }

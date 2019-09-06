@@ -1,10 +1,31 @@
 <div class="right">
-  <a class="custom-link" *ngIf="!Auth.loggedIn;" (click)="navigateToLogin()"
-     [innerHTML]="loginText"></a>
+  <div *ngIf="!Auth.loggedIn" class="app-btn" (click)="navigateToLogin()">
+    <span class="app-text" [innerHTML]="loginText"></span>
+  </div>
   <div *ngIf="user">
-    <a class="custom-hyperlink" (click)="toggleAccountInfo()" [innerHTML]="user.username"></a>
-    <div *ngIf="accountInfoVisible">
-      <a class="custom-hyperlink" (click)="signOut()" [innerHTML]="'Logout'"></a>
+    <div class="app-btn" (click)="toggleAccountInfo()">
+      <span class="app-text" [innerHTML]="user.username"></span>
+      <img alt="arrow"
+           [src]="accountInfoVisible?  '../../../assets/collapse-arrow-24.png' :'../../../assets/expand-arrow-24.png' ">
+    </div>
+    <div class="accountTable" *ngIf="accountInfoVisible">
+      <ul class="flex-container column">
+        <li class="flex-item">
+          <div class="app-btn" (click)="signOut()">
+            <span class="app-text account-text" [innerHTML]="'Logout'"></span>
+          </div>
+        </li>
+        <li class="flex-item">
+          <div class="app-btn" (click)="void()">
+            <span class="app-text account-text" [innerHTML]="'Placeholder'"></span>
+          </div>
+        </li>
+        <li class="flex-item">
+          <div class="app-btn" (click)="void()">
+            <span class="app-text account-text" [innerHTML]="'Placeholder'"></span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

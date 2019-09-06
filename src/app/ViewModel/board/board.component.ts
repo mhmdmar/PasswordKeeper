@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../../routeNames';
+import {routes} from '../../app.module';
 
 @Component({
   selector: 'app-board',
@@ -14,12 +15,23 @@ export class BoardComponent implements OnInit {
   constructor(private Auth: AuthService, private router: Router) {
   }
 
-  onLoginOrSignUp(): boolean {
-    return this.router.url === routesNames.login || this.router.url === routesNames.signUp;
+  allowedRoutes(): boolean {
+    let curRouterUrl = this.router.url;
+    if (curRouterUrl === '/') { // empty path
+      curRouterUrl = '';
+    }
+    let allowedRoute = false;
+    routes.forEach(route => {
+        if (curRouterUrl === route.path && !route.canActivate) {
+          allowedRoute = true;
+        }
+      }
+    );
+    return allowedRoute;
   }
 
   ngOnInit() {
-    if (!this.Auth.loggedIn && !this.onLoginOrSignUp()) {
+    if (!this.Auth.loggedIn && !this.allowedRoutes()) {
       this.router.navigate([routesNames.login]);
     }
   }

@@ -1,7 +1,7 @@
 class Response {
-  constructor(success, message) {
+  constructor(success, response) {
     this.success = success;
-    this.message = message;
+    this.response = response;
   }
 }
 

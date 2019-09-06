@@ -9,12 +9,14 @@ import {AuthService} from '../../auth.service';
 })
 export class SideBarComponent implements OnInit {
 
-  private settings: any;
-
   constructor(private Auth: AuthService) {
-    this.settings = settings;
   }
 
   ngOnInit() {
+  }
+
+  filterSidebar() {
+    // if the user isn't logged in then filter any field with requiredLogin from the sidebar
+    return settings.filter(field => !field.requireLogin ||  this.Auth.loggedIn);
   }
 }

@@ -1,6 +1,6 @@
-<ul *ngIf="Auth.loggedIn" class="flex-container column">
-  <li class="flex-item" *ngFor="let data of settings">
-    <a (click)="data.clickEvent()" [routerLink]="data.route" routerLinkActive="active-link"
+<ul class="flex-container column">
+  <li class="flex-item" *ngFor="let data of filterSidebar()">
+    <a class="custom-link app-text" (click)="data.clickEvent()" [routerLink]="data.route" routerLinkActive="active-link"
        [innerText]="data.title"></a>
   </li>
 </ul>
