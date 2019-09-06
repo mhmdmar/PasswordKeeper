@@ -1,0 +1,15 @@
+<div class="form">
+  <form>
+    <input class="formInput" type="text" placeholder="Email" [value]="email"
+           (input)="email = $event.target.value"/>
+    <input class="formInput" type="text" placeholder="Full Name" [value]="username"
+           (input)="username = $event.target.value"/>
+    <input class="formInput" type="password" placeholder="Password" [value]="password"
+           (input)="password= $event.target.value"/>
+    <input class="formInput" type="password" placeholder="Confirm Psasword" [value]="confirmPassword"
+           (input)="confirmPassword= $event.target.value"/>
+    <input class="formButton" type="button" value="sign up" (click)="signUp()"/>
+    <br><br>
+    <a (click)="navigateToLogin()" [innerHTML]="loginText"></a>
+  </form>
+</div>
