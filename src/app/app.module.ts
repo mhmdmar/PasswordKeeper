@@ -13,7 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './auth.guard';
 import {PasswordsTableComponent} from './ViewModel/passwords-table/passwords-table.component';
 import {HomeComponent} from './ViewModel/home/home.component';
-import {routesNames} from './routesNames';
+import {routesNames} from './routeNames';
 import {SignupComponent} from './ViewModel/signup/signup.component';
 
 const routes = [
