@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Subject} from 'rxjs';
 
 const storageNamespace = {
   user: 'User',
@@ -14,7 +13,6 @@ const storageNamespace = {
 })
 export class AuthService {
   public curActiveUser: any;
-  public userChange: Subject<any> = new Subject<any>();
   private loggedInStatues;
 
   constructor(private http: HttpClient) {
