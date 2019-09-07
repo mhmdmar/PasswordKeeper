@@ -37,30 +37,34 @@ export class SignupComponent implements OnInit {
       inputs: [
         {
           type: 'text',
+          field: 'Email',
           placeholder: 'Email',
           callback: ($event) => this.email = $event.target.value
         },
         {
           type: 'text',
           placeholder: 'Username',
+          field: 'Username',
           callback: ($event) => this.username = $event.target.value
         },
         {
           class: 'formInput',
           type: 'password',
+          field: 'Password',
           placeholder: 'Password',
           callback: ($event) => this.password = $event.target.value
         },
         {
           class: 'formInput',
           type: 'password',
+          field: 'Confirm Password',
           placeholder: 'Confirm Password',
           callback: ($event) => this.confirmPassword = $event.target.value
         },
         {
           class: 'formButton',
           type: 'button',
-          value: 'Login',
+          value: 'Sign up',
           callback: () => this.signUp()
         }
       ],
@@ -75,9 +79,9 @@ export class SignupComponent implements OnInit {
   }
 
   signUp(): void {
-    const validInputs = this.validateForm();
-    if (!validInputs) {
-      alert('One or more fields are not valid');
+    const validateFormMessage = this.validateForm();
+    if (!validateFormMessage.valid) {
+      alert(validateFormMessage.message);
       return;
     }
 
@@ -85,14 +89,37 @@ export class SignupComponent implements OnInit {
       if (data.success) {
         this.route.navigate([routesNames.login]);
       } else {
-        SignupComponent.signUpError(data.message);
+        SignupComponent.signUpError(data.response);
       }
     });
   }
 
-  validateForm(): boolean {
-    return SignupComponent.validateInput(this.email) && SignupComponent.validateInput(this.username) &&
-      SignupComponent.validateInput(this.password) &&
-      SignupComponent.validateInput(this.confirmPassword);
+  emptyInputExists() {
+    return this.email === '' || this.username === '' || this.password === '' || this.confirmPassword === '';
+  }
+
+  validateForm(): any {
+    if (this.emptyInputExists()) {
+      return {
+        valid: false,
+        message: 'Not all fields are filled'
+      };
+    }
+    if (!this.email.includes('@')) {
+      return {
+        valid: false,
+        message: 'The Email address is not legal'
+      };
+    }
+    if (this.password !== this.confirmPassword) {
+      return {
+        valid: false,
+        message: 'Passwords do not match'
+      };
+    }
+    return {
+      valid: true,
+      message: 'success'
+    };
   }
 }

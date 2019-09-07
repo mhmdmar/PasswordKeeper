@@ -11,20 +11,69 @@
         </label>
       </ng-template>
       <ng-template #inputText>
-        <label>
+        <div>
+          <span class="app-text">
+          {{input.field}}
+            </span>
+        </div>
+        <div>
           <input class="formInput" [type]="input.type"
                  [placeholder]="input.placeholder"
                  (input)="input.callback && input.callback($event)">
-        </label>
+        </div>
       </ng-template>
     </div>
     <br>
-    <a *ngIf="data.alternative" (click)="data.alternative.callback()"
+    <a *ngIf="data.alternative" class="app-text" (click)="data.alternative.callback()"
        [innerHTML]="data.alternative.alternativeText"></a>
   </form>
 </div>
 
 
-<!--<input *ngFor="let input of data.inputs" [value]="input.value || ''" [ngClass]="input.class" [type]="input.type"-->
-<!--[placeholder]="input.placeholder" (click)="input.callback && input.callback()">-->
-<!--<br><br>-->
+<!--&lt;!&ndash;<input *ngFor="let input of data.inputs" [value]="input.value || ''" [ngClass]="input.class" [type]="input.type"&ndash;&gt;-->
+<!--&lt;!&ndash;[placeholder]="input.placeholder" (click)="input.callback && input.callback()">&ndash;&gt;-->
+<!--&lt;!&ndash;<br><br>&ndash;&gt;-->
+
+<!--<div class="container">-->
+<!--<form action="/action_page.php">-->
+<!--<div class="row">-->
+<!--<div class="col-25">-->
+<!--<label for="fname">First Name</label>-->
+<!--</div>-->
+<!--<div class="col-75">-->
+<!--<input type="text" id="fname" name="firstname" placeholder="Your name..">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-25">-->
+<!--<label for="lname">Last Name</label>-->
+<!--</div>-->
+<!--<div class="col-75">-->
+<!--<input type="text" id="lname" name="lastname" placeholder="Your last name..">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-25">-->
+<!--<label for="country">Country</label>-->
+<!--</div>-->
+<!--<div class="col-75">-->
+<!--<select id="country" name="country">-->
+<!--<option value="australia">Australia</option>-->
+<!--<option value="canada">Canada</option>-->
+<!--<option value="usa">USA</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-25">-->
+<!--<label for="subject">Subject</label>-->
+<!--</div>-->
+<!--<div class="col-75">-->
+<!--<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<input type="submit" value="Submit">-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->

@@ -30,16 +30,19 @@ export class PasswordFormComponent implements OnInit {
         {
           type: 'text',
           placeholder: 'Domain',
+          field: 'Domain',
           callback: ($event) => this.domain = $event.target.value
         },
         {
           type: 'text',
           placeholder: 'Username',
+          field: 'Username',
           callback: ($event) => this.username = $event.target.value
         },
         {
           type: 'password',
           placeholder: 'Password',
+          field: 'Password',
           callback: ($event) => this.password = $event.target.value
         },
         {

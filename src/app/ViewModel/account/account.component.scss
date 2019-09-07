@@ -12,16 +12,10 @@ a {
   &:not([href]):not([tabindex]) {
     color: black;
   }
-
-
 }
 
 span {
-
   font-size: 18px;
-}
-
-img {
 }
 
 .accountTable {
@@ -32,15 +26,7 @@ img {
   position: absolute;
 }
 
-.flex-container {
-  border-color: inherit;
-}
-
 .account-text {
   color: black;
-}
-
-.flex-container {
-  //background-color: white;
 }
 
