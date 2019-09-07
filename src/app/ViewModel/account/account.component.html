@@ -6,7 +6,7 @@
     <div class="app-btn" (click)="toggleAccountInfo()">
       <span class="app-text" [innerHTML]="Auth.curActiveUser.username"></span>
       <img alt="arrow"
-           [src]="accountInfoVisible?  '../../../assets/collapse-arrow-24.png' :'../../../assets/expand-arrow-24.png' ">
+           [src]="accountInfoVisible?  '../../../assets/Images/collapse-arrow-24.png' : '../../../assets/Images/expand-arrow-24.png' ">
     </div>
     <div class="accountTable" *ngIf="accountInfoVisible">
       <ul class="flex-container column">
@@ -14,17 +14,6 @@
           <div class="app-btn" (click)="signOut()">
             <span class="app-text account-text" [innerHTML]="'Logout'"></span>
           </div>
-        </li>
-        <li class="flex-item">
-          <div class="app-btn" (click)="void()">
-            <span class="app-text account-text" [innerHTML]="'Placeholder'"></span>
-          </div>
-        </li>
-        <li class="flex-item">
-          <div class="app-btn" (click)="void()">
-            <span class="app-text account-text" [innerHTML]="'Placeholder'"></span>
-          </div>
-        </li>
       </ul>
     </div>
   </div>

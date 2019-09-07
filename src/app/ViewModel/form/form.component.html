@@ -1,0 +1,30 @@
+<div class="form">
+  <form>
+    <div *ngFor="let input of data.inputs">
+      <div *ngIf="input.type==='button'; then inputBtn else inputText">
+      </div>
+      <ng-template #inputBtn>
+        <label>
+          <input class="formButton" [value]="input.value" [type]="input.type"
+                 [placeholder]="input.placeholder"
+                 (click)="input.callback && input.callback($event)">
+        </label>
+      </ng-template>
+      <ng-template #inputText>
+        <label>
+          <input class="formInput" [type]="input.type"
+                 [placeholder]="input.placeholder"
+                 (input)="input.callback && input.callback($event)">
+        </label>
+      </ng-template>
+    </div>
+    <br>
+    <a *ngIf="data.alternative" (click)="data.alternative.callback()"
+       [innerHTML]="data.alternative.alternativeText"></a>
+  </form>
+</div>
+
+
+<!--<input *ngFor="let input of data.inputs" [value]="input.value || ''" [ngClass]="input.class" [type]="input.type"-->
+<!--[placeholder]="input.placeholder" (click)="input.callback && input.callback()">-->
+<!--<br><br>-->

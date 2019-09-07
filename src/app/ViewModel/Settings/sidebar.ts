@@ -1,4 +1,4 @@
-import {routesNames} from '../../routeNames';
+import {routesNames} from './routeNames';
 
 export const settings = [
   {

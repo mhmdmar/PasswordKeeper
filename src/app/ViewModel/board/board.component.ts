@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
-import {routesNames} from '../../routeNames';
-import {routes} from '../../app.module';
+import {routesNames} from '../Settings/routeNames';
+import {routes} from '../Settings/routes';
 
 @Component({
   selector: 'app-board',
@@ -10,7 +10,6 @@ import {routes} from '../../app.module';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-  private settings: any;
 
   constructor(private Auth: AuthService, private router: Router) {
   }
