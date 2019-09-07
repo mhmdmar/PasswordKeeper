@@ -70,4 +70,15 @@ module.exports = class UsersList {
     return success;
   }
 
+  updateUserPasswords(username, password, newPassword) {
+    let success = false;
+    const index = this._getUserIndex(username, password);
+    const user = this._users[index];
+    if (user) {
+      success = true;
+      user.passwordsList.push(newPassword);
+    }
+    return success;
+  }
+
 };

@@ -9,23 +9,18 @@ import {Router} from '@angular/router';
 })
 export class AccountComponent implements OnInit, OnDestroy {
   public user: any;
-  private userSubscription: any;
   public accountInfoVisible = false;
   private loginText: string;
 
   constructor(private Auth: AuthService, private route: Router) {
-    this.user = Auth.user;
     this.loginText = 'Login';
   }
 
   ngOnInit() {
-    this.userSubscription = this.Auth.userChange.subscribe((user) => {
-      this.user = user;
-    });
+    this.user = this.Auth.curActiveUser;
   }
 
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
   }
 
   toggleAccountInfo(): void {

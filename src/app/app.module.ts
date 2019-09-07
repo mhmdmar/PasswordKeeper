@@ -15,6 +15,8 @@ import {PasswordsTableComponent} from './ViewModel/passwords-table/passwords-tab
 import {HomeComponent} from './ViewModel/home/home.component';
 import {routesNames} from './routeNames';
 import {SignupComponent} from './ViewModel/signup/signup.component';
+import {PasswordFormComponent} from './ViewModel/password-form/password-form.component';
+import {FormComponent} from './ViewModel/form/form.component';
 
 export const routes = [
   {
@@ -28,7 +30,7 @@ export const routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: routesNames.home,
     pathMatch: 'full'
   },
   {
@@ -39,6 +41,11 @@ export const routes = [
     path: routesNames.signUp,
     component: SignupComponent
   },
+  {
+    path: routesNames.passwordForm,
+    component: PasswordFormComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
@@ -52,6 +59,8 @@ export const routes = [
     PasswordsTableComponent,
     HomeComponent,
     SignupComponent,
+    PasswordFormComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

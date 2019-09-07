@@ -3,38 +3,62 @@ import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../../routeNames';
 
-interface UserData {
-  success: boolean;
-  response: any;
-}
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../CSS/form.scss', './login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public signUpText: string;
-  public username: string;
-  public password: string;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.username = this.password = '';
-    this.signUpText = 'click to sign up';
+    this.submitText = 'click to sign up';
+    this.data = this.getData();
   }
+
+  public submitText: string;
+  public username: string;
+  public password: string;
+  public data: any;
 
   static logInError(): void {
     alert('Username or Password are incorrect');
+  }
+
+  getData() {
+    return {
+      inputs: [
+        {
+          type: 'text',
+          placeholder: 'Username',
+          callback: ($event) => this.username = $event.target.value
+        },
+        {
+          type: 'password',
+          placeholder: 'Password',
+          callback: ($event) => this.password = $event.target.value
+        },
+        {
+          type: 'button',
+          value: 'Login',
+          callback: () => this.login()
+        }
+      ],
+      alternative: {
+        alternativeText: 'click to sign up',
+        callback: () => this.route.navigate([routesNames.signUp])
+      },
+    };
   }
 
   ngOnInit() {
   }
 
   login(): void {
-    this.Auth.login(this.username, this.password).subscribe((data: UserData) => {
+    this.Auth.login(this.username, this.password, (data: any) => {
       if (data.success) {
-        this.route.navigate([routesNames.default]);
-        this.Auth.setLoggedIn(true, data.response);
+        this.route.navigate([routesNames.passwordTable]);
+        this.Auth.loginSuccessfully(data.response);
       } else {
         LoginComponent.logInError();
       }

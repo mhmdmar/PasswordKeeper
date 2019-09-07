@@ -6,6 +6,7 @@ const DB = require(databasePath);
 const UsersList = require("../UsersList");
 const messages = require("../../Utils/Messages");
 const Response = require("../../Utils/Response");
+
 class DatabaseHelper {
   constructor() {
     this._DB = DB;
@@ -41,13 +42,21 @@ class DatabaseHelper {
   }
 
   removeUser(username, password) {
-    const userRemoved = this._usersList.removeUser(username,password);
+    const userRemoved = this._usersList.removeUser(username, password);
     return new Response(userRemoved, userRemoved ? messages.success.deletion : messages.warning.userDoesntExist);
   }
 
   updateUser(username, password, attribute, value) {
     const userUpdated = this._usersList.updateUser(username, password, attribute, value);
-    return new Response(userUpdated, userUpdated ? messages.success.update: messages.warning.userDoesntExist);
+    return new Response(userUpdated, userUpdated ? messages.success.update : messages.warning.userDoesntExist);
+  }
+
+  updatePasswords(username, password, newPassword) {
+    if (!username || !password || !newPassword) {
+      return new Response(false, messages.errors.invalidArguments);
+    }
+    const userPasswordsUpdates = this._usersList.updateUserPasswords(username, password, newPassword);
+    return new Response(userPasswordsUpdates, userPasswordsUpdates ? messages.success.update : messages.warning.userDoesntExist);
   }
 }
 

@@ -2,9 +2,9 @@
   <div *ngIf="!Auth.loggedIn" class="app-btn" (click)="navigateToLogin()">
     <span class="app-text" [innerHTML]="loginText"></span>
   </div>
-  <div *ngIf="user">
+  <div *ngIf="Auth.curActiveUser">
     <div class="app-btn" (click)="toggleAccountInfo()">
-      <span class="app-text" [innerHTML]="user.username"></span>
+      <span class="app-text" [innerHTML]="Auth.curActiveUser.username"></span>
       <img alt="arrow"
            [src]="accountInfoVisible?  '../../../assets/collapse-arrow-24.png' :'../../../assets/expand-arrow-24.png' ">
     </div>

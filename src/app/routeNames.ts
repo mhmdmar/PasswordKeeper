@@ -3,5 +3,6 @@ export const routesNames = {
   default: '',
   home: 'home',
   login: 'login',
-  signUp: 'signUp'
+  signUp: 'signUp',
+  passwordForm: 'passwordForm'
 };

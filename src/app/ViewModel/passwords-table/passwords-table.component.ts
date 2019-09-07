@@ -8,16 +8,16 @@ import {AuthService} from '../../auth.service';
 })
 export class PasswordsTableComponent implements OnInit {
 
-  private user: any;
+  public user: any;
 
   constructor(private Auth: AuthService) {
   }
 
   ngOnInit() {
-    this.user = this.Auth.user;
+    this.user = this.Auth.curActiveUser;
   }
 
-  changeText(event) {
+  changeText() {
   }
 
 }

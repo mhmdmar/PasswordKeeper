@@ -9,16 +9,15 @@ import {routesNames} from '../../routeNames';
   styleUrls: ['../CSS/form.scss', './signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
-  public loginText: string;
   public email: string;
   public username: string;
   public password: string;
   public confirmPassword: string;
+  public data: any;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.email = this.username = this.password = this.confirmPassword = '';
-    this.loginText = 'click to Login';
+    this.data = this.getData();
   }
 
   static signUpError(message): void {
@@ -31,6 +30,45 @@ export class SignupComponent implements OnInit {
       validInput = false;
     }
     return validInput;
+  }
+
+  getData() {
+    return {
+      inputs: [
+        {
+          type: 'text',
+          placeholder: 'Email',
+          callback: ($event) => this.email = $event.target.value
+        },
+        {
+          type: 'text',
+          placeholder: 'Username',
+          callback: ($event) => this.username = $event.target.value
+        },
+        {
+          class: 'formInput',
+          type: 'password',
+          placeholder: 'Password',
+          callback: ($event) => this.password = $event.target.value
+        },
+        {
+          class: 'formInput',
+          type: 'password',
+          placeholder: 'Confirm Password',
+          callback: ($event) => this.confirmPassword = $event.target.value
+        },
+        {
+          class: 'formButton',
+          type: 'button',
+          value: 'Login',
+          callback: () => this.signUp()
+        }
+      ],
+      alternative: {
+        alternativeText: 'click to login',
+        callback: () => this.route.navigate([routesNames.login])
+      },
+    };
   }
 
   ngOnInit() {
@@ -56,9 +94,5 @@ export class SignupComponent implements OnInit {
     return SignupComponent.validateInput(this.email) && SignupComponent.validateInput(this.username) &&
       SignupComponent.validateInput(this.password) &&
       SignupComponent.validateInput(this.confirmPassword);
-  }
-
-  navigateToLogin(): void {
-    this.route.navigate([routesNames.login]);
   }
 }

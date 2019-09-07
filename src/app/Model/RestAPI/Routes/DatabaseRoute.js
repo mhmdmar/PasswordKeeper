@@ -33,4 +33,10 @@ router.post('/updateUser', (req, res) => {
   const resultMessage = databaseHelper.updateUser(body.username, body.password, body.attribute, body.value);
   res.status(200).json(resultMessage);
 });
+
+router.post('/addPassword', (req, res) => {
+  const body = req.body;
+  const resultMessage = databaseHelper.updatePasswords(body.username, body.password, body.newPassword);
+  res.status(200).json(resultMessage);
+});
 module.exports = router;
