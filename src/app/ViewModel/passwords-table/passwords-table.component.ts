@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
+import {Password} from '../ViewUtils/Interfaces/Password';
+import {User} from '../ViewUtils/Interfaces/User';
 
 @Component({
   selector: 'app-passwords-table',
@@ -8,16 +10,19 @@ import {AuthService} from '../../auth.service';
 })
 export class PasswordsTableComponent implements OnInit {
 
-  public user: any;
+  public userPasswordsList: Array<Password>;
 
   constructor(private Auth: AuthService) {
   }
 
   ngOnInit() {
-    this.user = this.Auth.curActiveUser;
+    this.Auth.curActiveUserObservable.subscribe((user: User) => {
+      this.userPasswordsList = user ? user.passwordsList : [];
+    });
   }
 
-  changeText() {
+  changeText(): void {
+    console.log('Place Holder');
   }
 
 }

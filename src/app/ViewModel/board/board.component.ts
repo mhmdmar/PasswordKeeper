@@ -7,7 +7,7 @@ import {routes} from '../Settings/routes';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['../CSS/GoogleFonts.scss', './board.component.scss']
 })
 export class BoardComponent implements OnInit {
 

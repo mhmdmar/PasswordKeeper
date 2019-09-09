@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {BoardComponent} from './ViewModel/board/board.component';
 import {TopBarComponent} from './ViewModel/top-bar/top-bar.component';
 import {SideBarComponent} from './ViewModel/side-bar/side-bar.component';
-import {AccountComponent} from './ViewModel/account/account.component';
+import {AccountBarComponent} from './ViewModel/accountBar/account-bar.component';
 import {LoginComponent} from './ViewModel/login/login.component';
 import {RouterModule} from '@angular/router';
 import {AuthService} from './auth.service';
@@ -24,7 +24,7 @@ import {routes} from './ViewModel/Settings/routes';
     BoardComponent,
     TopBarComponent,
     SideBarComponent,
-    AccountComponent,
+    AccountBarComponent,
     LoginComponent,
     PasswordsTableComponent,
     HomeComponent,

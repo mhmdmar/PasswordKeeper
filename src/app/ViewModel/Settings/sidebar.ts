@@ -1,6 +1,7 @@
 import {routesNames} from './routeNames';
+import {SidebarItem} from '../ViewUtils/Interfaces/SidebarItem';
 
-export const settings = [
+export const settings: Array<SidebarItem> = [
   {
     title: 'Home',
     route: routesNames.home,

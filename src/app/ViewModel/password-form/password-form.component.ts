@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {routesNames} from '../Settings/routeNames';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
+import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
 
 @Component({
   selector: 'app-password-form',
@@ -13,45 +14,49 @@ export class PasswordFormComponent implements OnInit {
   public domain: string;
   public username: string;
   public password: string;
-  public data: any;
+  protected template: FormTemplate;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.domain = this.username = this.password;
-    this.data = this.getData();
+    this.template = this.getTemplate();
   }
 
   static addPasswordError() {
     window.alert('Error in adding the password');
   }
 
-  getData() {
+  getTemplate(): FormTemplate {
     return {
       inputs: [
         {
+          class: '',
           type: 'text',
           placeholder: 'Domain',
           field: 'Domain',
           callback: ($event) => this.domain = $event.target.value
         },
         {
+          class: '',
           type: 'text',
           placeholder: 'Username',
           field: 'Username',
           callback: ($event) => this.username = $event.target.value
         },
         {
+          class: '',
           type: 'password',
           placeholder: 'Password',
           field: 'Password',
           callback: ($event) => this.password = $event.target.value
         },
         {
+          class: '',
           type: 'button',
           value: 'Add Password',
           callback: () => this.addPassword()
         }
       ],
-      alternative: {
+      alternativeRoute: {
         alternativeText: 'click to see the passwords table',
         callback: () => this.route.navigate([routesNames.passwordTable])
       },

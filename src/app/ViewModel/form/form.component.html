@@ -1,6 +1,6 @@
 <div class="form">
   <form>
-    <div *ngFor="let input of data.inputs">
+    <div *ngFor="let input of template.inputs">
       <div *ngIf="input.type==='button'; then inputBtn else inputText">
       </div>
       <ng-template #inputBtn>
@@ -24,56 +24,8 @@
       </ng-template>
     </div>
     <br>
-    <a *ngIf="data.alternative" class="app-text" (click)="data.alternative.callback()"
-       [innerHTML]="data.alternative.alternativeText"></a>
+    <a *ngIf="template.alternativeRoute" class="app-text alternative-link"
+       (click)="template.alternativeRoute.callback()"
+       [innerHTML]="template.alternativeRoute.alternativeText"></a>
   </form>
 </div>
-
-
-<!--&lt;!&ndash;<input *ngFor="let input of data.inputs" [value]="input.value || ''" [ngClass]="input.class" [type]="input.type"&ndash;&gt;-->
-<!--&lt;!&ndash;[placeholder]="input.placeholder" (click)="input.callback && input.callback()">&ndash;&gt;-->
-<!--&lt;!&ndash;<br><br>&ndash;&gt;-->
-
-<!--<div class="container">-->
-<!--<form action="/action_page.php">-->
-<!--<div class="row">-->
-<!--<div class="col-25">-->
-<!--<label for="fname">First Name</label>-->
-<!--</div>-->
-<!--<div class="col-75">-->
-<!--<input type="text" id="fname" name="firstname" placeholder="Your name..">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-25">-->
-<!--<label for="lname">Last Name</label>-->
-<!--</div>-->
-<!--<div class="col-75">-->
-<!--<input type="text" id="lname" name="lastname" placeholder="Your last name..">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-25">-->
-<!--<label for="country">Country</label>-->
-<!--</div>-->
-<!--<div class="col-75">-->
-<!--<select id="country" name="country">-->
-<!--<option value="australia">Australia</option>-->
-<!--<option value="canada">Canada</option>-->
-<!--<option value="usa">USA</option>-->
-<!--</select>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-25">-->
-<!--<label for="subject">Subject</label>-->
-<!--</div>-->
-<!--<div class="col-75">-->
-<!--<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<input type="submit" value="Submit">-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->

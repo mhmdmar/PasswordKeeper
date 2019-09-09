@@ -1,5 +1,9 @@
 @import "../CSS/global";
 
 .flex-container {
-  border-right: 5px solid #f1f2f3;
+  border-right: #ffffff;
+}
+
+.sidebar-item {
+  @include ellipses();
 }

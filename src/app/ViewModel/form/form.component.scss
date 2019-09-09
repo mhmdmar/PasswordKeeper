@@ -45,8 +45,7 @@
     text-transform: uppercase;
 
     &:hover {
-      background:#34CACA;;
-      //background: #34CACA linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+      background: #34CACA;;
     }
 
     textarea {
@@ -54,14 +53,17 @@
       overflow: hidden;
     }
   }
-  a {
-    color: #000000;
-    &:hover{
-      color: #0079ef;
-    }
-  }
 }
 
-.app-text{
+.app-text {
   color: #000000;
+}
+
+a.alternative-link {
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-decoration: none;
+  color: #2CBBBB;
+  &:hover {
+    color: #0079ef;
+  }
 }

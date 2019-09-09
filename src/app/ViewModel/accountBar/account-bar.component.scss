@@ -5,15 +5,6 @@
   float: right;
 }
 
-a {
-  border: 1px;
-  color: black;
-
-  &:not([href]):not([tabindex]) {
-    color: black;
-  }
-}
-
 span {
   font-size: 18px;
 }

@@ -22,16 +22,16 @@
   font-weight: bold;
   font-size: 1em;
   text-align: center;
+}
 
-  .custom-link {
-    @include unselectable();
-    text-decoration: none;
-    display: block;
-    color: black;
+a.custom-link {
+  @include unselectable();
+  text-decoration: none;
+  display: block;
+  color: #2CBBBB;
 
-    &:hover {
-      color: blue;
-    }
+  &:hover {
+    color: #0079ef;
   }
 }
 

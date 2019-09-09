@@ -2,22 +2,23 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../Settings/routeNames';
+import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['../CSS/form.scss', './signup.component.scss']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   public email: string;
   public username: string;
   public password: string;
   public confirmPassword: string;
-  public data: any;
+  protected formTemplate: FormTemplate;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.email = this.username = this.password = this.confirmPassword = '';
-    this.data = this.getData();
+    this.formTemplate = this.getData();
   }
 
   static signUpError(message): void {
@@ -32,16 +33,18 @@ export class SignupComponent implements OnInit {
     return validInput;
   }
 
-  getData() {
+  getData(): FormTemplate {
     return {
       inputs: [
         {
+          class: '',
           type: 'text',
           field: 'Email',
           placeholder: 'Email',
           callback: ($event) => this.email = $event.target.value
         },
         {
+          class: '',
           type: 'text',
           placeholder: 'Username',
           field: 'Username',
@@ -68,7 +71,7 @@ export class SignupComponent implements OnInit {
           callback: () => this.signUp()
         }
       ],
-      alternative: {
+      alternativeRoute: {
         alternativeText: 'click to login',
         callback: () => this.route.navigate([routesNames.login])
       },

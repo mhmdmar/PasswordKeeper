@@ -13,3 +13,10 @@
   display: -webkit-flex;
   display: flex;
 }
+
+@mixin ellipses {
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
