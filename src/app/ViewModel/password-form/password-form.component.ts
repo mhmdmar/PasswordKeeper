@@ -29,28 +29,28 @@ export class PasswordFormComponent implements OnInit {
     return {
       inputs: [
         {
-          class: '',
+          class: 'formInput',
           type: 'text',
           placeholder: 'Domain',
           field: 'Domain',
           callback: ($event) => this.domain = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput',
           type: 'text',
           placeholder: 'Username',
           field: 'Username',
           callback: ($event) => this.username = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput',
           type: 'password',
           placeholder: 'Password',
           field: 'Password',
           callback: ($event) => this.password = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput formButton',
           type: 'button',
           value: 'Add Password',
           callback: () => this.addPassword()

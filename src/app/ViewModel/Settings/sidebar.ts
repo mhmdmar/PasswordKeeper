@@ -22,5 +22,5 @@ export const settings: Array<SidebarItem> = [
     requireLogin: true,
     clickEvent() {
     },
-  }
+  },
 ];

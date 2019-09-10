@@ -5,19 +5,18 @@
       </div>
       <ng-template #inputBtn>
         <label>
-          <input class="formButton" [value]="input.value" [type]="input.type"
+          <input [ngClass]="input.class" [value]="input.value" [type]="input.type"
                  [placeholder]="input.placeholder"
                  (click)="input.callback && input.callback($event)">
         </label>
       </ng-template>
       <ng-template #inputText>
         <div>
-          <span class="app-text">
-          {{input.field}}
+          <span class="app-text" [innerHTML]="input.field">
             </span>
         </div>
         <div>
-          <input class="formInput" [type]="input.type"
+          <input [ngClass]="input.class" [type]="input.type"
                  [placeholder]="input.placeholder"
                  (input)="input.callback && input.callback($event)">
         </div>

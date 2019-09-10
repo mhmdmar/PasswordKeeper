@@ -37,14 +37,14 @@ export class SignupComponent implements OnInit {
     return {
       inputs: [
         {
-          class: '',
+          class: 'formInput',
           type: 'text',
           field: 'Email',
           placeholder: 'Email',
           callback: ($event) => this.email = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput',
           type: 'text',
           placeholder: 'Username',
           field: 'Username',
@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit {
           callback: ($event) => this.confirmPassword = $event.target.value
         },
         {
-          class: 'formButton',
+          class: 'formInput formButton',
           type: 'button',
           value: 'Sign up',
           callback: () => this.signUp()

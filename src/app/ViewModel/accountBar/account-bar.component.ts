@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
+import {routesNames} from '../Settings/routeNames';
 
 @Component({
   selector: 'app-account-bar',
@@ -32,6 +33,6 @@ export class AccountBarComponent implements OnInit {
   }
 
   navigateToLogin() {
-    this.route.navigate(['login']);
+    this.route.navigate([routesNames.login]);
   }
 }

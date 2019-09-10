@@ -30,21 +30,21 @@ export class LoginComponent implements OnInit {
     return {
       inputs: [
         {
-          class: '',
+          class: 'formInput',
           type: 'text',
           field: 'Username',
           placeholder: 'Username',
           callback: ($event) => this.username = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput',
           type: 'password',
           field: 'Password',
           placeholder: 'Password',
           callback: ($event) => this.password = $event.target.value
         },
         {
-          class: '',
+          class: 'formInput formButton',
           type: 'button',
           value: 'Login',
           callback: () => this.login()
