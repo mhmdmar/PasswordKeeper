@@ -5,6 +5,7 @@ export interface FormTemplate {
 
 interface AlternativeRoute {
   alternativeText: string;
+  testID?: string;
   callback: any;
 }
 
@@ -13,6 +14,7 @@ interface FormTextItem {
   type: string;
   placeholder: string;
   field: string;
+  testID?: string;
   callback: any;
 }
 
@@ -20,5 +22,6 @@ interface FormButtonItem {
   class: string;
   type: string;
   value: string;
+  testID?: string;
   callback: any;
 }

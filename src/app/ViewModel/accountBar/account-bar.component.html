@@ -1,17 +1,17 @@
 <div class="right">
   <div *ngIf="!user" class="app-btn" (click)="navigateToLogin()">
-    <span class="app-text" [innerHTML]="loginText"></span>
+    <span class="app-text" [attr.test-id]="testID.login" [innerHTML]="loginText"></span>
   </div>
   <div *ngIf="user">
     <div class="app-btn" (click)="toggleAccountInfo()">
-      <span class="app-text" [innerHTML]="user.username"></span>
+      <span class="app-text" [attr.test-id]="testID.user" [innerHTML]="user.username"></span>
       <img alt="arrow"
            [src]="accountInfoVisible?  '../../../assets/Images/collapse-arrow-24.png' : '../../../assets/Images/expand-arrow-24.png' ">
     </div>
     <div class="accountTable" *ngIf="accountInfoVisible">
-      <ul class="flex-container column">
+      <ul class="flex-container column" [attr.test-id]="testID.userInfo">
         <li class="flex-item">
-          <div class="app-btn" (click)="signOut()">
+          <div class="app-btn" (click)="signOut()" [attr.test-id]="testID.logout">
             <span class="app-text account-text" [innerHTML]="'Logout'"></span>
           </div>
       </ul>

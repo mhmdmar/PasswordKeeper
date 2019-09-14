@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormComponent} from './form.component';
 import {routesNames} from '../Settings/routeNames';
 import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {DOMHelper} from '../ViewUtils/Classes/DOM_Helper';
 
 const DummyFormTemplate: FormTemplate = {
   inputs: [
@@ -11,6 +12,7 @@ const DummyFormTemplate: FormTemplate = {
       type: 'text',
       field: 'textField',
       placeholder: 'textField',
+      testID: 'textID',
       callback: (): void => {
       }
     },
@@ -18,6 +20,7 @@ const DummyFormTemplate: FormTemplate = {
       class: 'btn',
       type: 'button',
       value: 'buttonField',
+      testID: 'btnID',
       callback: (): void => {
       }
     }
@@ -53,6 +56,10 @@ describe('FormComponent', () => {
     expect(textByClass).toBeTruthy();
   });
 
+  it('Form text input testID', () => {
+    const textByTestID = fixture.nativeElement.querySelector(DOMHelper.testIdSelector('textID'));
+    expect(textByTestID).toBeTruthy();
+  });
   it('Form text input placeholder', () => {
     const textPlaceHolder = fixture.nativeElement.querySelector('.text').placeholder;
     expect(textPlaceHolder).toEqual('textField');
@@ -71,6 +78,11 @@ describe('FormComponent', () => {
   it('Form button input class', () => {
     const btnByClass = fixture.nativeElement.querySelector('.btn');
     expect(btnByClass).toBeTruthy();
+  });
+
+  it('Form button input testID', () => {
+    const btnByTestID = fixture.nativeElement.querySelector(DOMHelper.testIdSelector('btnID'));
+    expect(btnByTestID).toBeTruthy();
   });
 
   it('Form button input type', () => {

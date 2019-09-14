@@ -1,6 +1,5 @@
-import {User} from './User';
-
 export interface Response {
   success: boolean;
-  response: User;
+  response: any;
+  message: string;
 }

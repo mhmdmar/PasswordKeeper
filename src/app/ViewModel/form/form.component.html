@@ -5,8 +5,7 @@
       </div>
       <ng-template #inputBtn>
         <label>
-          <input [ngClass]="input.class" [value]="input.value" [type]="input.type"
-                 [placeholder]="input.placeholder"
+          <input [attr.test-id]="input.testID" [ngClass]="input.class" [value]="input.value" [type]="input.type"
                  (click)="input.callback && input.callback($event)">
         </label>
       </ng-template>
@@ -16,7 +15,7 @@
             </span>
         </div>
         <div>
-          <input [ngClass]="input.class" [type]="input.type"
+          <input [attr.test-id]="input.testID" [ngClass]="input.class" [type]="input.type"
                  [placeholder]="input.placeholder"
                  (input)="input.callback && input.callback($event)">
         </div>
@@ -24,6 +23,7 @@
     </div>
     <br>
     <a *ngIf="template.alternativeRoute" class="app-text alternative-link"
+       [attr.test-id]="template.alternativeRoute.testID"
        (click)="template.alternativeRoute.callback()"
        [innerHTML]="template.alternativeRoute.alternativeText"></a>
   </form>

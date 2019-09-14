@@ -3,6 +3,7 @@ import {routesNames} from '../Settings/routeNames';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {Response} from '../ViewUtils/Interfaces/Response';
 
 @Component({
   selector: 'app-password-form',
@@ -21,8 +22,8 @@ export class PasswordFormComponent implements OnInit {
     this.template = this.getTemplate();
   }
 
-  static addPasswordError() {
-    window.alert('Error in adding the password');
+  static addPasswordError(message) {
+    window.alert(message);
   }
 
   getTemplate(): FormTemplate {
@@ -64,11 +65,12 @@ export class PasswordFormComponent implements OnInit {
   }
 
   addPassword(): void {
-    this.Auth.updateUserDetails(this.domain, this.username, this.password).subscribe((data: any) => {
+    this.Auth.updateUserDetails(this.domain, this.username, this.password, (data: Response) => {
       if (data.success) {
         this.route.navigate([routesNames.passwordTable]);
+        this.Auth.addPassword(data.response);
       } else {
-        PasswordFormComponent.addPasswordError();
+        PasswordFormComponent.addPasswordError(data.message);
       }
     });
   }

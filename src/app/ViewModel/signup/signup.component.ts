@@ -3,6 +3,7 @@ import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../Settings/routeNames';
 import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {FormValidation} from '../ViewUtils/Interfaces/FormValidation';
 
 @Component({
   selector: 'app-signup',
@@ -23,14 +24,6 @@ export class SignupComponent implements OnInit {
 
   static signUpError(message): void {
     alert(message);
-  }
-
-  static validateInput(inputText: string): boolean {
-    let validInput = true;
-    if (inputText.length === 0) {
-      validInput = false;
-    }
-    return validInput;
   }
 
   getData(): FormTemplate {
@@ -82,46 +75,53 @@ export class SignupComponent implements OnInit {
   }
 
   signUp(): void {
-    const validateFormMessage = this.validateForm();
-    if (!validateFormMessage.valid) {
-      alert(validateFormMessage.message);
-      return;
+    const validateForm = this.validateForm();
+    if (validateForm.valid) {
+      this.Auth.registerUserDetails(this.email, this.username, this.password, (data: any) => {
+        if (data.success) {
+          this.route.navigate([routesNames.login]);
+        } else {
+          SignupComponent.signUpError(data.message);
+        }
+      });
+    } else {
+      SignupComponent.signUpError(validateForm.message);
     }
-
-    this.Auth.registerUserDetails(this.email, this.username, this.password).subscribe((data: any) => {
-      if (data.success) {
-        this.route.navigate([routesNames.login]);
-      } else {
-        SignupComponent.signUpError(data.response);
-      }
-    });
   }
 
   emptyInputExists() {
     return this.email === '' || this.username === '' || this.password === '' || this.confirmPassword === '';
   }
 
-  validateForm(): any {
+  validateForm(): FormValidation {
+    let valid = false;
     if (this.emptyInputExists()) {
       return {
-        valid: false,
+        valid,
+        message: 'Not all fields are filled'
+      };
+    }
+    if (this.emptyInputExists()) {
+      return {
+        valid,
         message: 'Not all fields are filled'
       };
     }
     if (!this.email.includes('@')) {
       return {
-        valid: false,
+        valid,
         message: 'The Email address is not legal'
       };
     }
     if (this.password !== this.confirmPassword) {
       return {
-        valid: false,
+        valid,
         message: 'Passwords do not match'
       };
     }
+    valid = true;
     return {
-      valid: true,
+      valid,
       message: 'success'
     };
   }

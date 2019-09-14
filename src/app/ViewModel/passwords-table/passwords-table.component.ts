@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Password} from '../ViewUtils/Interfaces/Password';
 import {User} from '../ViewUtils/Interfaces/User';
+import {Response} from '../ViewUtils/Interfaces/Response';
 
 @Component({
   selector: 'app-passwords-table',
@@ -11,6 +12,7 @@ import {User} from '../ViewUtils/Interfaces/User';
 export class PasswordsTableComponent implements OnInit {
 
   public userPasswordsList: Array<Password>;
+  private chosenIndex: number;
 
   constructor(private Auth: AuthService) {
   }
@@ -21,8 +23,23 @@ export class PasswordsTableComponent implements OnInit {
     });
   }
 
-  changeText(): void {
-    console.log('Place Holder');
+  chosePassword(index): void {
+    this.chosenIndex = index;
   }
 
+  changeText(): void {
+  }
+
+  removePassword(): void {
+    const wannaDelete = confirm('Are you sure you want to delete this password');
+    if (wannaDelete) {
+      this.Auth.removePassword(this.chosenIndex, (data: Response) => {
+        if (data.success) {
+          this.chosenIndex = this.chosenIndex > 0 ? this.chosenIndex - 1 : 0;
+        } else {
+          alert(data.message);
+        }
+      });
+    }
+  }
 }

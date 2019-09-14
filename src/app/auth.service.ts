@@ -11,18 +11,25 @@ const storageNamespace = {
   password: 'Password',
   loggedIn: 'loggedIn'
 };
+const API = '/api';
+const API_ROUTES = {
+  removePassword: 'removePassword',
+  addPassword: 'addPassword',
+  getUser: 'getUser',
+  insertUser: 'insertUser',
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public loggedIn: boolean;
   private _curActiveUser = new BehaviorSubject<any>(undefined);
   public curActiveUserObservable = this._curActiveUser.asObservable();
-  private loggedInStatues: boolean;
 
   constructor(private http: HttpClient) {
     const userInSession: boolean = localStorage.getItem(storageNamespace.loggedIn) !== null;
-    this.loggedInStatues = userInSession;
+    this.loggedIn = userInSession;
     if (userInSession) {
       this.restoreUserInSession();
     }
@@ -32,8 +39,35 @@ export class AuthService {
     return this._curActiveUser.value;
   }
 
-  set curActiveUser(user) {
+  set curActiveUser(user: User) {
     this._curActiveUser.next(user);
+  }
+
+  setLoggedIn(value: boolean): void {
+    if (value) {
+      localStorage.setItem(storageNamespace.loggedIn, 'true');
+    } else {
+      localStorage.removeItem(storageNamespace.loggedIn);
+    }
+    this.loggedIn = value;
+  }
+
+  login(username: string, password: string, callback: any): void {
+    this.http.post('/api/getUser', {
+      username, password
+    }).subscribe((data: Response) => {
+      if (data.success) {
+        this.assignUserToSession(data.response);
+      }
+      callback(data);
+    });
+  }
+
+  assignUserToSession(user: User): void {
+    this.setLoggedIn(true);
+    localStorage.setItem(storageNamespace.username, user.username);
+    localStorage.setItem(storageNamespace.password, user.password);
+    this.curActiveUser = user;
   }
 
   restoreUserInSession(): void {
@@ -44,56 +78,54 @@ export class AuthService {
     });
   }
 
-  setLoggedIn(value: boolean): void {
-    if (value) {
-      localStorage.setItem(storageNamespace.loggedIn, 'true');
-    } else {
-      localStorage.removeItem(storageNamespace.loggedIn);
-    }
-    this.loggedInStatues = value;
-  }
-
-  get loggedIn(): boolean {
-    return this.loggedInStatues;
-  }
-
-  signOut(): void {
-    this.setLoggedIn(false);
+  removeUserInSession(): void {
     localStorage.removeItem(storageNamespace.user);
     localStorage.removeItem(storageNamespace.username);
     localStorage.removeItem(storageNamespace.password);
     this.curActiveUser = undefined;
   }
 
-  loginSuccessfully(user: User): void {
-    this.setLoggedIn(true);
-    localStorage.setItem(storageNamespace.username, user.username);
-    localStorage.setItem(storageNamespace.password, user.password);
-    this.curActiveUser = user;
+  signOut(): void {
+    this.setLoggedIn(false);
+    this.removeUserInSession();
   }
 
-  login(username: string, password: string, callback?: any): any {
-    return this.http.post('/api/getUser', {
-      username, password
-    }).subscribe((data) => {
+
+  addPassword(password: Password): void {
+    this.curActiveUser.passwordsList.push(password);
+  }
+
+  registerUserDetails(email: string, username: string, password: string, callback: any): void {
+    this.http.post('/api/insertUser', {
+      email, username, password
+    }).subscribe((data: Response) => {
       callback(data);
     });
   }
 
-  registerUserDetails(email: string, username: string, password: string): any {
-    return this.http.post('/api/insertUser', {
-      email, username, password
+  removePassword(index: number, callback: any): void {
+    const user: User = this.curActiveUser;
+    this.http.post('/api/removePassword', {
+      username: user.username,
+      password: user.password,
+      index
+    }).subscribe((data: Response) => {
+      if (data.success) {
+        this.curActiveUser.passwordsList.splice(index, 1);
+      }
+      callback(data);
     });
   }
 
-  updateUserDetails(domain: string, username: string, password: string): any {
+  updateUserDetails(domain: string, username: string, password: string, callback: any): void {
     const newPassword: Password = {domain, username, password};
     const user: User = this.curActiveUser;
-    user.passwordsList.push(newPassword);
-    return this.http.post('/api/addPassword', {
+    this.http.post('/api/addPassword', {
       username: user.username,
       password: user.password,
       newPassword
+    }).subscribe((data: Response) => {
+      callback(data);
     });
   }
 }

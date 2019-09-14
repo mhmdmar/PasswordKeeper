@@ -81,4 +81,15 @@ module.exports = class UsersList {
     return success;
   }
 
+  removeUserPassword(username, password, passwordIndex) {
+    let success = false;
+    const index = this._getUserIndex(username, password);
+    const user = this._users[index];
+    if (user && user.passwordsList[passwordIndex]) {
+      success = true;
+      user.passwordsList.splice(passwordIndex, 1);
+    }
+    return success;
+  }
+
 };
