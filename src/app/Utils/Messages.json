@@ -13,6 +13,7 @@
     "entry": "the user was added to the database successfully",
     "userExists": "User was queried successfully",
     "deletion": "User was deleted successfully",
-    "update": "User was updated successfully"
+    "update": "User was updated successfully",
+    "allUsers": "All users are here"
   }
 }

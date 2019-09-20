@@ -5,22 +5,22 @@ export const settings: Array<SidebarItem> = [
   {
     title: 'Home',
     route: routesNames.home,
-    requireLogin: false,
-    clickEvent() {
-    },
+    requireLogin: false
+  },
+  {
+    title: 'Users',
+    route: routesNames.usersTable,
+    requireLogin: true,
+    accessLevel: 1
   },
   {
     title: 'Table',
     route: routesNames.passwordTable,
     requireLogin: true,
-    clickEvent() {
-    },
   },
   {
     title: 'Add Password',
     route: routesNames.passwordForm,
     requireLogin: true,
-    clickEvent() {
-    },
   },
 ];

@@ -17,6 +17,7 @@ import {SignupComponent} from './ViewModel/signup/signup.component';
 import {PasswordFormComponent} from './ViewModel/password-form/password-form.component';
 import {FormComponent} from './ViewModel/form/form.component';
 import {routes} from './ViewModel/Settings/routes';
+import { UsersTableComponent } from './ViewModel/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {routes} from './ViewModel/Settings/routes';
     SignupComponent,
     PasswordFormComponent,
     FormComponent,
+    UsersTableComponent,
   ],
   imports: [
     BrowserModule,

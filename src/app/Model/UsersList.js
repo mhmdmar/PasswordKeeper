@@ -39,12 +39,13 @@ module.exports = class UsersList {
     return this._users[index];
   }
 
-  addUser(username, password, email, passwordsList = []) {
+  addUser(username, password, email, passwordsList = [], permission) {
+    console.log(permission);
     let success = true;
     if (this._usernameExists(username)) {
       success = false;
     } else {
-      this._users.push(new Username(username, password, email, passwordsList));
+      this._users.push(new Username(username, password, email, passwordsList,permission));
     }
     return success;
   }
@@ -70,7 +71,7 @@ module.exports = class UsersList {
     return success;
   }
 
-  updateUserPasswords(username, password, newPassword) {
+  addPasswordItem(username, password, newPassword) {
     let success = false;
     const index = this._getUserIndex(username, password);
     const user = this._users[index];
@@ -81,13 +82,24 @@ module.exports = class UsersList {
     return success;
   }
 
-  removeUserPassword(username, password, passwordIndex) {
+  removePasswordItem(username, password, passwordIndex) {
     let success = false;
     const index = this._getUserIndex(username, password);
     const user = this._users[index];
     if (user && user.passwordsList[passwordIndex]) {
       success = true;
       user.passwordsList.splice(passwordIndex, 1);
+    }
+    return success;
+  }
+
+  updatePasswordItem(username, password, passwordIndex, newPassword) {
+    let success = false;
+    const index = this._getUserIndex(username, password);
+    const user = this._users[index];
+    if (user && user.passwordsList[passwordIndex]) {
+      user.passwordsList[passwordIndex] = newPassword;
+      success = true;
     }
     return success;
   }

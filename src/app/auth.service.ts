@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {User} from './ViewModel/ViewUtils/Interfaces/User';
 import {Password} from './ViewModel/ViewUtils/Interfaces/Password';
 import {Response} from './ViewModel/ViewUtils/Interfaces/Response';
+import * as routes from './AppSettings/Routes';
 
 const storageNamespace = {
   user: 'User',
@@ -12,12 +13,10 @@ const storageNamespace = {
   loggedIn: 'loggedIn'
 };
 const API = '/api';
-const API_ROUTES = {
-  removePassword: 'removePassword',
-  addPassword: 'addPassword',
-  getUser: 'getUser',
-  insertUser: 'insertUser',
-};
+
+function getRoutePath(route) {
+  return API.concat('/', route);
+}
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +42,12 @@ export class AuthService {
     this._curActiveUser.next(user);
   }
 
+  getAllUsers(callback: any): void {
+    this.http.get(getRoutePath(routes.getUsers), {}).subscribe((data: Response) => {
+      callback(data);
+    });
+  }
+
   setLoggedIn(value: boolean): void {
     if (value) {
       localStorage.setItem(storageNamespace.loggedIn, 'true');
@@ -53,7 +58,7 @@ export class AuthService {
   }
 
   login(username: string, password: string, callback: any): void {
-    this.http.post('/api/getUser', {
+    this.http.post(getRoutePath(routes.getUser), {
       username, password
     }).subscribe((data: Response) => {
       if (data.success) {
@@ -90,13 +95,8 @@ export class AuthService {
     this.removeUserInSession();
   }
 
-
-  addPassword(password: Password): void {
-    this.curActiveUser.passwordsList.push(password);
-  }
-
   registerUserDetails(email: string, username: string, password: string, callback: any): void {
-    this.http.post('/api/insertUser', {
+    this.http.post(getRoutePath(routes.insertUser), {
       email, username, password
     }).subscribe((data: Response) => {
       callback(data);
@@ -105,7 +105,7 @@ export class AuthService {
 
   removePassword(index: number, callback: any): void {
     const user: User = this.curActiveUser;
-    this.http.post('/api/removePassword', {
+    this.http.post(getRoutePath(routes.removePasswordItem), {
       username: user.username,
       password: user.password,
       index
@@ -117,14 +117,17 @@ export class AuthService {
     });
   }
 
-  updateUserDetails(domain: string, username: string, password: string, callback: any): void {
+  addPassword(domain: string, username: string, password: string, callback: any): void {
     const newPassword: Password = {domain, username, password};
     const user: User = this.curActiveUser;
-    this.http.post('/api/addPassword', {
+    this.http.post(getRoutePath(routes.addPasswordItem), {
       username: user.username,
       password: user.password,
       newPassword
     }).subscribe((data: Response) => {
+      if (data.success) {
+        this.curActiveUser.passwordsList.push(data.response);
+      }
       callback(data);
     });
   }

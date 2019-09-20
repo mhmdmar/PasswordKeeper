@@ -65,10 +65,9 @@ export class PasswordFormComponent implements OnInit {
   }
 
   addPassword(): void {
-    this.Auth.updateUserDetails(this.domain, this.username, this.password, (data: Response) => {
+    this.Auth.addPassword(this.domain, this.username, this.password, (data: Response) => {
       if (data.success) {
         this.route.navigate([routesNames.passwordTable]);
-        this.Auth.addPassword(data.response);
       } else {
         PasswordFormComponent.addPasswordError(data.message);
       }

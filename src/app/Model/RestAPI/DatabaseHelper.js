@@ -1,7 +1,6 @@
-const path = require("./Paths");
 const fs = require("fs");
 const encoding = "utf8";
-const databasePath = path.DatabasePath.concat("/", path.UsersDB);
+const databasePath = "../Database/UsersDB";
 const DB = require(databasePath);
 const UsersList = require("../UsersList");
 const messages = require("../../Utils/Messages");
@@ -27,7 +26,7 @@ class DatabaseHelper {
   }
 
   getUsers() {
-    return this._usersList;
+    return new Response(true, messages.success.users, this._usersList.users);
   }
 
   getUser(username, password) {
@@ -37,34 +36,54 @@ class DatabaseHelper {
   }
 
   insertUser(username, password, email, passwordsList = []) {
-    const userAdded = this._usersList.addUser(username, password, email, passwordsList);
-    return new Response(userAdded, userAdded ? messages.success.entry : messages.warning.usernameTaken, username);
+    const result = this._usersList.addUser(username, password, email, passwordsList, 3);
+    return new Response(result, result ? messages.success.entry : messages.warning.usernameTaken, username);
   }
 
   removeUser(username, password) {
-    const userRemoved = this._usersList.removeUser(username, password);
-    return new Response(userRemoved, userRemoved ? messages.success.deletion : messages.warning.userDoesntExist, username);
+    const result = this._usersList.removeUser(username, password);
+    return new Response(result, result ? messages.success.deletion : messages.warning.userDoesntExist, username);
   }
 
-  updateUser(username, password, attribute, value) {
-    const userUpdated = this._usersList.updateUser(username, password, attribute, value);
-    return new Response(userUpdated, userUpdated ? messages.success.update : messages.warning.userDoesntExist, username);
+  updateUserName(username, password, newValue) {
+    return this._updateUserByAttribute(username, password, 'username', newValue);
   }
 
-  updatePasswords(username, password, newPassword) {
+  updateUserPassword(username, password, newValue) {
+    return this._updateUserByAttribute(username, password, 'password', newValue);
+  }
+
+  updateUserEmail(username, password, newValue) {
+    return this._updateUserByAttribute(username, password, 'email', newValue);
+  }
+
+  _updateUserByAttribute(username, password, attribute, value) {
+    const result = this._usersList.updateUser(username, password, attribute, value);
+    return new Response(result, result ? messages.success.update : messages.warning.userDoesntExist, username);
+  }
+
+  addPasswordItem(username, password, newPassword) {
     if (!username || !password || !newPassword) {
       return new Response(false, messages.errors.invalidArguments);
     }
-    const userPasswordsUpdates = this._usersList.updateUserPasswords(username, password, newPassword);
-    return new Response(userPasswordsUpdates, userPasswordsUpdates ? messages.success.update : messages.warning.userDoesntExist, newPassword);
+    const result = this._usersList.addPasswordItem(username, password, newPassword);
+    return new Response(result, result ? messages.success.update : messages.warning.userDoesntExist, newPassword);
   }
 
-  removePassword(username, password, index) {
+  removePasswordItem(username, password, index) {
     if (!username || !password || index === undefined) {
       return new Response(false, messages.errors.invalidArguments);
     }
-    const userRemovePassword = this._usersList.removeUserPassword(username, password, index);
-    return new Response(userRemovePassword, userRemovePassword ? messages.success.update : messages.warning.userDoesntExist, index);
+    const result = this._usersList.removePasswordItem(username, password, index);
+    return new Response(result, result ? messages.success.update : messages.warning.userDoesntExist, index);
+  }
+
+  updatePasswordItem(username, password, index, newPassword) {
+    if (!username || !password || index === undefined || newPassword === undefined) {
+      return new Response(false, messages.errors.invalidArguments);
+    }
+    const result = this._usersList.updatePasswordItem(username, password, index, newPassword);
+    return new Response(result, result ? messages.success.update : messages.warning.userDoesntExist, index);
   }
 }
 

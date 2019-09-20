@@ -19,14 +19,8 @@ export class BoardComponent implements OnInit {
     if (curRouterUrl === '/') { // empty path
       curRouterUrl = '';
     }
-    let allowedRoute = false;
-    routes.forEach(route => {
-        if (curRouterUrl === route.path && !route.canActivate) {
-          allowedRoute = true;
-        }
-      }
-    );
-    return allowedRoute;
+    const curRoute: any = routes.find((route) => route.path === curRouterUrl);
+    return (curRoute && !curRoute.canActivate);
   }
 
   ngOnInit() {
@@ -35,4 +29,3 @@ export class BoardComponent implements OnInit {
     }
   }
 }
-

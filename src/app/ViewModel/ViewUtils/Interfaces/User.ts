@@ -5,4 +5,5 @@ export interface User {
   password: string;
   email: string;
   passwordsList: Array<Password>;
+  permission: number;
 }

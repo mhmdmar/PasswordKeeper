@@ -12,7 +12,7 @@ import {Response} from '../ViewUtils/Interfaces/Response';
 export class PasswordsTableComponent implements OnInit {
 
   public userPasswordsList: Array<Password>;
-  private chosenIndex: number;
+  public chosenIndex: number;
 
   constructor(private Auth: AuthService) {
   }

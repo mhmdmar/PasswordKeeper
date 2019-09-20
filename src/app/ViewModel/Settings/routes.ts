@@ -5,6 +5,7 @@ import {HomeComponent} from '../home/home.component';
 import {LoginComponent} from '../login/login.component';
 import {SignupComponent} from '../signup/signup.component';
 import {PasswordFormComponent} from '../password-form/password-form.component';
+import {UsersTableComponent} from '../users-table/users-table.component';
 
 export const routes = [
   {
@@ -32,6 +33,11 @@ export const routes = [
   {
     path: routesNames.passwordForm,
     component: PasswordFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: routesNames.usersTable,
+    component: UsersTableComponent,
     canActivate: [AuthGuard]
   }
 ];

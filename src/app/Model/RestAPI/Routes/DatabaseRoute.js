@@ -1,48 +1,75 @@
 const express = require("express");
 const router = express.Router();
 const databaseHelper = require("../DatabaseHelper");
-
+const routes = require('../../../AppSettings/Routes');
 router.get('/', (req, res) => {
   res.status(200).json("Nothing to show");
 });
 
-router.get('/getUsers', (req, res) => {
+function getRoutePath(route) {
+  return '/'.concat(route);
+}
+
+/* Users Routes */
+
+router.get(getRoutePath(routes.getUsers), (req, res) => {
   const users = databaseHelper.getUsers();
   res.status(200).json(users);
 });
 
-router.post('/getUser', (req, res) => {
+router.post(getRoutePath(routes.getUser), (req, res) => {
   const body = req.body;
   const resultMessage = databaseHelper.getUser(body.username, body.password);
   res.status(200).json(resultMessage);
 });
-router.post('/insertUser', (req, res) => {
+router.post(getRoutePath(routes.insertUser), (req, res) => {
   const body = req.body;
   const resultMessage = databaseHelper.insertUser(body.username, body.password, body.email);
   res.status(200).json(resultMessage);
 });
 
-router.post('/removeUser', (req, res) => {
+router.post(getRoutePath(routes.changeUserName), (req, res) => {
+  const body = req.body;
+  const resultMessage = databaseHelper.updateUserName(body.username, body.password, body.newValue);
+  res.status(200).json(resultMessage);
+});
+
+router.post(getRoutePath(routes.changeUserPassword), (req, res) => {
+  const body = req.body;
+  const resultMessage = databaseHelper.updateUserPassword(body.username, body.password, body.newValue);
+  res.status(200).json(resultMessage);
+});
+
+router.post(getRoutePath(routes.changeUserEmail), (req, res) => {
+  const body = req.body;
+  const resultMessage = databaseHelper.updateUserEmail(body.username, body.password, body.newValue);
+  res.status(200).json(resultMessage);
+});
+
+router.post(getRoutePath(routes.removeUser), (req, res) => {
   const body = req.body;
   const resultMessage = databaseHelper.removeUser(body.username, body.password);
   res.status(200).json(resultMessage);
 });
 
-router.post('/updateUser', (req, res) => {
+/* User Password List Routes */
+
+router.post(getRoutePath(routes.addPasswordItem), (req, res) => {
   const body = req.body;
-  const resultMessage = databaseHelper.updateUser(body.username, body.password, body.attribute, body.value);
+  const resultMessage = databaseHelper.addPasswordItem(body.username, body.password, body.newPassword);
   res.status(200).json(resultMessage);
 });
 
-router.post('/addPassword', (req, res) => {
+router.post(getRoutePath(routes.updatePasswordItem), (req, res) => {
   const body = req.body;
-  const resultMessage = databaseHelper.updatePasswords(body.username, body.password, body.newPassword);
+  const resultMessage = databaseHelper.updatePasswordItem(body.username, body.password, body.index, body.newPassword);
   res.status(200).json(resultMessage);
 });
 
-router.post('/removePassword', (req, res) => {
+router.post(getRoutePath(routes.removePasswordItem), (req, res) => {
   const body = req.body;
-  const resultMessage = databaseHelper.removePassword(body.username, body.password, body.index);
+  const resultMessage = databaseHelper.removePasswordItem(body.username, body.password, body.index);
   res.status(200).json(resultMessage);
 });
+
 module.exports = router;

@@ -4,5 +4,6 @@ export const routesNames: any = {
   home: 'home',
   login: 'login',
   signUp: 'signUp',
-  passwordForm: 'passwordForm'
+  passwordForm: 'passwordForm',
+  usersTable: 'usersTable'
 };
