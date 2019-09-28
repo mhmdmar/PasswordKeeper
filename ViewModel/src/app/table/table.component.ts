@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
   bindEvent() {
     window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'ArrowDown') {
-        const len: number = this.template.list.length;
+        const len: number = this.template.itemsList.length;
         this.chosenIndex = this.chosenIndex < len - 1 ? this.chosenIndex + 1 : len - 1;
         event.preventDefault();
       }

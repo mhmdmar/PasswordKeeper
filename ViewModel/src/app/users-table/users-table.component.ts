@@ -30,7 +30,7 @@ export class UsersTableComponent implements OnInit {
           {text: 'Password'},
           {text: 'Permission'}
         ],
-      rows: [],
+      itemsList: [],
       choseItem: (index) => this.choseUser(index),
       itemsUtils: [
         {
@@ -49,7 +49,7 @@ export class UsersTableComponent implements OnInit {
   ngOnInit() {
     this.Auth.getAllUsers((data: Response) => {
       this.users = data.response;
-      this.template.rows = this.users;
+      this.template.itemsList = this.users;
     }, false);
   }
 

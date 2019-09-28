@@ -3,13 +3,14 @@
     <div class="col" *ngFor="let headerColumn of template.headers" [innerHTML]="headerColumn.text"></div>
     <div *ngIf="template.itemsUtils" class="col util"></div>
   </div>
-  <div *ngFor="let row of template.rows; let i = index;">
+  <div *ngFor="let itemsField of template.itemsList; let i = index;">
     <div class="row" (click)="choseItem(template.choseItem,i);"
          [ngClass]="chosenIndex===i? 'chosen' :''">
-      <div *ngFor="let col of getKeys(row)" class="col" [title]="row[col]" [innerHTML]="row[col]"></div>
+      <div *ngFor="let item of getKeys(itemsField);" class="col" [title]="itemsField[item]"
+           [innerHTML]="itemsField[item]"></div>
       <div class="col util">
-        <i *ngFor="let item of template.itemsUtils" [title]="item.value" class="material-icons"
-           (click)="item.callback(i)">{{item.value}}</i>
+        <i *ngFor="let itemUtil of template.itemsUtils" [title]="itemUtil.value" class="material-icons"
+           (click)="itemUtil.callback(i)">{{itemUtil.value}}</i>
       </div>
     </div>
   </div>

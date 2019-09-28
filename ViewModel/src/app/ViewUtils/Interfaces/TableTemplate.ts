@@ -1,6 +1,6 @@
 export interface TableTemplate {
   headers: Array<tableHeader>;
-  rows: Array<any>;
+  itemsList: Array<any>;
   itemsUtils: Array<itemUtils>;
   choseItem?: any;
   chosenIndex?: number;

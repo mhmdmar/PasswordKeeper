@@ -31,7 +31,7 @@ export class PasswordsTableComponent implements OnInit {
           {text: 'Username'},
           {text: 'Password'},
         ],
-      rows: [],
+      itemsList: [],
       choseItem: (index) => this.chosePassword(index),
       itemsUtils: [
         {
@@ -50,7 +50,7 @@ export class PasswordsTableComponent implements OnInit {
   ngOnInit() {
     this.Auth.curActiveUserObservable.subscribe((user: User) => {
       this.userPasswordsList = user ? user.passwordsList : [];
-      this.template.rows = this.userPasswordsList;
+      this.template.itemsList = this.userPasswordsList;
     });
     this.bindKeyboard();
   }

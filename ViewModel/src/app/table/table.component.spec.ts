@@ -8,7 +8,7 @@ const DummyFormTemplate: TableTemplate = {
       {text: 'Email'},
       {text: 'Username'}
     ],
-  rows: [
+  itemsList: [
     {email: 'aa', username: 'bb'},
     {email: 'aa', username: 'bb'},
     {email: 'aa', username: 'bb'},
