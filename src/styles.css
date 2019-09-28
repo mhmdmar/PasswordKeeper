@@ -1,7 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('~bootstrap/dist/css/bootstrap.css');
-@import url("~@ux-aspects/ux-aspects/styles/ux-aspects.min.css");
-
-.greyBackground {
-  background-color: #f1f2f3;
-}

@@ -1,0 +1,75 @@
+{
+  "Users": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "email": "admin",
+      "permission": 1,
+      "passwordsList": [
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "f",
+          "username": "f",
+          "password": "f"
+        },
+        {
+          "domain": "google.co.il",
+          "username": "tamer@gmail.com",
+          "password": "1234567asd"
+        }
+      ]
+    },
+    {
+      "username": "mhmdmar",
+      "password": "1234567asd",
+      "email": "mhmdmar@gmail.com",
+      "permission": 1,
+      "passwordsList": [
+        {
+          "domain": "google.co.il",
+          "username": "mhmdmar@gmail.com",
+          "password": "1234567asd"
+        },
+        {
+          "domain": "laptop",
+          "username": "temp",
+          "password": "temp"
+        },
+        {
+          "domain": "facebook",
+          "username": "ttt",
+          "password": "ttt"
+        }
+      ]
+    }
+  ]
+}

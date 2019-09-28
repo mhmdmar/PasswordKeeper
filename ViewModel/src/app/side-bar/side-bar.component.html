@@ -1,0 +1,13 @@
+<ul class="flex-container column">
+  <ng-container *ngFor="let data of filterSidebar()">
+    <ng-container *ngIf="!data.accessLevel || data.accessLevel >= curUserPermission">
+      <li class="flex-item sidebar-item">
+        <a class="app-text custom-link"
+           [routerLink]="data.route"
+           routerLinkActive="active-link"
+           [innerText]="data.title"></a>
+
+      </li>
+    </ng-container>
+  </ng-container>
+</ul>

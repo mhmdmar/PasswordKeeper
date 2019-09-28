@@ -1,0 +1,16 @@
+<div>
+  <div class="row header">
+    <div class="col" *ngFor="let headerColumn of template.headers" [innerHTML]="headerColumn.text"></div>
+    <div *ngIf="template.itemsUtils" class="col util"></div>
+  </div>
+  <div *ngFor="let row of template.rows; let i = index;">
+    <div class="row" (click)="choseItem(template.choseItem,i);"
+         [ngClass]="chosenIndex===i? 'chosen' :''">
+      <div *ngFor="let col of getKeys(row)" class="col" [title]="row[col]" [innerHTML]="row[col]"></div>
+      <div class="col util">
+        <i *ngFor="let item of template.itemsUtils" [title]="item.value" class="material-icons"
+           (click)="item.callback(i)">{{item.value}}</i>
+      </div>
+    </div>
+  </div>
+</div>

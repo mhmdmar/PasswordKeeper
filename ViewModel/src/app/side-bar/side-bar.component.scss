@@ -1,0 +1,10 @@
+@import "../CSS/global";
+
+.flex-container {
+  border-right: #ffffff;
+}
+
+.sidebar-item {
+  max-width: 150px;
+  @include ellipses();
+}

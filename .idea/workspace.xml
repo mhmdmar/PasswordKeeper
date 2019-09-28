@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1e5e09da-9d76-4752-b3c3-b4191a0fcc09" name="Default Changelist" comment="code refactor">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/PasswordKeeper.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/yahyamuh.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppSettings/Routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/RestAPI/DatabaseHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/RestAPI/Routes/DatabaseRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/UsersUtils/Password.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/UsersUtils/User.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model/UsersUtils/UsersList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/angular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/browserslist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/karma.conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/Settings/iconsText.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/Settings/routeNames.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/Settings/routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/Settings/sidebar.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/FormTemplate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/TableTemplate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/accountBar/account-bar.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/form/form.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/form/form.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/password-change-form/password-change-form.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/password-change-form/password-change-form.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/password-form/password-form.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/passwords-table/passwords-table.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/side-bar/side-bar.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/signup/signup.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/table/table.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/table/table.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/table/table.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/app/table/table.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/assets/hpe-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/src/styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViewModel/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/e2e/protractor.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/src/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/e2e/src/app.e2e-spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/src/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/e2e/src/app.po.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/e2e/tsconfig.e2e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/proxy.conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/proxy.conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/AppSettings/Routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/Database/UsersDB.json" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Database/UsersDB.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/DatabaseHelper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/Routes/DatabaseRoute.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/RestAPI/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Model/UsersList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Utils/Messages.json" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Utils/Messages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Utils/Response.js" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Utils/Response.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/CSS/GoogleFonts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/CSS/GoogleFonts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/CSS/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/CSS/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/CSS/states.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/CSS/states.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/Settings/routeNames.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/Settings/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/Settings/sidebar.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/Settings/topbar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/Settings/topbar.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Classes/DOM_Helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/DOM_Utils/DOM_Helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/FormTemplate.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/FormValidation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/FormValidation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/Password.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/Password.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/Response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/Response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/SidebarItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/SidebarItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/ViewUtils/Interfaces/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/accountBar/account-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/accountBar/account-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/accountBar/account-bar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/accountBar/account-bar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/accountBar/account-bar.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/accountBar/account-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/accountBar/account-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/board/board.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/board/board.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/board/board.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/board/board.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/board/board.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/board/board.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/form/form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/form/form.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/form/form.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/form/form.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/form/form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/form/form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/home/home.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/home/home.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/home/home.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Model/RestAPI/start.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/password-form/password-form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/password-form/password-form.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/password-form/password-form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/passwords-table/passwords-table.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/passwords-table/passwords-table.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/passwords-table/passwords-table.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/side-bar/side-bar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/side-bar/side-bar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/side-bar/side-bar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/side-bar/side-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/side-bar/side-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/signup/signup.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/signup/signup.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/DOM_Utils/DOM_Elements/Input.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/signup/signup.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/top-bar/top-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/top-bar/top-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/top-bar/top-bar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/top-bar/top-bar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ViewModel/top-bar/top-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/top-bar/top-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/assets/hpe-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/app/auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/auth.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Images/collapse-arrow-24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Images/down_arrow_26.png" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/assets/Images/down_arrow_26.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Images/expand-arrow-24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/Images/password_home.png" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/assets/Images/password_home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/browserslist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModel/src/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="SCSS" />
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Projects\PasswordKeeper\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1R62pdyOWJvxxASBdsuVmJwqu6W" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="javascript.karma.karma_node_package_dir" value="" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.14.2" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ViewModel/src/app/ViewUtils/Interfaces" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
+    <property name="nodejs.cucumber.cucumber_node_package_dir" value="" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/node_modules/protractor" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="C:\Projects\PasswordKeeper\ViewModel\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\PasswordKeeper\ViewModel" />
+      <recent name="C:\Projects\PasswordKeeper" />
+      <recent name="C:\Projects\PasswordKeeper\Model\UsersUtils" />
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\app\ViewUtils\DOM_Utils" />
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\app\ViewUtils\DOM_Utils\DOM_Elements" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\app\ViewUtils\Interfaces" />
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\app\assets" />
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\app\CSS" />
+      <recent name="C:\Projects\PasswordKeeper\ViewModel\src\assets" />
+      <recent name="C:\Projects\PasswordKeeper" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="PasswordKeeper" type="CompoundRunConfigurationType">
+      <toRun name="Angular CLI Server" type="js.build_tools.npm" />
+      <toRun name="server.js" type="NodeJSConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="server.js" type="NodeJSConfigurationType" />
+      <toRun name="Angular CLI Server" type="js.build_tools.npm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/src/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="$PROJECT_DIR$/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="server.js-nodemon" type="NodeJSConfigurationType" path-to-node="$USER_HOME$/AppData/Roaming/npm/nodemon.cmd" path-to-js-file="Model/RestAPI/start.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="server.js" type="NodeJSConfigurationType" nameIsGenerated="true" node-parameters="server" path-to-js-file="server.js" working-dir="$PROJECT_DIR$/src/app/Model/RestAPI">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/ViewModel/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Compound.PasswordKeeper" />
+      <item itemvalue="JavaScript Debug.Angular Application" />
+      <item itemvalue="Karma.Tests" />
+      <item itemvalue="Node.js.server.js-nodemon" />
+      <item itemvalue="Node.js.server.js" />
+      <item itemvalue="npm.Angular CLI Server" />
+      <item itemvalue="Protractor.E2E Tests" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1e5e09da-9d76-4752-b3c3-b4191a0fcc09" name="Default Changelist" comment="" />
+      <created>1553771411594</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553771411594</updated>
+      <workItem from="1553771414324" duration="728000" />
+      <workItem from="1554121061235" duration="4361000" />
+      <workItem from="1554187296921" duration="4693000" />
+      <workItem from="1554192772215" duration="274000" />
+      <workItem from="1554210781329" duration="2131000" />
+      <workItem from="1563369248739" duration="187000" />
+      <workItem from="1563369483229" duration="19217000" />
+      <workItem from="1563436653918" duration="42000" />
+      <workItem from="1566989472880" duration="2243000" />
+      <workItem from="1566991753231" duration="4947000" />
+      <workItem from="1567056921823" duration="3368000" />
+      <workItem from="1567095904785" duration="9968000" />
+      <workItem from="1567200381097" duration="20210000" />
+      <workItem from="1567237821205" duration="6153000" />
+      <workItem from="1567244004639" duration="138000" />
+      <workItem from="1567266273841" duration="5378000" />
+      <workItem from="1567279138851" duration="861000" />
+      <workItem from="1567320171953" duration="108000" />
+      <workItem from="1567328360506" duration="659000" />
+      <workItem from="1567430075935" duration="4620000" />
+      <workItem from="1567613293467" duration="2518000" />
+      <workItem from="1567665703929" duration="61000" />
+      <workItem from="1567699743761" duration="3914000" />
+      <workItem from="1567779273729" duration="10177000" />
+      <workItem from="1567837191657" duration="21842000" />
+      <workItem from="1567924503696" duration="607000" />
+      <workItem from="1567968747688" duration="4103000" />
+      <workItem from="1568012381656" duration="1282000" />
+      <workItem from="1568013827260" duration="92000" />
+      <workItem from="1568015916906" duration="550000" />
+      <workItem from="1568034077460" duration="98000" />
+      <workItem from="1568034200288" duration="439000" />
+      <workItem from="1568045137987" duration="7070000" />
+      <workItem from="1568097419971" duration="91000" />
+      <workItem from="1568122948671" duration="7875000" />
+      <workItem from="1568182828900" duration="1333000" />
+      <workItem from="1568281997857" duration="2389000" />
+      <workItem from="1568386625347" duration="2917000" />
+      <workItem from="1568400393493" duration="4703000" />
+      <workItem from="1568447493307" duration="11644000" />
+      <workItem from="1568481601363" duration="601000" />
+      <workItem from="1568528103524" duration="96000" />
+      <workItem from="1568556708028" duration="6295000" />
+      <workItem from="1568616068448" duration="346000" />
+      <workItem from="1568968924726" duration="2635000" />
+      <workItem from="1568973416544" duration="63000" />
+      <workItem from="1569001705993" duration="7747000" />
+      <workItem from="1569049636705" duration="3272000" />
+      <workItem from="1569222296521" duration="303000" />
+      <workItem from="1569246805770" duration="9499000" />
+      <workItem from="1569257124183" duration="5874000" />
+      <workItem from="1569263049135" duration="1478000" />
+      <workItem from="1569307591396" duration="1072000" />
+      <workItem from="1569395274173" duration="843000" />
+      <workItem from="1569399833929" duration="729000" />
+      <workItem from="1569405058555" duration="3179000" />
+      <workItem from="1569408814549" duration="802000" />
+      <workItem from="1569423460759" duration="7079000" />
+      <workItem from="1569482058055" duration="252000" />
+      <workItem from="1569605611435" duration="3230000" />
+      <workItem from="1569655548883" duration="8882000" />
+      <workItem from="1569664486175" duration="344000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1567243210507</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567243210507</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init">
+      <created>1567271603575</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1567271603576</updated>
+    </task>
+    <task id="LOCAL-00003" summary="reverted home component">
+      <created>1567271636776</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1567271636776</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removed redundant css and added new signup component, changed routes to constant">
+      <created>1567435923059</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1567435923060</updated>
+    </task>
+    <task id="LOCAL-00005" summary="small changes to the front end, changed the backend responses to be handled in the DB_Helper">
+      <created>1567703329259</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1567703329259</updated>
+    </task>
+    <task id="LOCAL-00006" summary="pushed Unversioned files">
+      <created>1567779780279</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1567779780279</updated>
+    </task>
+    <task id="LOCAL-00007" summary="changed routesNames to routeNames">
+      <created>1567780167403</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1567780167403</updated>
+    </task>
+    <task id="LOCAL-00008" summary="some minor changes to the app">
+      <created>1567789432966</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1567789432966</updated>
+    </task>
+    <task id="LOCAL-00009" summary="code refactor">
+      <created>1567852639041</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1567852639041</updated>
+    </task>
+    <task id="LOCAL-00010" summary="minor changes">
+      <created>1567863802546</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1567863802546</updated>
+    </task>
+    <task id="LOCAL-00011" summary="minor changes">
+      <created>1567863981113</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1567863981114</updated>
+    </task>
+    <task id="LOCAL-00012" summary="css changes">
+      <created>1567869222414</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567869222414</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Create new interface for each data type, small css refactor...">
+      <created>1568052093839</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1568052093840</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added new unit testing for some of the components">
+      <created>1568130735759</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1568130735759</updated>
+    </task>
+    <task id="LOCAL-00015" summary="more unit tests and changes">
+      <created>1568469684098</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1568469684099</updated>
+    </task>
+    <task id="LOCAL-00016" summary="code refactor">
+      <created>1568970707433</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1568970707433</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="E2E_Tests - 2019.09.07 at 09h 24m 33s.xml">
+      <configuration name="E2E Tests" configurationId="JavaScriptTestRunnerProtractor" />
+    </history-entry>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="init" />
+    <MESSAGE value="reverted home component" />
+    <MESSAGE value="Removed redundant css and added new signup component, changed routes to constant" />
+    <MESSAGE value="added signup form and partially updated the app service to return success and message statues object, also some minor changes" />
+    <MESSAGE value="small changes to the front end, changed the backend responses to be handled in the DB_Helper" />
+    <MESSAGE value="pushed Unversioned files" />
+    <MESSAGE value="changed routesNames to routeNames" />
+    <MESSAGE value="some minor changes to the app" />
+    <MESSAGE value="minor changes" />
+    <MESSAGE value="css changes" />
+    <MESSAGE value="Create new interface for each data type, small css refactor..." />
+    <MESSAGE value="Added new unit testing for some of the components" />
+    <MESSAGE value="more unit tests and changes" />
+    <MESSAGE value="code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="code refactor" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>user[attribute]</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+</project>
