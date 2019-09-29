@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {routesNames} from '../Settings/routeNames';
-import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
 import {FormValidation} from '../ViewUtils/Interfaces/FormValidation';
 import {Response} from '../ViewUtils/Interfaces/Response';
-import {inputUtils} from '../ViewUtils/DOM_Utils/DOM_Elements/Input';
-import {iconsText} from '../Settings/iconsText';
+import {inputUtils} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-signup',
@@ -53,13 +53,15 @@ export class SignupComponent implements OnInit {
           field: 'Password',
           placeholder: 'Password',
           callback: ($event) => this.password = $event.target.value,
-          helperBtn: {
-            text: iconsText.showPassword,
-            clickCallback: () => {
-              const input = this.formTemplate.inputs[2];
-              inputUtils.toggleTypePassword(input);
-            }
-          }
+          itemsUtils: [
+            {
+              icon: icons.showPassword,
+              callback: () => {
+                const input = this.formTemplate.inputs[2];
+                inputUtils.toggleTypePassword(input);
+              }
+            },
+          ],
         },
         {
           class: 'formInput',
@@ -67,13 +69,14 @@ export class SignupComponent implements OnInit {
           field: 'Confirm Password',
           placeholder: 'Confirm Password',
           callback: ($event) => this.confirmPassword = $event.target.value,
-          helperBtn: {
-            text: iconsText.showPassword,
-            clickCallback: () => {
+          itemsUtils: [{
+            icon: icons.showPassword,
+            callback: () => {
               const input = this.formTemplate.inputs[3];
               inputUtils.toggleTypePassword(input);
             }
           }
+          ],
         },
         {
           class: 'formInput formButton',

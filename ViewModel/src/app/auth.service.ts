@@ -4,7 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {User} from './ViewUtils/Interfaces/User';
 import {Password} from './ViewUtils/Interfaces/Password';
 import {Response} from './ViewUtils/Interfaces/Response';
-import routes from '../../../AppSettings/Routes';
+import routes from '../../../AppSettings/Routes.json';
 
 const storageNamespace = {
   user: 'User',
@@ -45,7 +45,7 @@ export class AuthService {
   getAllUsers(callback: any, includePasswords: boolean): void {
     const params = new HttpParams()
       .set('includePasswords', includePasswords.toString());
-    this.http.get(getRoutePath(routes.getUsers),{params}).subscribe((data: Response) => {
+    this.http.get(getRoutePath(routes.getUsers), {params}).subscribe((data: Response) => {
       callback(data);
     });
   }

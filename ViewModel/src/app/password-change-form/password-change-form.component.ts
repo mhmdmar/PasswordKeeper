@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
 import {AuthService} from '../auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {routesNames} from '../Settings/routeNames';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {User} from '../ViewUtils/Interfaces/User';
-import {inputUtils} from '../ViewUtils/DOM_Utils/DOM_Elements/Input';
-import {iconsText} from '../Settings/iconsText';
+import {inputUtils} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-password-change-form',
@@ -53,14 +53,14 @@ export class PasswordChangeFormComponent implements OnInit {
           field: 'Password',
           callback: ($event) => this.password = $event.target.value,
           value: this.password,
-          helperBtn: {
-            text: iconsText.showPassword,
-            clickCallback: () => {
+          itemsUtils: [{
+            icon: icons.showPassword,
+            callback: () => {
               const input = this.formTemplate.inputs[2];
               inputUtils.toggleTypePassword(input);
-            },
-            title: 'show password'
+            }
           }
+          ],
         },
         {
           class: 'formInput formButton',

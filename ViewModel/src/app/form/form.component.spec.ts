@@ -1,9 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {FormComponent} from './form.component';
-import {routesNames} from '../Settings/routeNames';
-import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
-import {DOMHelper} from '../ViewUtils/DOM_Utils/DOM_Helper';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
+import {DOMHelper} from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 
 const DummyFormTemplate: FormTemplate = {
   inputs: [

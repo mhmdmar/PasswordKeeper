@@ -4,7 +4,7 @@ import {Password} from '../ViewUtils/Interfaces/Password';
 import {User} from '../ViewUtils/Interfaces/User';
 import {Response} from '../ViewUtils/Interfaces/Response';
 import {Router} from '@angular/router';
-import {TableTemplate} from '../ViewUtils/Interfaces/TableTemplate';
+import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 
 @Component({
   selector: 'app-passwords-table',
@@ -16,11 +16,9 @@ export class PasswordsTableComponent implements OnInit {
 
   public userPasswordsList: Array<Password>;
   public template: TableTemplate;
-  public chosenIndex: number;
 
   constructor(private Auth: AuthService, private router: Router) {
     this.template = this.getTemplate();
-    this.chosenIndex = null;
   }
 
   getTemplate(): TableTemplate {
@@ -32,7 +30,6 @@ export class PasswordsTableComponent implements OnInit {
           {text: 'Password'},
         ],
       itemsList: [],
-      choseItem: (index) => this.chosePassword(index),
       itemsUtils: [
         {
           value: 'delete',
@@ -43,28 +40,63 @@ export class PasswordsTableComponent implements OnInit {
           callback: (index) => this.changePassword(index)
         }
       ],
-      chosenIndex: null
+      chosenIndex: null,
+      keyboardShortcuts: [{
+        key: ['cmd + del'],
+        label: 'Help',
+        description: 'Remove current password item',
+        command: () => this.removePassword(this.template.chosenIndex),
+        preventDefault: true
+      },
+        {
+          key: ['cmd + e'],
+          label: 'Change current password item',
+          description: 'Remove current password',
+          command: () => this.changePassword(this.template.chosenIndex),
+          preventDefault: true
+        },
+        {
+          key: ['up'],
+          label: 'select the above password item',
+          description: 'Remove current password',
+          command: () => {
+            this.template.chosenIndex && this.template.chosenIndex--;
+          },
+          preventDefault: true
+        },
+        {
+          key: ['down'],
+          label: 'select the below password item',
+          description: 'Remove current password',
+          command: () => {
+            const len: number = this.template.itemsList.length - 1;
+            const chosenIndex = this.template.chosenIndex;
+            chosenIndex !== null && chosenIndex < len && this.template.chosenIndex++;
+          },
+          preventDefault: true
+        }
+      ]
     };
-  }
+  };
 
   ngOnInit() {
     this.Auth.curActiveUserObservable.subscribe((user: User) => {
       this.userPasswordsList = user ? user.passwordsList : [];
       this.template.itemsList = this.userPasswordsList;
     });
-    this.bindKeyboard();
-  }
-
-  chosePassword(index): void {
-    this.chosenIndex = index;
   }
 
   changePassword(index: number): void {
-
+    if (index === null) {
+      return;
+    }
     this.router.navigate(['/passwordChangeForm', index]);
   }
 
   removePassword(index: number): void {
+    if (index === null) {
+      return;
+    }
     const wannaDelete = confirm('Are you sure you want to delete this password');
     if (wannaDelete) {
       this.Auth.removePasswordItem(index, (data: Response) => {
@@ -75,8 +107,5 @@ export class PasswordsTableComponent implements OnInit {
         }
       });
     }
-  }
-
-  bindKeyboard() {
   }
 }

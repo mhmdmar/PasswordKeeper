@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {User} from '../ViewUtils/Interfaces/User';
 import {Response} from '../ViewUtils/Interfaces/Response';
-import {TableTemplate} from '../ViewUtils/Interfaces/TableTemplate';
+import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 
 @Component({
   selector: 'app-users-table',
@@ -31,7 +31,6 @@ export class UsersTableComponent implements OnInit {
           {text: 'Permission'}
         ],
       itemsList: [],
-      choseItem: (index) => this.choseUser(index),
       itemsUtils: [
         {
           value: 'delete',
@@ -42,7 +41,42 @@ export class UsersTableComponent implements OnInit {
           callback: (index) => this.changeUser(index)
         }
       ],
-      chosenIndex: null
+      chosenIndex: null,
+      keyboardShortcuts: [{
+        key: ['cmd + del'],
+        label: 'Help',
+        description: 'Remove current password item',
+        command: () => this.removeUser(this.template.chosenIndex),
+        preventDefault: true
+      },
+        {
+          key: ['cmd + e'],
+          label: 'Change current password item',
+          description: 'Remove current password',
+          command: () => this.changeUser(this.template.chosenIndex),
+          preventDefault: true
+        },
+        {
+          key: ['up'],
+          label: 'select the above password item',
+          description: 'Remove current password',
+          command: () => {
+            this.template.chosenIndex && this.template.chosenIndex--;
+          },
+          preventDefault: true
+        },
+        {
+          key: ['down'],
+          label: 'select the below password item',
+          description: 'Remove current password',
+          command: () => {
+            const len: number = this.template.itemsList.length - 1;
+            const chosenIndex = this.template.chosenIndex;
+            chosenIndex !== null && chosenIndex < len && this.template.chosenIndex++;
+          },
+          preventDefault: true
+        }
+      ]
     };
   }
 

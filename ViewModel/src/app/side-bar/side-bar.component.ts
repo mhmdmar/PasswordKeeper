@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {settings} from '../Settings/sidebar';
+import {settings} from '../ViewUtils/Objects/sidebar';
 import {AuthService} from '../auth.service';
 import {User} from '../ViewUtils/Interfaces/User';
 

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {routesNames} from '../Settings/routeNames';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {User} from '../ViewUtils/Interfaces/User';
-import {iconsText} from '../Settings/iconsText';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-account-bar',
@@ -15,7 +15,7 @@ import {iconsText} from '../Settings/iconsText';
 export class AccountBarComponent implements OnInit {
   public user: User;
   public accountInfoVisible = false;
-  private iconsText = iconsText;
+  private iconsText = icons;
   public loginText = 'Login';
   public testID = {
     login: 'login',

@@ -1,5 +1,5 @@
 import {routesNames} from './routeNames';
-import {SidebarItem} from '../ViewUtils/Interfaces/SidebarItem';
+import {SidebarItem} from '../Interfaces/SidebarItem';
 
 export const settings: Array<SidebarItem> = [
   {

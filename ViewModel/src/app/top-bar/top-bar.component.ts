@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {settings} from '../Settings/topbar';
+import {settings} from '../ViewUtils/Objects/topbar';
 
 @Component({
   selector: 'app-top-bar',

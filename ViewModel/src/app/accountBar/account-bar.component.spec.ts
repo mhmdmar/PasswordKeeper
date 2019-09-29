@@ -4,9 +4,9 @@ import {User} from '../ViewUtils/Interfaces/User';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Router} from '@angular/router';
-import {routesNames} from '../Settings/routeNames';
-import {DOMHelper} from '../ViewUtils/DOM_Utils/DOM_Helper';
-import {iconsText} from '../Settings/iconsText';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {DOMHelper} from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 const DummyUser: User = {
   username: 'admin',
@@ -108,7 +108,7 @@ describe('AccountBarComponent', () => {
     const accountInfo: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.userInfo));
     accountInfo.click();
     const arrowElement: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.arrowIcon));
-    const expand = arrowElement.innerHTML.includes(iconsText.collapse);
+    const expand = arrowElement.innerHTML.includes(icons.collapse.value);
     expect(expand).toBeTruthy();
   });
 

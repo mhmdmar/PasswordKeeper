@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {routesNames} from '../Settings/routeNames';
-import {FormTemplate} from '../ViewUtils/Interfaces/FormTemplate';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
 import {Response} from '../ViewUtils/Interfaces/Response';
 import {FormValidation} from '../ViewUtils/Interfaces/FormValidation';
-import {inputUtils} from '../ViewUtils/DOM_Utils/DOM_Elements/Input';
-import {iconsText} from '../Settings/iconsText';
+import {inputUtils} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-login',
@@ -55,13 +55,15 @@ export class LoginComponent implements OnInit {
           testID: this.testID.passwordInput,
           placeholder: 'Password',
           callback: ($event) => this.password = $event.target.value,
-          helperBtn: {
-            text: iconsText.showPassword,
-            clickCallback: () => {
-              const input = this.formTemplate.inputs[1];
-              inputUtils.toggleTypePassword(input);
-            }
-          }
+          itemsUtils: [
+            {
+              icon: icons.showPassword,
+              callback: () => {
+                const input = this.formTemplate.inputs[1];
+                inputUtils.toggleTypePassword(input);
+              }
+            },
+          ],
         },
         {
           class: 'formInput formButton',

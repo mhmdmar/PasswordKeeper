@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {TableComponent} from './table.component';
-import {TableTemplate} from '../ViewUtils/Interfaces/TableTemplate';
+import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 
 const DummyFormTemplate: TableTemplate = {
   headers:

@@ -1,17 +1,19 @@
-<div>
+<div class="custom-table">
   <div class="row header">
     <div class="col" *ngFor="let headerColumn of template.headers" [innerHTML]="headerColumn.text"></div>
     <div *ngIf="template.itemsUtils" class="col util"></div>
   </div>
   <div *ngFor="let itemsField of template.itemsList; let i = index;">
-    <div class="row" (click)="choseItem(template.choseItem,i);"
-         [ngClass]="chosenIndex===i? 'chosen' :''">
+    <div class="row" (click)="template.chosenIndex = i;"
+         [ngClass]="template.chosenIndex===i? 'chosen' :''">
       <div *ngFor="let item of getKeys(itemsField);" class="col" [title]="itemsField[item]"
            [innerHTML]="itemsField[item]"></div>
       <div class="col util">
-        <i *ngFor="let itemUtil of template.itemsUtils" [title]="itemUtil.value" class="material-icons"
-           (click)="itemUtil.callback(i)">{{itemUtil.value}}</i>
+        <i *ngFor="let itemUtil of template.itemsUtils" class="material-icons"
+           [title]="itemUtil.value" [innerHTML]="itemUtil.value" (click)="itemUtil.callback(i)"></i>
       </div>
     </div>
   </div>
 </div>
+
+<ng-keyboard-shortcuts [shortcuts]="template.keyboardShortcuts"></ng-keyboard-shortcuts>

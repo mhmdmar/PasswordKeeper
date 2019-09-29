@@ -1,15 +1,13 @@
-import {writeFile} from 'fs';
+import {writeFile, readFileSync} from 'fs';
 import {UsersList} from '../UsersUtils/UsersList';
 import messages from '../Utils/Messages';
-import Response from '../Utils/Response';
-
-const databasePath = '../Database/UsersDB';
-const DB = require(databasePath);
-const encoding = "utf8";
+import {Response} from '../Utils/Response';
 
 class DatabaseHelper {
-    constructor() {
+    constructor(DB, databasePath, encoding) {
         this._DB = DB;
+        this._databasePath = databasePath;
+        this._encoding = encoding;
         this._usersList = new UsersList(this._DB.Users);
     }
 
@@ -19,7 +17,7 @@ class DatabaseHelper {
 
     saveDB() {
         const stringifiedDB = JSON.stringify(this._DB);
-        writeFile(databasePath + ".json", stringifiedDB, encoding, function (err) {
+        writeFile(this._databasePath, stringifiedDB, this._encoding, function (err) {
             if (err) {
                 throw err;
             }
@@ -97,4 +95,8 @@ class DatabaseHelper {
 
 }
 
-export const databaseHelper = new DatabaseHelper();
+const databasePath = '../Database/UsersDB.json';
+const encoding = "utf8";
+const DB = JSON.parse(readFileSync(databasePath, encoding));
+
+export const databaseHelper = new DatabaseHelper(DB, databasePath, encoding);

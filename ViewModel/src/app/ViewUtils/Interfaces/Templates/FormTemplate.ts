@@ -1,3 +1,5 @@
+import {Icon} from '../../Classes/Icon';
+
 export interface FormTemplate {
   inputs: Array<FormTextItem | FormButtonItem>;
   alternativeRoute: AlternativeRoute;
@@ -17,7 +19,7 @@ interface FormTextItem {
   field: string;
   testID?: string;
   callback: any;
-  helperBtn?: any;
+  itemsUtils?: Array<itemUtils>;
 }
 
 interface FormButtonItem {
@@ -25,5 +27,10 @@ interface FormButtonItem {
   type: string;
   value: string;
   testID?: string;
+  callback: any;
+}
+
+interface itemUtils {
+  icon: Icon;
   callback: any;
 }
