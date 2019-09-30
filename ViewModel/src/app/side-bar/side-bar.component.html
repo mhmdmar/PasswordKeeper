@@ -3,7 +3,7 @@
     <ng-container *ngIf="!data.accessLevel || data.accessLevel >= curUserPermission">
       <li class="flex-item sidebar-item">
         <a class="app-text custom-link"
-           [routerLink]="data.route"
+           (click)="navigate(data)"
            routerLinkActive="active-link"
            [innerText]="data.title"></a>
 

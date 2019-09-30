@@ -3,6 +3,8 @@ import {AuthService} from '../auth.service';
 import {User} from '../ViewUtils/Interfaces/User';
 import {Response} from '../ViewUtils/Interfaces/Response';
 import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-table',
@@ -14,10 +16,9 @@ import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 export class UsersTableComponent implements OnInit {
 
   public users: Array<User>;
-  private chosenIndex: number;
   public template: TableTemplate;
 
-  constructor(private Auth: AuthService) {
+  constructor(private Auth: AuthService, private router: Router) {
     this.template = this.getTemplate();
   }
 
@@ -82,30 +83,19 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit() {
     this.Auth.getAllUsers((data: Response) => {
-      this.users = data.response;
-      this.template.itemsList = this.users;
+      if (data.success) {
+        this.template.itemsList = data.response;
+      } else {
+        this.router.navigate([routesNames.home.value]);
+      }
     }, false);
   }
 
-  choseUser(index): void {
-    this.chosenIndex = index;
-  }
-
-  changeUser(index): void {
-    console.log('Place holder', index);
+  changeUser(index?: number): void {
+    console.log('Placeholder ', index);
   }
 
   removeUser(index?: number): void {
-    // const wannaDelete = confirm('Are you sure you want to delete this password');
-    // if (wannaDelete) {
-    //   this.Auth.removePasswordItem(this.chosenIndex, (data: Response) => {
-    //     if (data.success) {
-    //       this.chosenIndex = this.chosenIndex > 0 ? this.chosenIndex - 1 : 0;
-    //     } else {
-    //       alert(data.message);
-    //     }
-    //   });
-    // }
-    console.log('Place holder ', index);
+    console.log('Placeholder ', index);
   }
 }

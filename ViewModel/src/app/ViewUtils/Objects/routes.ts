@@ -6,39 +6,36 @@ import {LoginComponent} from '../../login/login.component';
 import {SignupComponent} from '../../signup/signup.component';
 import {PasswordFormComponent} from '../../password-form/password-form.component';
 import {UsersTableComponent} from '../../users-table/users-table.component';
-import {PasswordChangeFormComponent} from '../../password-change-form/password-change-form.component';
 
+const getPath = (route) => {
+  return route.value + (route.param ? route.param : '');
+};
 export const routes = [
   {
-    path: routesNames.passwordTable,
+    path: getPath(routesNames.passwordTable),
     component: PasswordsTableComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: routesNames.home,
+    path: getPath(routesNames.home),
     component: HomeComponent
   },
   {
-    path: routesNames.login,
+    path: getPath(routesNames.login),
     component: LoginComponent
   },
   {
-    path: routesNames.signUp,
+    path: getPath(routesNames.signUp),
     component: SignupComponent
   },
   {
-    path: routesNames.passwordForm,
-    component: PasswordFormComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: routesNames.usersTable,
+    path: getPath(routesNames.usersTable),
     component: UsersTableComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: routesNames.passwordChangeForm,
-    component: PasswordChangeFormComponent,
+    path: getPath(routesNames.passwordForm),
+    component: PasswordFormComponent,
     canActivate: [AuthGuard]
   },
   {

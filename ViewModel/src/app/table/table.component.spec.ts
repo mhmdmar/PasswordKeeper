@@ -13,7 +13,6 @@ const DummyFormTemplate: TableTemplate = {
     {email: 'aa', username: 'bb'},
     {email: 'aa', username: 'bb'},
   ],
-  choseItem: (index) => this.choseUser(index),
   itemsUtils: [
     {
       value: 'delete',

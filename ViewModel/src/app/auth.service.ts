@@ -10,6 +10,7 @@ const storageNamespace = {
   user: 'User',
   username: 'Username',
   password: 'Password',
+  permission: 'Permission',
   loggedIn: 'loggedIn'
 };
 const API = '/api';
@@ -43,7 +44,9 @@ export class AuthService {
   }
 
   getAllUsers(callback: any, includePasswords: boolean): void {
+    let permission = this.curActiveUser ? this.curActiveUser.permission : localStorage.getItem(storageNamespace.permission);
     const params = new HttpParams()
+      .set('permission', permission.toString())
       .set('includePasswords', includePasswords.toString());
     this.http.get(getRoutePath(routes.getUsers), {params}).subscribe((data: Response) => {
       callback(data);
@@ -74,6 +77,7 @@ export class AuthService {
     this.setLoggedIn(true);
     localStorage.setItem(storageNamespace.username, user.username);
     localStorage.setItem(storageNamespace.password, user.password);
+    localStorage.setItem(storageNamespace.permission, user.permission.toString());
     this.curActiveUser = user;
   }
 
@@ -86,9 +90,9 @@ export class AuthService {
   }
 
   removeUserInSession(): void {
-    localStorage.removeItem(storageNamespace.user);
     localStorage.removeItem(storageNamespace.username);
     localStorage.removeItem(storageNamespace.password);
+    localStorage.removeItem(storageNamespace.permission);
     this.curActiveUser = undefined;
   }
 

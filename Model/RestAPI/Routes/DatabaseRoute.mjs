@@ -15,9 +15,10 @@ function getRoutePath(route) {
 /* Users Routes */
 
 router.get(getRoutePath(routes.getUsers), (req, res) => {
+    const permission = req.query.permission;
     const includePasswords = req.query.includePasswords === 'true';
-    const users = databaseHelper.getUsers(includePasswords);
-    res.status(200).json(users);
+    const resultMessage = databaseHelper.getUsers(permission,includePasswords);
+    res.status(200).json(resultMessage);
 });
 
 router.post(getRoutePath(routes.getUser), (req, res) => {

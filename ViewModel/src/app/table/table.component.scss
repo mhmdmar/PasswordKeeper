@@ -27,7 +27,7 @@ $cursor: pointer;
 
 .header {
   background-color: $headerBG_Color;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 900;
 
   &:hover {
@@ -47,5 +47,6 @@ $cursor: pointer;
 
 .util {
   flex: 1;
+  display: inline-flex;
+  flex-direction: row-reverse;
 }
-

@@ -45,6 +45,6 @@ export class AccountBarComponent implements OnInit {
   }
 
   navigateToLogin() {
-    this.route.navigate([routesNames.login]);
+    this.route.navigate([routesNames.login.value]);
   }
 }

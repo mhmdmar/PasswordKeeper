@@ -21,6 +21,7 @@ export const settings: Array<SidebarItem> = [
   {
     title: 'Add Password',
     route: routesNames.passwordForm,
+    param: '',
     requireLogin: true,
   }
 ];

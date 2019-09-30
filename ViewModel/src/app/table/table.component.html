@@ -1,9 +1,12 @@
-<div class="custom-table">
+<div class="custom-table" *ngIf="template">
   <div class="row header">
-    <div class="col" *ngFor="let headerColumn of template.headers" [innerHTML]="headerColumn.text"></div>
-    <div *ngIf="template.itemsUtils" class="col util"></div>
+    <div class="col" *ngFor="let headerColumn of template.headers" [title]="headerColumn.text"
+         [innerHTML]="headerColumn.text"></div>
+    <div *ngIf="template.itemsUtils" class="col util">
+      <app-search (searchTermChanged)="filterList($event)"></app-search>
+    </div>
   </div>
-  <div *ngFor="let itemsField of template.itemsList; let i = index;">
+  <div *ngFor="let itemsField of (template.filteredItemsList || template.itemsList); let i = index;">
     <div class="row" (click)="template.chosenIndex = i;"
          [ngClass]="template.chosenIndex===i? 'chosen' :''">
       <div *ngFor="let item of getKeys(itemsField);" class="col" [title]="itemsField[item]"
@@ -14,6 +17,5 @@
       </div>
     </div>
   </div>
+  <ng-keyboard-shortcuts [shortcuts]="template.keyboardShortcuts"></ng-keyboard-shortcuts>
 </div>
-
-<ng-keyboard-shortcuts [shortcuts]="template.keyboardShortcuts"></ng-keyboard-shortcuts>

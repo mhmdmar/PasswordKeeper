@@ -4,3 +4,9 @@ export const inputUtils = {
     input.type = inputType !== 'password' ? 'password' : 'text';
   }
 };
+
+export const inputTypes = {
+  Textarea: 'TEXTAREA',
+  Input: 'INPUT',
+  Select: 'SELECT'
+};

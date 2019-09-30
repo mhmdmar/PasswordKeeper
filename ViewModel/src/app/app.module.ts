@@ -22,8 +22,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {TableComponent} from './table/table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {PasswordChangeFormComponent} from './password-change-form/password-change-form.component';
 import {KeyboardShortcutsModule} from 'ng-keyboard-shortcuts';
+import { SearchComponent } from './search/search.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {KeyboardShortcutsModule} from 'ng-keyboard-shortcuts';
     FormComponent,
     UsersTableComponent,
     TableComponent,
-    PasswordChangeFormComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,8 @@ import {KeyboardShortcutsModule} from 'ng-keyboard-shortcuts';
     HttpClientModule,
     NgbModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [
     AuthService, AuthGuard

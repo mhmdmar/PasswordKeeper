@@ -7,7 +7,8 @@
   "warning": {
     "emailExists": "A user with the same email for this domain already exists",
     "userDoesntExist": "No username with this password exists in the database",
-    "usernameTaken": "Username already exists"
+    "usernameTaken": "Username already exists",
+    "unauthorized": "User that is attempting to access this data isn't authorized"
   },
   "success": {
     "entry": "the user was added to the database successfully",

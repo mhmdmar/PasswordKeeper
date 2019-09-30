@@ -15,6 +15,15 @@ export class TableComponent implements OnInit {
     return Object.keys(obj);
   }
 
+  filterList(searchTerm) {
+    const itemList = this.template.itemsList;
+    this.template.filteredItemsList = itemList.filter((item) => {
+      return this.getKeys(item).some((attribute) => {
+        return item[attribute].toString().includes(searchTerm);
+      });
+    });
+  }
+
   ngOnInit() {
   }
 }

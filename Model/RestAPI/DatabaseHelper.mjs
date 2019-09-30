@@ -24,7 +24,10 @@ class DatabaseHelper {
         });
     }
 
-    getUsers(includePasswords) {
+    getUsers(permission, includePasswords) {
+        if (!permission || permission.toString() !== '1') {
+            return new Response(false, messages.warning.unauthorized, []);
+        }
         const users = includePasswords ? this._usersList.users : this._usersList.users.map((item) => {
             return {
                 username: item.username,

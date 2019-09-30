@@ -4,4 +4,5 @@ export interface SidebarItem {
   requireLogin: boolean;
   clickEvent?: any;
   accessLevel?: number;
+  param?: string | number;
 }

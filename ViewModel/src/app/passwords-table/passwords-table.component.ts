@@ -5,6 +5,7 @@ import {User} from '../ViewUtils/Interfaces/User';
 import {Response} from '../ViewUtils/Interfaces/Response';
 import {Router} from '@angular/router';
 import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
+import {routesNames} from '../ViewUtils/Objects/routeNames';
 
 @Component({
   selector: 'app-passwords-table',
@@ -90,7 +91,7 @@ export class PasswordsTableComponent implements OnInit {
     if (index === null) {
       return;
     }
-    this.router.navigate(['/passwordChangeForm', index]);
+    this.router.navigate([routesNames.passwordForm.value.split(':')[0], index]);
   }
 
   removePassword(index: number): void {
