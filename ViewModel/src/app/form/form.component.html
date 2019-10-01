@@ -12,7 +12,7 @@
         </ng-template>
         <ng-template #inputText>
           <div>
-          <span class="app-text" [innerHTML]="input.field">
+          <span class="app-text-font" [innerHTML]="input.field">
             </span>
           </div>
           <div class="wrapper">
@@ -27,7 +27,7 @@
         </ng-template>
       </div>
       <br>
-      <a *ngIf="template.alternativeRoute" class="app-text alternative-link"
+      <a *ngIf="template.alternativeRoute" class="app-text-font alternative-link"
          [attr.test-id]="template.alternativeRoute.testID"
          (click)="template.alternativeRoute.callback()"
          [innerHTML]="template.alternativeRoute.alternativeText"></a>

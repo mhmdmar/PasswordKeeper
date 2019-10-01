@@ -17,24 +17,24 @@ import {AuthService} from './auth.service';
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private auth: AuthService) {
+  constructor(private Auth: AuthService) {
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.loggedIn;
+    return this.Auth.loggedIn;
   }
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.loggedIn;
+    return this.Auth.loggedIn;
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return this.auth.loggedIn;
+    return this.Auth.loggedIn;
   }
 }

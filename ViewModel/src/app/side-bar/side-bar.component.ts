@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {settings} from '../ViewUtils/Objects/sidebar';
 import {AuthService} from '../auth.service';
 import {User} from '../ViewUtils/Interfaces/User';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,7 +12,7 @@ export class SideBarComponent implements OnInit {
 
   public curUserPermission: number;
 
-  constructor(private Auth: AuthService, private router: Router) {
+  constructor(private Auth: AuthService) {
   }
 
   ngOnInit() {
@@ -27,13 +26,13 @@ export class SideBarComponent implements OnInit {
     return settings.filter(field => !field.requireLogin || this.Auth.loggedIn);
   }
 
-  navigate(data: any) {
-    let navigate;
+  navigate(data: any): Array<any> | string {
+    let navigate: string | Array<string>;
     if (data.param !== undefined) {
       navigate = [data.route.value.split(':')[0], data.param];
     } else {
-      navigate = [data.route.value];
+      navigate = data.route.value;
     }
-    this.router.navigate(navigate);
+    return navigate;
   }
 }

@@ -1,7 +1,7 @@
 @import "../CSS/global";
 
-ul {
-  background-color: #2CBBBB;
+.top-bar {
+  background-color: #000000;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -11,20 +11,15 @@ ul {
   flex-wrap: wrap;
 }
 
+
 li {
   padding: 0.5em;
   flex: 2;
 }
 
-.app-title {
+.account-name {
   font-size: 22px;
 }
-
-.item-app-title {
-  flex: 0;
-  background-color: #000000;
-}
-
 
 ul li a {
   text-decoration: none;
@@ -35,6 +30,11 @@ ul li a {
   float: right;
 }
 
-.app-btn:hover {
-  background-color: inherit;
+.account-btn {
+  @extend .app-btn;
+
+  &:hover {
+    background-color: inherit;
+  }
+
 }

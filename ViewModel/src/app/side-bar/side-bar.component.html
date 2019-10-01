@@ -2,8 +2,8 @@
   <ng-container *ngFor="let data of filterSidebar()">
     <ng-container *ngIf="!data.accessLevel || data.accessLevel >= curUserPermission">
       <li class="flex-item sidebar-item">
-        <a class="app-text custom-link"
-           (click)="navigate(data)"
+        <a class="app-text-font custom-link"
+           [routerLink]="navigate(data)"
            routerLinkActive="active-link"
            [innerText]="data.title"></a>
 

@@ -21,12 +21,16 @@ export class PasswordFormComponent implements OnInit {
   public username: string;
   public password: string;
   protected formTemplate: FormTemplate;
-  private submitBtnText:string;
+  private submitBtnText: string;
+  // boolean indicator that an http request hasn't resolved, to prevent unnecessary requests by clicking multiple times in a row on the submit button
+  private _httpRequestflag: boolean;
+
   static addPasswordError(message) {
     window.alert(message);
   }
 
   constructor(private Auth: AuthService, private route: Router, private activeRoute: ActivatedRoute) {
+    this._httpRequestflag = false;
   }
 
   getTemplate(): FormTemplate {
@@ -104,7 +108,7 @@ export class PasswordFormComponent implements OnInit {
   }
 
   changePassword() {
-    this.passwordIndex === -1 ? this.addPassword() : this.updatePassword();
+    !this._httpRequestflag && this.passwordIndex === -1 ? this.addPassword() : this.updatePassword();
   }
 
   updatePassword(): void {
@@ -117,12 +121,14 @@ export class PasswordFormComponent implements OnInit {
 
   addPassword(): void {
     if (this.validateForm()) {
+      this._httpRequestflag = true;
       this.Auth.addPasswordItem(this.domain, this.username, this.password, (data: Response) => {
         if (data.success) {
           this.route.navigate([routesNames.passwordTable.value]);
         } else {
           PasswordFormComponent.addPasswordError(data.message);
         }
+        this._httpRequestflag = false;
       });
     } else {
       PasswordFormComponent.addPasswordError('Some fields are not filled');
