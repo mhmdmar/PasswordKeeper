@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public submitText: string;
   public username: string;
   public password: string;
-  private formTemplate: FormTemplate;
+  public formTemplate: FormTemplate;
   public testID = {
     usernameInput: 'usernameInput',
     passwordInput: 'passwordInput',

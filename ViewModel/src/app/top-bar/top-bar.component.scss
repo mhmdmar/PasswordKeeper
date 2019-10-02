@@ -32,7 +32,7 @@ ul li a {
 
 .account-btn {
   @extend .app-btn;
-
+  // override hover
   &:hover {
     background-color: inherit;
   }

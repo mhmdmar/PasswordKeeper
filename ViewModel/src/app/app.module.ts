@@ -16,14 +16,13 @@ import {HomeComponent} from './home/home.component';
 import {SignupComponent} from './signup/signup.component';
 import {PasswordFormComponent} from './password-form/password-form.component';
 import {FormComponent} from './form/form.component';
-import {routes} from './ViewUtils/Objects/routes';
 import {UsersTableComponent} from './users-table/users-table.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {TableComponent} from './table/table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {KeyboardShortcutsModule} from 'ng-keyboard-shortcuts';
-import { SearchComponent } from './search/search.component';
+import {SearchComponent} from './search/search.component';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -47,7 +46,7 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     KeyboardShortcutsModule.forRoot(),
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule,
     HttpClientModule,
     NgbModule,
     MatTableModule,

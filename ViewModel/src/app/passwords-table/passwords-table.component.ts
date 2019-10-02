@@ -91,7 +91,7 @@ export class PasswordsTableComponent implements OnInit {
     if (index === null) {
       return;
     }
-    this.router.navigate([routesNames.passwordForm.value.split(':')[0], index]);
+    this.router.navigate([routesNames.passwordForm.value, index]);
   }
 
   removePassword(index: number): void {

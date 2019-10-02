@@ -20,7 +20,7 @@ export class PasswordFormComponent implements OnInit {
   public domain: string;
   public username: string;
   public password: string;
-  protected formTemplate: FormTemplate;
+  public formTemplate: FormTemplate;
   private submitBtnText: string;
   // boolean indicator that an http request hasn't resolved, to prevent unnecessary requests by clicking multiple times in a row on the submit button
   private _httpRequestflag: boolean;

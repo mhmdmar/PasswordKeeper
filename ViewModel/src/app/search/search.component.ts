@@ -26,10 +26,10 @@ import {inputTypes} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
   `,
 })
 export class SearchComponent implements OnInit {
-  private searchVisibile: boolean;
-  private searchTerm: string;
-  private onfocus: boolean;
-  protected searchBarShortcuts: Array<any>;
+  public searchVisibile: boolean;
+  public searchTerm: string;
+  public onfocus: boolean;
+  public searchBarShortcuts: Array<any>;
   @Output() searchTermChanged = new EventEmitter();
 
   constructor(private elRef: ElementRef) {

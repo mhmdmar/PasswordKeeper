@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   public username: string;
   public password: string;
   public confirmPassword: string;
-  protected formTemplate: FormTemplate;
+  public formTemplate: FormTemplate;
 
   constructor(private Auth: AuthService, private route: Router) {
     this.email = this.username = this.password = this.confirmPassword = '';

@@ -29,7 +29,7 @@ export class SideBarComponent implements OnInit {
   navigate(data: any): Array<any> | string {
     let navigate: string | Array<string>;
     if (data.param !== undefined) {
-      navigate = [data.route.value.split(':')[0], data.param];
+      navigate = [data.route.value, data.param];
     } else {
       navigate = data.route.value;
     }

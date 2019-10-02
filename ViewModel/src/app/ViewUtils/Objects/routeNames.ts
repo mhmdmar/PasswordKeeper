@@ -22,3 +22,13 @@ export const routesNames: any = {
     value: 'usersTable',
   },
 };
+
+const computePath = (route: any): string => {
+  return route.value + (route.param !== undefined ? route.param : '');
+};
+
+const routeKeys = Object.keys(routesNames);
+export const routesPath:any = {};
+for (let route of routeKeys) {
+  routesPath[route] = computePath(routesNames[route]);
+}

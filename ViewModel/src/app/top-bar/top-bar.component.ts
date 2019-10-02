@@ -7,8 +7,8 @@ import {settings} from '../ViewUtils/Objects/topbar';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-  private settings: any;
-  private title: string;
+  public settings: any;
+  public title: string;
 
   constructor() {
     this.settings = settings;
