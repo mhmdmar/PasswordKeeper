@@ -27,7 +27,7 @@ const DummyFormTemplate: FormTemplate = {
   ],
   alternativeRoute: {
     alternativeText: 'click to sign up',
-    callback: () => this.route.navigate([routesNames.signUp.value])
+    callback: () => this.route.navigate([routesNames.signUp])
   },
 };
 describe('FormComponent', () => {

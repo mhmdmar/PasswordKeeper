@@ -77,7 +77,7 @@ export class PasswordFormComponent implements OnInit {
       ],
       alternativeRoute: {
         alternativeText: 'click to see the passwords table',
-        callback: () => this.route.navigate([routesNames.passwordTable.value])
+        callback: () => this.route.navigate([routesNames.passwordTable])
       },
     };
   }
@@ -114,7 +114,7 @@ export class PasswordFormComponent implements OnInit {
   updatePassword(): void {
     this.Auth.updatePasswordItem(this.domain, this.username, this.password, this.passwordIndex, (data) => {
       if (data.success) {
-        this.route.navigate([routesNames.passwordTable.value]);
+        this.route.navigate([routesNames.passwordTable]);
       }
     });
   }
@@ -124,7 +124,7 @@ export class PasswordFormComponent implements OnInit {
       this._httpRequestflag = true;
       this.Auth.addPasswordItem(this.domain, this.username, this.password, (data: Response) => {
         if (data.success) {
-          this.route.navigate([routesNames.passwordTable.value]);
+          this.route.navigate([routesNames.passwordTable]);
         } else {
           PasswordFormComponent.addPasswordError(data.message);
         }

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {Route} from '@angular/router';
-import {routesPath} from './ViewUtils/Objects/routeNames';
+import {routesNames} from './ViewUtils/Objects/routeNames';
 import {PasswordsTableComponent} from './passwords-table/passwords-table.component';
 import {AuthGuard} from './auth.guard';
 import {HomeComponent} from './home/home.component';
@@ -12,29 +12,29 @@ import {PasswordFormComponent} from './password-form/password-form.component';
 
 const routes: Array<Route> = [
   {
-    path: routesPath.passwordTable,
+    path: routesNames.passwordTable,
     component: PasswordsTableComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: routesPath.home,
+    path: routesNames.home,
     component: HomeComponent
   },
   {
-    path: routesPath.login,
+    path: routesNames.login,
     component: LoginComponent
   },
   {
-    path: routesPath.signUp,
+    path: routesNames.signUp,
     component: SignupComponent
   },
   {
-    path: routesPath.usersTable,
+    path: routesNames.usersTable,
     component: UsersTableComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: routesPath.passwordForm,
+    path: routesNames.passwordForm,
     component: PasswordFormComponent,
     canActivate: [AuthGuard]
   },

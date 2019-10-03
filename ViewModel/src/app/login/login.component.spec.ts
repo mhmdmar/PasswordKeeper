@@ -44,6 +44,6 @@ describe('LoginComponent', () => {
     const signupBtn = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.signupBtn));
     signupBtn.click();
     fixture.detectChanges();
-    expect(navigateSpy).toHaveBeenCalledWith([routesNames.signUp.value]);
+    expect(navigateSpy).toHaveBeenCalledWith([routesNames.signUp]);
   });
 });

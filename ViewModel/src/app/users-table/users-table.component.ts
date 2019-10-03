@@ -86,7 +86,7 @@ export class UsersTableComponent implements OnInit {
       if (data.success) {
         this.template.itemsList = data.response;
       } else {
-        this.router.navigate([routesNames.home.value]);
+        this.router.navigate([routesNames.home]);
       }
     }, false);
   }

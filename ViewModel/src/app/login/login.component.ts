@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       alternativeRoute: {
         alternativeText: 'click to sign up',
         testID: this.testID.signupBtn,
-        callback: () => this.route.navigate([routesNames.signUp.value])
+        callback: () => this.route.navigate([routesNames.signUp])
       },
     };
   }
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
     if (validateForm.valid) {
       this.Auth.login(this.username, this.password, (data: Response) => {
         if (data.success) {
-          this.route.navigate([routesNames.passwordTable.value]);
+          this.route.navigate([routesNames.passwordTable]);
         } else {
           LoginComponent.logInError(data.message);
         }
@@ -119,6 +119,6 @@ export class LoginComponent implements OnInit {
   }
 
   signUp(): void {
-    this.route.navigate([routesNames.signUp.value]);
+    this.route.navigate([routesNames.signUp]);
   }
 }

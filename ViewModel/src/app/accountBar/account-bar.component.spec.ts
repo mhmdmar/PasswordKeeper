@@ -71,13 +71,13 @@ describe('AccountBarComponent', () => {
   it('Navigate to login', () => {
 
     component.navigateToLogin();
-    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login.value]);
+    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login]);
   });
 
   it('Navigate to login by "login" button', () => {
     const loginElement: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.login));
     loginElement.click();
-    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login.value]);
+    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login]);
   });
 
   it('Login inner text is the username in session', () => {
@@ -130,6 +130,6 @@ describe('AccountBarComponent', () => {
 
   it('Clicking on logout navigate to login', () => {
     logout();
-    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login.value]);
+    expect(navigateSpy).toHaveBeenCalledWith([routesNames.login]);
   });
 });

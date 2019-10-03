@@ -27,12 +27,9 @@ export class SideBarComponent implements OnInit {
   }
 
   navigate(data: any): Array<any> | string {
-    let navigate: string | Array<string>;
-    if (data.param !== undefined) {
-      navigate = [data.route.value, data.param];
-    } else {
-      navigate = data.route.value;
-    }
+    const route = data.route.split(':');
+    let navigate = [route[0]];
+    route.length > 1 && navigate.push('');
     return navigate;
   }
 }
