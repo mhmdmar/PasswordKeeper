@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../Services/auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {User} from '../ViewUtils/Interfaces/User';
 import {icons} from '../ViewUtils/Objects/Icons';
+import {Icon} from '../ViewUtils/Classes/Icon';
 
 @Component({
   selector: 'app-account-bar',
@@ -15,17 +16,18 @@ import {icons} from '../ViewUtils/Objects/Icons';
 export class AccountBarComponent implements OnInit {
   public user: User;
   public accountInfoVisible = false;
-  private iconsText = icons;
+  public arrowIcon: Icon;
   public loginText = 'Login';
   public testID = {
     login: 'login',
     user: 'user',
     userInfo: 'userInfo',
     logout: 'logout',
-    arrowIcon:'arrowIcon'
+    arrowIcon: 'arrowIcon'
   };
 
-  constructor(private Auth: AuthService, private route: Router) {
+  constructor(private Auth: AuthService, private router: Router) {
+    this.arrowIcon = icons.expand;
   }
 
   ngOnInit() {
@@ -36,6 +38,11 @@ export class AccountBarComponent implements OnInit {
 
   toggleAccountInfo(): void {
     this.accountInfoVisible = !this.accountInfoVisible;
+    this.updateArrowIcon();
+  }
+
+  updateArrowIcon() {
+    this.arrowIcon = this.accountInfoVisible ? icons.collapse : icons.expand;
   }
 
   signOut(): void {
@@ -45,6 +52,6 @@ export class AccountBarComponent implements OnInit {
   }
 
   navigateToLogin() {
-    this.route.navigate([routesNames.login]);
+    this.router.navigate([routesNames.login]);
   }
 }

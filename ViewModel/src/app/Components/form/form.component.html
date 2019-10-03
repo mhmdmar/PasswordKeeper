@@ -21,8 +21,9 @@
                      [value]="input.value || '' " [placeholder]="input.placeholder"
                      (input)="input.callback && input.callback($event)">
             </label>
-            <i *ngFor="let itemUtil of input.itemsUtils" class="material-icons"
-               [title]="itemUtil.icon.title" [innerHTML]="itemUtil.icon.value" (click)="itemUtil.callback()"></i>
+            <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.icon"
+                      (click)="itemUtil.callback && itemUtil.callback()"></app-icon>
+
           </div>
         </ng-template>
       </div>

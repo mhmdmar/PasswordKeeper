@@ -1,0 +1,15 @@
+@import "../../CSS/global";
+
+i {
+  vertical-align: middle;
+  cursor: pointer;
+  //float: right;
+  z-index: 99;
+  color: black;
+  @include unselectable();
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .05);
+    box-shadow: none;
+  }
+}

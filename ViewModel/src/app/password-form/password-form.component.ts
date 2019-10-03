@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../Services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
 import {Response} from '../ViewUtils/Interfaces/Response';
@@ -29,7 +29,7 @@ export class PasswordFormComponent implements OnInit {
     window.alert(message);
   }
 
-  constructor(private Auth: AuthService, private route: Router, private activeRoute: ActivatedRoute) {
+  constructor(private Auth: AuthService, private router: Router, private activeRoute: ActivatedRoute) {
     this._httpRequestflag = false;
   }
 
@@ -77,7 +77,7 @@ export class PasswordFormComponent implements OnInit {
       ],
       alternativeRoute: {
         alternativeText: 'click to see the passwords table',
-        callback: () => this.route.navigate([routesNames.passwordTable])
+        callback: () => this.router.navigate([routesNames.passwordTable])
       },
     };
   }
@@ -114,7 +114,7 @@ export class PasswordFormComponent implements OnInit {
   updatePassword(): void {
     this.Auth.updatePasswordItem(this.domain, this.username, this.password, this.passwordIndex, (data) => {
       if (data.success) {
-        this.route.navigate([routesNames.passwordTable]);
+        this.router.navigate([routesNames.passwordTable]);
       }
     });
   }
@@ -124,7 +124,7 @@ export class PasswordFormComponent implements OnInit {
       this._httpRequestflag = true;
       this.Auth.addPasswordItem(this.domain, this.username, this.password, (data: Response) => {
         if (data.success) {
-          this.route.navigate([routesNames.passwordTable]);
+          this.router.navigate([routesNames.passwordTable]);
         } else {
           PasswordFormComponent.addPasswordError(data.message);
         }

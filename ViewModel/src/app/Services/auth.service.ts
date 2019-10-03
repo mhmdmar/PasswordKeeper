@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
-import {User} from './ViewUtils/Interfaces/User';
-import {Password} from './ViewUtils/Interfaces/Password';
-import {Response} from './ViewUtils/Interfaces/Response';
-import routes from '../../../AppSettings/Routes.json';
+import {User} from '../ViewUtils/Interfaces/User';
+import {Password} from '../ViewUtils/Interfaces/Password';
+import {Response} from '../ViewUtils/Interfaces/Response';
+import routes from '../../../../AppSettings/Routes.json';
 
 const storageNamespace = {
   user: 'User',
@@ -28,11 +28,6 @@ export class AuthService {
   public curActiveUserObservable = this._curActiveUser.asObservable();
 
   constructor(private http: HttpClient) {
-    const userInSession: boolean = localStorage.getItem(storageNamespace.loggedIn) !== null;
-    this.loggedIn = userInSession;
-    if (userInSession) {
-      this.restoreUserInSession();
-    }
   }
 
   get curActiveUser(): User {
@@ -81,12 +76,19 @@ export class AuthService {
     this.curActiveUser = user;
   }
 
-  restoreUserInSession(): void {
-    const username: string = localStorage.getItem(storageNamespace.username);
-    const password: string = localStorage.getItem(storageNamespace.password);
-    this.login(username, password, (data: Response) => {
-      this.curActiveUser = data.response;
-    });
+  restoreUserInSession(callback): void {
+    const userInSession: boolean = localStorage.getItem(storageNamespace.loggedIn) !== null;
+    if (userInSession) {
+      const username: string = localStorage.getItem(storageNamespace.username);
+      const password: string = localStorage.getItem(storageNamespace.password);
+      this.login(username, password, (data: Response) => {
+        if (data.success) {
+          this.curActiveUser = data.response;
+        }
+        this.loggedIn = data.success;
+        callback(data);
+      });
+    }
   }
 
   removeUserInSession(): void {

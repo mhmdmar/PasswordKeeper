@@ -30,11 +30,15 @@ ul li a {
   float: right;
 }
 
-.account-btn {
+.top-bar-title {
   @extend .app-btn;
-  // override hover
+  cursor: default;
+
   &:hover {
     background-color: inherit;
   }
+}
 
+.item-icon {
+  flex: 0.1;
 }

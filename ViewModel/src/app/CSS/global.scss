@@ -40,6 +40,7 @@ a.custom-link {
 .app-btn {
   color: #000;
   box-shadow: none;
+  cursor: pointer;
   margin: 0;
   padding: 7px 12px;
   transition: background-color .16s ease-out, box-shadow .16s ease-out;
@@ -61,14 +62,6 @@ a.custom-link {
   }
 }
 
-.active-link {
-  color: green !important;
-
-  &:hover {
-    color: $linkHoverColor !important;
-  }
-}
-
 .app-text-font {
   @include unselectable();
   @include ellipses();
@@ -81,20 +74,6 @@ a.custom-link {
   font-weight: bold;
   height: 22px;
   line-height: 22px;
-}
-
-i {
-  margin-left: 5px;
-  vertical-align: middle;
-  cursor: pointer;
-  float: right;
-  z-index: 99;
-  @include unselectable();
-
-  &:hover {
-    background-color: rgba(0, 0, 0, .05);
-    box-shadow: none;
-  }
 }
 
 .app-icon {

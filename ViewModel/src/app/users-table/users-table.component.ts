@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../Services/auth.service';
 import {User} from '../ViewUtils/Interfaces/User';
 import {Response} from '../ViewUtils/Interfaces/Response';
 import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';

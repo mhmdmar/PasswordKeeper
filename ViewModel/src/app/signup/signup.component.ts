@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../Services/auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   public confirmPassword: string;
   public formTemplate: FormTemplate;
 
-  constructor(private Auth: AuthService, private route: Router) {
+  constructor(private Auth: AuthService, private router: Router) {
     this.email = this.username = this.password = this.confirmPassword = '';
     this.formTemplate = this.getData();
   }
@@ -87,7 +87,7 @@ export class SignupComponent implements OnInit {
       ],
       alternativeRoute: {
         alternativeText: 'click to login',
-        callback: () => this.route.navigate([routesNames.login])
+        callback: () => this.router.navigate([routesNames.login])
       },
     };
   }
@@ -102,7 +102,7 @@ export class SignupComponent implements OnInit {
         if (data.success) {
           this.Auth.login(this.username, this.password, (data: Response) => {
             if (data.success) {
-              this.route.navigate([routesNames.passwordTable]);
+              this.router.navigate([routesNames.passwordTable]);
             } else {
               SignupComponent.signUpError(data.message);
             }

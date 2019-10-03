@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../Services/auth.service';
 import {Router} from '@angular/router';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {FormTemplate} from '../ViewUtils/Interfaces/Templates/FormTemplate';
@@ -27,10 +27,7 @@ export class LoginComponent implements OnInit {
     signupBtn: 'signupBtn'
   };
 
-  constructor(private Auth: AuthService, private route: Router) {
-    this.username = this.password = '';
-    this.submitText = 'click to sign up';
-    this.formTemplate = this.getData();
+  constructor(private Auth: AuthService, private router: Router) {
   }
 
   static logInError(message): void {
@@ -76,12 +73,15 @@ export class LoginComponent implements OnInit {
       alternativeRoute: {
         alternativeText: 'click to sign up',
         testID: this.testID.signupBtn,
-        callback: () => this.route.navigate([routesNames.signUp])
+        callback: () => this.router.navigate([routesNames.signUp])
       },
     };
   }
 
   ngOnInit() {
+    this.username = this.password = '';
+    this.submitText = 'click to sign up';
+    this.formTemplate = this.getData();
   }
 
   login(): void {
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
     if (validateForm.valid) {
       this.Auth.login(this.username, this.password, (data: Response) => {
         if (data.success) {
-          this.route.navigate([routesNames.passwordTable]);
+          this.router.navigate([routesNames.passwordTable]);
         } else {
           LoginComponent.logInError(data.message);
         }
@@ -119,6 +119,6 @@ export class LoginComponent implements OnInit {
   }
 
   signUp(): void {
-    this.route.navigate([routesNames.signUp]);
+    this.router.navigate([routesNames.signUp]);
   }
 }

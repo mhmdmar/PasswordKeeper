@@ -5,6 +5,29 @@
 }
 
 .sidebar-item {
+  cursor: pointer;
   max-width: 150px;
   @include ellipses();
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    background: grey;
+  }
 }
+
+.sidebar-text {
+  color: black;
+  font-weight: 400;
+}
+
+.active-link {
+  background-color: lightgrey;
+
+  & > .sidebar-text {
+    font-weight: 600;
+  }
+}
+
