@@ -7,6 +7,7 @@ import {FormComponent} from '../Components/form/form.component';
 import {DOMHelper} from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 import {Router} from '@angular/router';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {IconComponent} from '../Components/icon/icon.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -16,7 +17,7 @@ describe('LoginComponent', () => {
   let navigateSpy;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent, FormComponent],
+      declarations: [LoginComponent, FormComponent, IconComponent],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
       .compileComponents();

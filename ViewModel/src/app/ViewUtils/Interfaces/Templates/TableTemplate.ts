@@ -1,4 +1,5 @@
 import {ShortcutInput} from 'ng-keyboard-shortcuts';
+import {itemUtils} from './Utils';
 
 export interface TableTemplate {
   headers: tableHeader[];
@@ -10,9 +11,4 @@ export interface TableTemplate {
 
 interface tableHeader {
   text: string;
-}
-
-interface itemUtils {
-  value: string;
-  callback: Function;
 }

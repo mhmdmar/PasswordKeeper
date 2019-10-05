@@ -4,6 +4,7 @@ import {FormComponent} from './form.component';
 import {routesNames} from '../../ViewUtils/Objects/routeNames';
 import {FormTemplate} from '../../ViewUtils/Interfaces/Templates/FormTemplate';
 import {DOMHelper} from '../../ViewUtils/Objects/DOM_Utils/DOM_Helper';
+import {IconComponent} from '../icon/icon.component';
 
 const DummyFormTemplate: FormTemplate = {
   inputs: [
@@ -36,7 +37,7 @@ describe('FormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormComponent]
+      declarations: [FormComponent, IconComponent]
     })
       .compileComponents();
   }));
@@ -71,7 +72,7 @@ describe('FormComponent', () => {
   });
 
   it('Form text input field', () => {
-    const textFieldText = fixture.nativeElement.querySelector('form div span.app-text').innerHTML;
+    const textFieldText = fixture.nativeElement.querySelector('form div span.app-text-font').innerHTML;
     expect(textFieldText).toEqual('textField');
   });
 

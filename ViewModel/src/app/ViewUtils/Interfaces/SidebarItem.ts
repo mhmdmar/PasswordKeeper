@@ -7,5 +7,5 @@ export interface SidebarItem {
   clickEvent?: Function;
   accessLevel?: number;
   param?: string | number;
-  icon?: Icon
+  Icon?: Icon
 }

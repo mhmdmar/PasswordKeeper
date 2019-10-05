@@ -1,7 +1,7 @@
 <div class="form">
   <div *ngIf="template">
     <form>
-      <div class="formInputContainer" *ngFor="let input of template.inputs">
+      <div class="formInputContainer" *ngFor="let input of template.inputs; let i = index;">
         <div *ngIf="input.type==='button'; then inputBtn else inputText">
         </div>
         <ng-template #inputBtn>
@@ -21,8 +21,8 @@
                      [value]="input.value || '' " [placeholder]="input.placeholder"
                      (input)="input.callback && input.callback($event)">
             </label>
-            <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.icon"
-                      (click)="itemUtil.callback && itemUtil.callback()"></app-icon>
+            <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.Icon"
+                      (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
 
           </div>
         </ng-template>

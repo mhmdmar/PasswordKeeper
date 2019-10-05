@@ -11,7 +11,7 @@ import {icons} from '../ViewUtils/Objects/Icons';
 @Component({
   selector: 'app-signup',
   template: `
-      <app-form [template]="formTemplate"></app-form>
+      <app-form [template]="template"></app-form>
   `
 })
 export class SignupComponent implements OnInit {
@@ -19,11 +19,11 @@ export class SignupComponent implements OnInit {
   public username: string;
   public password: string;
   public confirmPassword: string;
-  public formTemplate: FormTemplate;
+  public template: FormTemplate;
 
   constructor(private Auth: AuthService, private router: Router) {
     this.email = this.username = this.password = this.confirmPassword = '';
-    this.formTemplate = this.getData();
+    this.template = this.getData();
   }
 
   static signUpError(message): void {
@@ -55,11 +55,8 @@ export class SignupComponent implements OnInit {
           callback: ($event) => this.password = $event.target.value,
           itemsUtils: [
             {
-              icon: icons.showPassword,
-              callback: () => {
-                const input = this.formTemplate.inputs[2];
-                inputUtils.toggleTypePassword(input);
-              }
+              Icon: icons.showPassword,
+              callback: (i): void => inputUtils.toggleInputType(this.template.inputs[i])
             },
           ],
         },
@@ -70,11 +67,8 @@ export class SignupComponent implements OnInit {
           placeholder: 'Confirm Password',
           callback: ($event) => this.confirmPassword = $event.target.value,
           itemsUtils: [{
-            icon: icons.showPassword,
-            callback: () => {
-              const input = this.formTemplate.inputs[3];
-              inputUtils.toggleTypePassword(input);
-            }
+            Icon: icons.showPassword,
+            callback: (i): void => inputUtils.toggleInputType(this.template.inputs[i])
           }
           ],
         },

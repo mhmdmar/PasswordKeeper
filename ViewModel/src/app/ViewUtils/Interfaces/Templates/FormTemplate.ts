@@ -1,4 +1,4 @@
-import {Icon} from '../../Classes/Icon';
+import {itemUtils} from './Utils';
 
 export interface FormTemplate {
   inputs: Array<FormTextItem | FormButtonItem>;
@@ -19,7 +19,7 @@ export interface FormTextItem {
   field: string;
   testID?: string;
   callback: Function;
-  itemsUtils?: Array<itemUtils>;
+  itemsUtils?: itemUtils[];
 }
 
 export interface FormButtonItem {
@@ -30,7 +30,3 @@ export interface FormButtonItem {
   callback: Function;
 }
 
-interface itemUtils {
-  icon: Icon;
-  callback: Function;
-}

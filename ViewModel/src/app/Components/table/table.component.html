@@ -12,8 +12,9 @@
       <div *ngFor="let item of getKeys(itemsField);" class="col" [title]="itemsField[item]"
            [innerHTML]="itemsField[item]"></div>
       <div class="col util">
-        <i *ngFor="let itemUtil of template.itemsUtils" class="material-icons"
-           [title]="itemUtil.value" [innerHTML]="itemUtil.value" (click)="itemUtil.callback(i)"></i>
+        <app-icon *ngFor="let itemUtil of template.itemsUtils" [icon]="itemUtil.Icon"
+                  (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+
       </div>
     </div>
   </div>

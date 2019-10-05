@@ -25,19 +25,22 @@ export const icons = {
       'color': 'white',
       'float': 'left'
     },
-    class:'left'
+    class: 'left'
   }),
   home: new Icon('home', 'home', {
-    class:'left'
+    class: 'left'
   }),
   users: new Icon('people', 'users', {
-    class:'left'
+    class: 'left'
   }),
   password: new Icon('fireplace', 'passwords', {
-    class:'left'
+    class: 'left'
   }),
   addPassword: new Icon('add_to_photos', 'add password', {
-    class:'left'
+    class: 'left'
   }),
-  search: new Icon('search', 'toggle search')
+  search: new Icon('search', 'toggle search'),
+  edit: new Icon('edit', 'edit (ctrl + e)'),
+  delete: new Icon('delete', 'delete (ctrl + delete)'),
+
 };

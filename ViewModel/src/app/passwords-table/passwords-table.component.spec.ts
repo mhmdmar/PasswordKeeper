@@ -4,6 +4,9 @@ import {PasswordsTableComponent} from './passwords-table.component';
 import {TableComponent} from '../Components/table/table.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SearchComponent} from '../search/search.component';
+import {IconComponent} from '../Components/icon/icon.component';
+import {KeyboardShortcutsComponent} from 'ng-keyboard-shortcuts';
 
 describe('PasswordsTableComponent', () => {
   let component: PasswordsTableComponent;
@@ -11,7 +14,7 @@ describe('PasswordsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PasswordsTableComponent, TableComponent],
+      declarations: [PasswordsTableComponent, TableComponent, SearchComponent, IconComponent, KeyboardShortcutsComponent],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
       .compileComponents();

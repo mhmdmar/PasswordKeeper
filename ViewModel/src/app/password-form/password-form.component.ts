@@ -60,10 +60,10 @@ export class PasswordFormComponent implements OnInit {
           callback: ($event): void => this.password = $event.target.value,
           value: this.password,
           itemsUtils: [{
-            icon: icons.showPassword,
-            callback: (): void => {
-              const input = this.formTemplate.inputs[2];
-              inputUtils.toggleTypePassword(input);
+            Icon: icons.showPassword,
+            callback: (i: number): void => {
+              const input = this.formTemplate.inputs[i];
+              inputUtils.toggleInputType(input);
             }
           }
           ],

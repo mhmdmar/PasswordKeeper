@@ -6,6 +6,7 @@ import {Response} from '../ViewUtils/Interfaces/Response';
 import {Router} from '@angular/router';
 import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-passwords-table',
@@ -33,11 +34,11 @@ export class PasswordsTableComponent implements OnInit {
       itemsList: [],
       itemsUtils: [
         {
-          value: 'delete',
+          Icon: icons.delete,
           callback: (index: number): void => this.removePassword(index)
         },
         {
-          value: 'edit',
+          Icon: icons.edit,
           callback: (index: number): void => this.changePassword(index)
         }
       ],
@@ -88,14 +89,14 @@ export class PasswordsTableComponent implements OnInit {
   }
 
   changePassword(index: number): void {
-    if (index === null) {
+    if (!index) {
       return;
     }
     this.router.navigate([routesNames.passwordForm.split(':')[0], index]);
   }
 
   removePassword(index: number): void {
-    if (index === null) {
+    if (!index) {
       return;
     }
     const wannaDelete = confirm('Are you sure you want to delete this password');

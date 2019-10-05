@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {DOMHelper} from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 import {icons} from '../ViewUtils/Objects/Icons';
+import {IconComponent} from '../Components/icon/icon.component';
 
 const DummyUser: User = {
   username: 'admin',
@@ -40,7 +41,7 @@ describe('AccountBarComponent', () => {
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AccountBarComponent],
+      declarations: [AccountBarComponent, IconComponent],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
       .compileComponents();
@@ -103,13 +104,11 @@ describe('AccountBarComponent', () => {
     expect(arrowElement).toBeTruthy();
   });
 
-  it('Clicking on user makes changes arrow to "collapse"', () => {
+  it('"updateArrowIcon" changes the arrow icon to "collapse"', () => {
     showAccountInfo();
-    const accountInfo: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.userInfo));
-    accountInfo.click();
-    const arrowElement: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.arrowIcon));
-    const expand = arrowElement.innerHTML.includes(icons.collapse.value);
-    expect(expand).toBeTruthy();
+    component.updateArrowIcon();
+    fixture.detectChanges();
+    expect(component.arrowIcon.value === icons.collapse.value).toBeTruthy();
   });
 
   it('Logout option exists', () => {

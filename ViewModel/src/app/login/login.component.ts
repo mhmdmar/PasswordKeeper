@@ -11,7 +11,7 @@ import {icons} from '../ViewUtils/Objects/Icons';
 @Component({
   selector: 'app-login',
   template: `
-      <app-form [template]="formTemplate"></app-form>
+      <app-form [template]="template"></app-form>
   `
 })
 export class LoginComponent implements OnInit {
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public submitText: string;
   public username: string;
   public password: string;
-  public formTemplate: FormTemplate;
+  public template: FormTemplate;
   public testID = {
     usernameInput: 'usernameInput',
     passwordInput: 'passwordInput',
@@ -54,11 +54,8 @@ export class LoginComponent implements OnInit {
           callback: ($event): void => this.password = $event.target.value,
           itemsUtils: [
             {
-              icon: icons.showPassword,
-              callback: (): void => {
-                const input = this.formTemplate.inputs[1];
-                inputUtils.toggleTypePassword(input);
-              }
+              Icon: icons.showPassword,
+              callback: (i): void => inputUtils.toggleInputType(this.template.inputs[i])
             },
           ],
         },
@@ -81,7 +78,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.password = '';
     this.submitText = 'click to sign up';
-    this.formTemplate = this.getData();
+    this.template = this.getData();
   }
 
   login(): void {

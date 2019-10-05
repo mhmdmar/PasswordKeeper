@@ -5,6 +5,7 @@ import {Response} from '../ViewUtils/Interfaces/Response';
 import {TableTemplate} from '../ViewUtils/Interfaces/Templates/TableTemplate';
 import {routesNames} from '../ViewUtils/Objects/routeNames';
 import {Router} from '@angular/router';
+import {icons} from '../ViewUtils/Objects/Icons';
 
 @Component({
   selector: 'app-users-table',
@@ -34,11 +35,11 @@ export class UsersTableComponent implements OnInit {
       itemsList: [],
       itemsUtils: [
         {
-          value: 'delete',
+          Icon: icons.delete,
           callback: (index) => this.removeUser(index)
         },
         {
-          value: 'edit',
+          Icon: icons.edit,
           callback: (index) => this.changeUser(index)
         }
       ],

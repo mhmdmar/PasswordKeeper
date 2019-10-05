@@ -1,6 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {TableComponent} from './table.component';
 import {TableTemplate} from '../../ViewUtils/Interfaces/Templates/TableTemplate';
+import {icons} from '../../ViewUtils/Objects/Icons';
+import {SearchComponent} from '../../search/search.component';
+import {IconComponent} from '../icon/icon.component';
+import {KeyboardShortcutsComponent} from 'ng-keyboard-shortcuts';
 
 const DummyFormTemplate: TableTemplate = {
   headers:
@@ -15,11 +19,11 @@ const DummyFormTemplate: TableTemplate = {
   ],
   itemsUtils: [
     {
-      value: 'delete',
+      Icon: icons.delete,
       callback: (index) => this.removeUser(index)
     },
     {
-      value: 'edit',
+      Icon: icons.edit,
       callback: (index) => this.changeUser(index)
     }
   ],
@@ -31,7 +35,7 @@ describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TableComponent]
+      declarations: [TableComponent, SearchComponent, IconComponent, KeyboardShortcutsComponent]
     })
       .compileComponents();
   }));
