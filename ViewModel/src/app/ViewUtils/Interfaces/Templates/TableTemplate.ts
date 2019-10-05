@@ -1,9 +1,11 @@
+import {ShortcutInput} from 'ng-keyboard-shortcuts';
+
 export interface TableTemplate {
-  headers: Array<tableHeader>;
+  headers: tableHeader[];
   itemsList: Array<any>;
-  itemsUtils: Array<itemUtils>;
+  itemsUtils: itemUtils[];
   chosenIndex?: number;
-  keyboardShortcuts?:any
+  keyboardShortcuts?: ShortcutInput[]
 }
 
 interface tableHeader {
@@ -12,5 +14,5 @@ interface tableHeader {
 
 interface itemUtils {
   value: string;
-  callback: any;
+  callback: Function;
 }

@@ -2,9 +2,9 @@ export class Icon {
 
   private _value: string;
   private _title: string;
-  private _options: any;
+  private _options: Options;
 
-  constructor(value: string, title: string = '', options?: any) {
+  constructor(value: string, title: string = '', options?: Options) {
     this._value = value;
     this._title = title;
     this._options = options;
@@ -26,11 +26,16 @@ export class Icon {
     this._value = value;
   }
 
-  get options(): any {
+  get options(): Options {
     return this._options;
   }
 
-  set options(options: any) {
+  set options(options: Options) {
     this._options = options;
   }
+}
+
+interface Options {
+  style?: object;
+  class?: string;
 }

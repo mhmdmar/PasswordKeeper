@@ -1,5 +1,7 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
-import {inputTypes} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
+import {icons} from '../ViewUtils/Objects/Icons';
+import {Icon} from '../ViewUtils/Classes/Icon';
+import {AllowIn, ShortcutInput} from 'ng-keyboard-shortcuts';
 
 @Component({
   selector: 'app-search',
@@ -17,36 +19,37 @@ import {inputTypes} from '../ViewUtils/Objects/DOM_Utils/DOM_Elements/Input';
       <ng-keyboard-shortcuts [shortcuts]="searchBarShortcuts"></ng-keyboard-shortcuts>
       <div class="searchContainer">
           <div>
-              <i class="material-icons" (click)="toggleSearch()" [innerHTML]="'search'"></i>
+              <app-icon [icon]="searchIcon" (click)="toggleSearch()"></app-icon>
           </div>
-          <div [hidden]="!searchVisibile"><input class="searchInput" [value]="searchTerm"
-                                                 (input)="searchTermChange($event)" type="search"/>
+          <div [hidden]="!searchVisible"><input class="searchInput" [value]="searchTerm"
+                                                (input)="searchTermChange($event)" type="search"/>
           </div>
       </div>
   `,
 })
 export class SearchComponent implements OnInit {
-  public searchVisibile: boolean;
+  public searchVisible: boolean;
   public searchTerm: string;
   public onfocus: boolean;
   public searchBarShortcuts: Array<any>;
+  public searchIcon: Icon = icons.search;
   @Output() searchTermChanged = new EventEmitter();
 
   constructor(private elRef: ElementRef) {
-    this.searchVisibile = false;
+    this.searchVisible = false;
     this.searchTerm = '';
     this.onfocus = false;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchBarShortcuts = this.initShortcuts();
   }
 
-  initShortcuts(): Array<any> {
+  initShortcuts(): ShortcutInput[] {
     return [{
       key: ['cmd + f'],
       label: 'Open the search bar',
-      allowIn: [inputTypes.Input],
+      allowIn: [AllowIn.Input],
       command: () => {
         this.showSearch();
         this.selectSearchTerm();
@@ -56,41 +59,41 @@ export class SearchComponent implements OnInit {
       {
         key: ['escape'],
         label: 'Close the search bar',
-        allowIn: [inputTypes.Input],
+        allowIn: [AllowIn.Input],
         command: () => this.hideSearch(),
         preventDefault: true
       }];
   }
 
-  searchTermChange($event) {
-    this.searchTerm = $event.target.value;
+  searchTermChange($event: Event): void {
+    this.searchTerm = ($event.target as HTMLInputElement).value;
     this.searchTermChanged.emit(this.searchTerm);
   }
 
-  toggleSearch() {
-    this.searchVisibile = !this.searchVisibile;
+  toggleSearch(): void {
+    this.searchVisible = !this.searchVisible;
   }
 
-  selectSearchTerm() {
-    if (!this.searchVisibile) {
+  selectSearchTerm(): void {
+    if (!this.searchVisible) {
       return;
     }
     const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector('.searchInput');
     searchEl.select();
   }
 
-  showSearch() {
-    if (this.searchVisibile) {
+  showSearch(): void {
+    if (this.searchVisible) {
       return;
     }
-    this.searchVisibile = true;
+    this.searchVisible = true;
     this.searchTermChanged.emit(this.searchTerm);
     const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector('.searchInput');
     searchEl.focus();
   }
 
-  hideSearch() {
-    this.searchVisibile = false;
+  hideSearch(): void {
+    this.searchVisible = false;
     this.searchTermChanged.emit('');
   }
 

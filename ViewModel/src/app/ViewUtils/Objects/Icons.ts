@@ -24,27 +24,20 @@ export const icons = {
     style: {
       'color': 'white',
       'float': 'left'
-    }
+    },
+    class:'left'
   }),
   home: new Icon('home', 'home', {
-    style: {
-      'float': 'left'
-    }
+    class:'left'
   }),
   users: new Icon('people', 'users', {
-    style: {
-      'float': 'left'
-    }
+    class:'left'
   }),
   password: new Icon('fireplace', 'passwords', {
-    style: {
-      'float': 'left'
-    }
+    class:'left'
   }),
   addPassword: new Icon('add_to_photos', 'add password', {
-    style: {
-      'float': 'left'
-    }
+    class:'left'
   }),
-
+  search: new Icon('search', 'toggle search')
 };

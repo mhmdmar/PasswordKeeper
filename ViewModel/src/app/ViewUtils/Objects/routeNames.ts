@@ -1,4 +1,4 @@
-export const routesNames: any = {
+export const routesNames = {
   passwordTable: 'passwordTable',
   default: '',
   home: 'home',

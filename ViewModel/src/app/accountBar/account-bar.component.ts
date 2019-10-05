@@ -30,8 +30,8 @@ export class AccountBarComponent implements OnInit {
     this.arrowIcon = icons.expand;
   }
 
-  ngOnInit() {
-    this.Auth.curActiveUserObservable.subscribe((user) => {
+  ngOnInit(): void {
+    this.Auth.curActiveUserObservable.subscribe((user: User) => {
       this.user = user;
     });
   }
@@ -41,7 +41,7 @@ export class AccountBarComponent implements OnInit {
     this.updateArrowIcon();
   }
 
-  updateArrowIcon() {
+  updateArrowIcon(): void {
     this.arrowIcon = this.accountInfoVisible ? icons.collapse : icons.expand;
   }
 
@@ -51,7 +51,7 @@ export class AccountBarComponent implements OnInit {
     this.navigateToLogin();
   }
 
-  navigateToLogin() {
+  navigateToLogin(): void {
     this.router.navigate([routesNames.login]);
   }
 }

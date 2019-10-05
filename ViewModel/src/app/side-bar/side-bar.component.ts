@@ -5,6 +5,8 @@ import {User} from '../ViewUtils/Interfaces/User';
 import {Icon} from '../ViewUtils/Classes/Icon';
 import {icons} from '../ViewUtils/Objects/Icons';
 import {EventsService} from '../Services/events.service';
+import {SidebarItem} from '../ViewUtils/Interfaces/SidebarItem';
+import {ComponentsEvents} from '../ViewUtils/Interfaces/ComponentsEvents';
 
 @Component({
   selector: 'app-side-bar',
@@ -22,33 +24,35 @@ export class SideBarComponent implements OnInit {
     this.toggleSidebarIcon = icons.toggleSidebar;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.Auth.curActiveUserObservable.subscribe((user: User) => {
       this.curUserPermission = user ? user.permission : 3;
     });
-    this.eventService.currentEventObservable.subscribe((event) => {
-      const curEvent = event.split('/');
-      const componentName = curEvent[0];
-      const functionName = curEvent[1];
-      if (componentName === 'sidebar' && this[functionName]) {
-        this[functionName]();
+    this.eventService.currentEventObservable.subscribe((event: ComponentsEvents) => {
+      if (!event) {
+        return;
+      }
+      const componentName = event.component;
+      const functionName = event.eventFunction;
+      if (componentName === 'sidebar') {
+        functionName === 'toggleSidebar' && this.toggleSidebar();
       }
     });
   }
 
-  filterSidebar() {
-    // if the curActiveUser isn't logged in then filter any field with requiredLogin from the sidebar
+  filterSidebar(): SidebarItem[] {
+    // filter the sidebar for unauthorized users
     return sidebarItems.filter(field => !field.requireLogin || this.Auth.loggedIn);
   }
 
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.sidebarVisible = !this.sidebarVisible;
   }
 
-  navigate(data: any): Array<any> | string {
-    const route = data.route.split(':');
-    let navigate = [route[0]];
-    route.length > 1 && navigate.push('');
+  navigate(route: string): string[] | string {
+    const routeParts = route.split(':');
+    const navigate: string[] = [routeParts[0]];
+    routeParts.length > 1 && navigate.push('');
     return navigate;
   }
 }

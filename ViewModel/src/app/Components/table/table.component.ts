@@ -15,7 +15,7 @@ export class TableComponent implements OnInit {
     return Object.keys(obj);
   }
 
-  filterList(searchTerm) {
+  filterList(searchTerm): void {
     const itemList = this.template.itemsList;
     this.template.filteredItemsList = itemList.filter((item) => {
       return this.getKeys(item).some((attribute) => {

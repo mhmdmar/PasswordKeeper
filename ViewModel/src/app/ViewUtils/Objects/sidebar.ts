@@ -2,7 +2,7 @@ import {routesNames} from './routeNames';
 import {SidebarItem} from '../Interfaces/SidebarItem';
 import {icons} from './Icons';
 
-export const sidebarItems: Array<SidebarItem> = [
+export const sidebarItems: SidebarItem[] = [
   {
     title: 'Home',
     route: routesNames.home,

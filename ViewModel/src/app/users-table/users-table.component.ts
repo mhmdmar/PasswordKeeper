@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 
 export class UsersTableComponent implements OnInit {
 
-  public users: Array<User>;
+  public users: User[];
   public template: TableTemplate;
 
   constructor(private Auth: AuthService, private router: Router) {
@@ -81,7 +81,7 @@ export class UsersTableComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.Auth.getAllUsers((data: Response) => {
       if (data.success) {
         this.template.itemsList = data.response;

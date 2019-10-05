@@ -23,14 +23,14 @@ export class PasswordFormComponent implements OnInit {
   public formTemplate: FormTemplate;
   private submitBtnText: string;
   // boolean indicator that an http request hasn't resolved, to prevent unnecessary requests by clicking multiple times in a row on the submit button
-  private _httpRequestflag: boolean;
+  private _httpRequestFlag: boolean;
 
   static addPasswordError(message) {
     window.alert(message);
   }
 
   constructor(private Auth: AuthService, private router: Router, private activeRoute: ActivatedRoute) {
-    this._httpRequestflag = false;
+    this._httpRequestFlag = false;
   }
 
   getTemplate(): FormTemplate {
@@ -41,7 +41,7 @@ export class PasswordFormComponent implements OnInit {
           type: 'text',
           placeholder: 'Domain',
           field: 'Domain',
-          callback: ($event) => this.domain = $event.target.value,
+          callback: ($event): void => this.domain = $event.target.value,
           value: this.domain
         },
         {
@@ -49,7 +49,7 @@ export class PasswordFormComponent implements OnInit {
           type: 'text',
           placeholder: 'Username',
           field: 'Username',
-          callback: ($event) => this.username = $event.target.value,
+          callback: ($event): void => this.username = $event.target.value,
           value: this.username
         },
         {
@@ -57,11 +57,11 @@ export class PasswordFormComponent implements OnInit {
           type: 'password',
           placeholder: 'Password',
           field: 'Password',
-          callback: ($event) => this.password = $event.target.value,
+          callback: ($event): void => this.password = $event.target.value,
           value: this.password,
           itemsUtils: [{
             icon: icons.showPassword,
-            callback: () => {
+            callback: (): void => {
               const input = this.formTemplate.inputs[2];
               inputUtils.toggleTypePassword(input);
             }
@@ -72,17 +72,17 @@ export class PasswordFormComponent implements OnInit {
           class: 'formInput formButton',
           type: 'button',
           value: this.submitBtnText,
-          callback: () => this.changePassword()
+          callback: (): void => this.changePassword()
         }
       ],
       alternativeRoute: {
         alternativeText: 'click to see the passwords table',
-        callback: () => this.router.navigate([routesNames.passwordTable])
+        callback: (): Promise<boolean> => this.router.navigate([routesNames.passwordTable])
       },
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       if (params.id === '') {
         this.domain = '';
@@ -107,8 +107,8 @@ export class PasswordFormComponent implements OnInit {
     });
   }
 
-  changePassword() {
-    !this._httpRequestflag && this.passwordIndex === -1 ? this.addPassword() : this.updatePassword();
+  changePassword(): void {
+    !this._httpRequestFlag && this.passwordIndex === -1 ? this.addPassword() : this.updatePassword();
   }
 
   updatePassword(): void {
@@ -121,21 +121,21 @@ export class PasswordFormComponent implements OnInit {
 
   addPassword(): void {
     if (this.validateForm()) {
-      this._httpRequestflag = true;
+      this._httpRequestFlag = true;
       this.Auth.addPasswordItem(this.domain, this.username, this.password, (data: Response) => {
         if (data.success) {
           this.router.navigate([routesNames.passwordTable]);
         } else {
           PasswordFormComponent.addPasswordError(data.message);
         }
-        this._httpRequestflag = false;
+        this._httpRequestFlag = false;
       });
     } else {
       PasswordFormComponent.addPasswordError('Some fields are not filled');
     }
   }
 
-  validateForm() {
+  validateForm(): boolean {
     return this.domain.length !== 0 && this.username.length !== 0 && this.password.length !== 0;
   }
 }

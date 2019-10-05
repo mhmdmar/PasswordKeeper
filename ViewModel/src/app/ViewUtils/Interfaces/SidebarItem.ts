@@ -4,7 +4,7 @@ export interface SidebarItem {
   title: string;
   route: string;
   requireLogin: boolean;
-  clickEvent?: any;
+  clickEvent?: Function;
   accessLevel?: number;
   param?: string | number;
   icon?: Icon

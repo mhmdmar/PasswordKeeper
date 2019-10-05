@@ -98,7 +98,7 @@ export class SignupComponent implements OnInit {
   signUp(): void {
     const validateForm = this.validateForm();
     if (validateForm.valid) {
-      this.Auth.registerUserDetails(this.email, this.username, this.password, (data: any) => {
+      this.Auth.registerUserDetails(this.email, this.username, this.password, (data: Response) => {
         if (data.success) {
           this.Auth.login(this.username, this.password, (data: Response) => {
             if (data.success) {

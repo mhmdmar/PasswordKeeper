@@ -26,7 +26,7 @@ class DatabaseHelper {
 
     getUsers(permission, includePasswords) {
         if (!permission || permission.toString() !== '1') {
-            return new Response(false, messages.warning.unauthorized, []);
+            return new Response(false, messages.warning.unauthorized, null);
         }
         const users = includePasswords ? this._usersList.users : this._usersList.users.map((item) => {
             return {
@@ -42,12 +42,12 @@ class DatabaseHelper {
     getUser(username, password) {
         const user = this._usersList.getUser(username, password);
         const success = user !== undefined;
-        return new Response(success, success ? messages.success.userExists : messages.warning.userDoesntExist, user, success ? user : null);
+        return new Response(success, success ? messages.success.userExists : messages.warning.userDoesntExist, success ? user : null);
     }
 
     insertUser(username, password, email, passwordsList = []) {
         const result = this._usersList.addUser(username, password, email, passwordsList);
-        return new Response(result, result ? messages.success.entry : messages.warning.usernameTaken, username);
+        return new Response(result, result ? messages.success.entry : messages.warning.emailTaken, username);
     }
 
     removeUser(username, password) {

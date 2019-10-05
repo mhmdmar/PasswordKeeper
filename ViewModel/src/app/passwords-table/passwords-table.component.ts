@@ -34,11 +34,11 @@ export class PasswordsTableComponent implements OnInit {
       itemsUtils: [
         {
           value: 'delete',
-          callback: (index) => this.removePassword(index)
+          callback: (index: number): void => this.removePassword(index)
         },
         {
           value: 'edit',
-          callback: (index) => this.changePassword(index)
+          callback: (index: number): void => this.changePassword(index)
         }
       ],
       chosenIndex: null,
@@ -46,21 +46,21 @@ export class PasswordsTableComponent implements OnInit {
         key: ['cmd + del'],
         label: 'Help',
         description: 'Remove current password item',
-        command: () => this.removePassword(this.template.chosenIndex),
+        command: (): void => this.removePassword(this.template.chosenIndex),
         preventDefault: true
       },
         {
           key: ['cmd + e'],
           label: 'Change current password item',
           description: 'Remove current password',
-          command: () => this.changePassword(this.template.chosenIndex),
+          command: (): void => this.changePassword(this.template.chosenIndex),
           preventDefault: true
         },
         {
           key: ['up'],
           label: 'select the above password item',
           description: 'Remove current password',
-          command: () => {
+          command: (): void => {
             this.template.chosenIndex && this.template.chosenIndex--;
           },
           preventDefault: true
@@ -69,7 +69,7 @@ export class PasswordsTableComponent implements OnInit {
           key: ['down'],
           label: 'select the below password item',
           description: 'Remove current password',
-          command: () => {
+          command: (): void => {
             const len: number = this.template.itemsList.length - 1;
             const chosenIndex = this.template.chosenIndex;
             chosenIndex !== null && chosenIndex < len && this.template.chosenIndex++;
@@ -80,7 +80,7 @@ export class PasswordsTableComponent implements OnInit {
     };
   };
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.Auth.curActiveUserObservable.subscribe((user: User) => {
       this.userPasswordsList = user ? user.passwordsList : [];
       this.template.itemsList = this.userPasswordsList;

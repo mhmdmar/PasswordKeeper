@@ -1,12 +1,8 @@
+import {FormButtonItem, FormTextItem} from '../../../Interfaces/Templates/FormTemplate';
+
 export const inputUtils = {
-  toggleTypePassword(input: any) {
+  toggleTypePassword(input: FormTextItem | FormButtonItem) {
     const inputType = input.type;
     input.type = inputType !== 'password' ? 'password' : 'text';
   }
-};
-
-export const inputTypes = {
-  Textarea: 'TEXTAREA',
-  Input: 'INPUT',
-  Select: 'SELECT'
 };

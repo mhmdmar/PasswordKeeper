@@ -15,16 +15,17 @@ const storageNamespace = {
 };
 const API = '/api';
 
-function getRoutePath(route) {
+function getRoutePath(route): string {
   return API.concat('/', route);
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   public loggedIn: boolean;
-  private _curActiveUser = new BehaviorSubject<any>(undefined);
+  private _curActiveUser = new BehaviorSubject<User>(undefined);
   public curActiveUserObservable = this._curActiveUser.asObservable();
 
   constructor(private http: HttpClient) {
@@ -38,7 +39,7 @@ export class AuthService {
     this._curActiveUser.next(user);
   }
 
-  getAllUsers(callback: any, includePasswords: boolean): void {
+  getAllUsers(callback: Function, includePasswords: boolean): void {
     let permission = this.curActiveUser ? this.curActiveUser.permission : localStorage.getItem(storageNamespace.permission);
     const params = new HttpParams()
       .set('permission', permission.toString())
@@ -57,7 +58,7 @@ export class AuthService {
     this.loggedIn = value;
   }
 
-  login(username: string, password: string, callback: any): void {
+  login(username: string, password: string, callback: Function): void {
     this.http.post(getRoutePath(routes.getUser), {
       username, password
     }).subscribe((data: Response) => {
@@ -76,7 +77,7 @@ export class AuthService {
     this.curActiveUser = user;
   }
 
-  restoreUserInSession(callback): void {
+  restoreUserInSession(callback: Function): void {
     const userInSession: boolean = localStorage.getItem(storageNamespace.loggedIn) !== null;
     if (userInSession) {
       const username: string = localStorage.getItem(storageNamespace.username);
@@ -103,7 +104,7 @@ export class AuthService {
     this.removeUserInSession();
   }
 
-  registerUserDetails(email: string, username: string, password: string, callback: any): void {
+  registerUserDetails(email: string, username: string, password: string, callback: Function): void {
     this.http.post(getRoutePath(routes.insertUser), {
       email, username, password
     }).subscribe((data: Response) => {
@@ -111,7 +112,7 @@ export class AuthService {
     });
   }
 
-  removePasswordItem(index: number, callback: any): void {
+  removePasswordItem(index: number, callback: Function): void {
     const user: User = this.curActiveUser;
     this.http.post(getRoutePath(routes.removePasswordItem), {
       username: user.username,
@@ -125,7 +126,7 @@ export class AuthService {
     });
   }
 
-  addPasswordItem(domain: string, username: string, password: string, callback: any): void {
+  addPasswordItem(domain: string, username: string, password: string, callback: Function): void {
     const newPassword: Password = {domain, username, password};
     const user: User = this.curActiveUser;
     this.http.post(getRoutePath(routes.addPasswordItem), {
@@ -140,7 +141,7 @@ export class AuthService {
     });
   }
 
-  updatePasswordItem(domain: string, username: string, password: string, index: number, callback: any): void {
+  updatePasswordItem(domain: string, username: string, password: string, index: number, callback: Function): void {
     const newPassword: Password = {domain, username, password};
     const user: User = this.curActiveUser;
     this.http.post(getRoutePath(routes.updatePasswordItem), {

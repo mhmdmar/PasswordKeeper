@@ -8,29 +8,29 @@ export interface FormTemplate {
 interface AlternativeRoute {
   alternativeText: string;
   testID?: string;
-  callback: any;
+  callback: Function;
 }
 
-interface FormTextItem {
+export interface FormTextItem {
   id?
   class: string;
   type: string;
   placeholder: string;
   field: string;
   testID?: string;
-  callback: any;
+  callback: Function;
   itemsUtils?: Array<itemUtils>;
 }
 
-interface FormButtonItem {
+export interface FormButtonItem {
   class: string;
   type: string;
   value: string;
   testID?: string;
-  callback: any;
+  callback: Function;
 }
 
 interface itemUtils {
   icon: Icon;
-  callback: any;
+  callback: Function;
 }

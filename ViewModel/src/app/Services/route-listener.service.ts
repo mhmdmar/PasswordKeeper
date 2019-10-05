@@ -1,35 +1,25 @@
 import {Injectable} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteListenerService {
-  private lastUrl = 'lastUrl';
+  private lastRouteStorageName: string = 'lastUrl';
   private lastRoute: string;
 
   constructor(private router: Router) {
-    this.lastRoute = localStorage.getItem(this.lastUrl) || '/';
-    this.listenToRoute();
+    this.lastRoute = localStorage.getItem(this.lastRouteStorageName) || '/';
     this.listenToReload();
   }
 
-  navigateToLastRoute() {
+  navigateToLastRoute(): void {
     this.router.navigateByUrl(this.lastRoute);
   }
 
-  listenToRoute() {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(({urlAfterRedirects}: NavigationEnd) => {
-        this.lastRoute = urlAfterRedirects;
-      });
-  }
-
-  listenToReload() {
+  listenToReload(): void {
     window.onbeforeunload = () => {
-      localStorage.setItem(this.lastUrl, this.lastRoute);
+      localStorage.setItem(this.lastRouteStorageName, this.router.url);
       return true;
     };
   }

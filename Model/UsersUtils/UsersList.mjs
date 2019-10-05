@@ -43,8 +43,8 @@ export class UsersList {
 
     addUser(username, password, email, passwordsList = [], permission = 3) {
         let success = true;
-        if (this._usernameExists(username)) {
-            success = false;
+        if (this._usernameExists(email)) {
+            success = false
         } else {
             this._users.push(new User(username, password, email, passwordsList, permission));
         }

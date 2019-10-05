@@ -12,8 +12,8 @@ export class BoardComponent implements OnInit {
   constructor(private Auth: AuthService, private routeListener: RouteListenerService) {
   }
 
-  ngOnInit() {
-    this.Auth.restoreUserInSession(() => {
+  ngOnInit(): void {
+    this.Auth.restoreUserInSession((): void => {
       this.routeListener.navigateToLastRoute();
     });
   }

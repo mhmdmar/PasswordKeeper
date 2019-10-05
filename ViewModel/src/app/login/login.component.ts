@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           field: 'Username',
           testID: this.testID.usernameInput,
           placeholder: 'Username',
-          callback: ($event) => this.username = $event.target.value
+          callback: ($event): void => this.username = $event.target.value
         },
         {
           class: 'formInput',
@@ -51,11 +51,11 @@ export class LoginComponent implements OnInit {
           field: 'Password',
           testID: this.testID.passwordInput,
           placeholder: 'Password',
-          callback: ($event) => this.password = $event.target.value,
+          callback: ($event): void => this.password = $event.target.value,
           itemsUtils: [
             {
               icon: icons.showPassword,
-              callback: () => {
+              callback: (): void => {
                 const input = this.formTemplate.inputs[1];
                 inputUtils.toggleTypePassword(input);
               }
@@ -67,25 +67,25 @@ export class LoginComponent implements OnInit {
           type: 'button',
           value: 'Login',
           testID: this.testID.loginBtn,
-          callback: () => this.login()
+          callback: (): void => this.login()
         }
       ],
       alternativeRoute: {
         alternativeText: 'click to sign up',
         testID: this.testID.signupBtn,
-        callback: () => this.router.navigate([routesNames.signUp])
+        callback: (): Promise<boolean> => this.router.navigate([routesNames.signUp])
       },
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.username = this.password = '';
     this.submitText = 'click to sign up';
     this.formTemplate = this.getData();
   }
 
   login(): void {
-    const validateForm = this.validateForm();
+    const validateForm: FormValidation = this.validateForm();
     if (validateForm.valid) {
       this.Auth.login(this.username, this.password, (data: Response) => {
         if (data.success) {
@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  emptyInputExists() {
+  emptyInputExists(): boolean {
     return this.username === '' || this.password === '';
   }
 
