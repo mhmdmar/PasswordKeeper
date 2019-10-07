@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
         this.searchVisible = true;
         this.searchTermObservable.next(this.searchTerm);
         const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector(this.searchInputSelector);
-        searchEl.focus();
+        setTimeout(() => searchEl.focus(), 0);
     }
 
     hideSearch(): void {
