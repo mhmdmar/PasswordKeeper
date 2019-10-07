@@ -1,5 +1,5 @@
 export interface Password {
-  domain: string;
-  password: string;
-  username: string;
+    domain: string;
+    password: string;
+    username: string;
 }

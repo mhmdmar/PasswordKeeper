@@ -1,86 +1,86 @@
-@import "states";
+@import 'states';
 
 $linkColor: #000000;
 $linkHoverColor: #ff0000;
 
 .flex-container {
-  @include displayBox();
-  background-color: white;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  list-style: none;
+    @include displayBox();
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    list-style: none;
 }
 
 .column {
-  @include direction(column);
-  float: left;
+    @include direction(column);
+    float: left;
 }
 
 .flex-item {
-  margin: 0.5em;
-  padding: 0.5em;
-  color: white;
-  font-weight: bold;
-  font-size: 1em;
-  text-align: center;
+    margin: 0.5em;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
 }
 
 a.custom-link {
-  @include unselectable();
-  text-decoration: none;
-  display: block;
-  color: $linkColor;
+    @include unselectable();
+    text-decoration: none;
+    display: block;
+    color: $linkColor;
 
-  &:hover {
-    color: $linkHoverColor;
-  }
+    &:hover {
+        color: $linkHoverColor;
+    }
 }
 
 .app-btn {
-  color: #000;
-  box-shadow: none;
-  cursor: pointer;
-  margin: 0;
-  padding: 7px 12px;
-  transition: background-color .16s ease-out, box-shadow .16s ease-out;
-  font-family: Metric, Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 1px;
-  border-width: 2px;
-  border-color: inherit;
-  background-image: none;
-  line-height: 14px;
-  height: 32px;
-  text-shadow: none;
-  letter-spacing: .5px;
-  text-transform: none;
+    color: #000;
+    box-shadow: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 7px 12px;
+    transition: background-color 0.16s ease-out, box-shadow 0.16s ease-out;
+    font-family: Metric, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 1px;
+    border-width: 2px;
+    border-color: inherit;
+    background-image: none;
+    line-height: 14px;
+    height: 32px;
+    text-shadow: none;
+    letter-spacing: 0.5px;
+    text-transform: none;
 
-  &:hover {
-    background: grey;
-  }
+    &:hover {
+        background: grey;
+    }
 }
 
 .app-text-font {
-  @include unselectable();
-  @include ellipses();
+    @include unselectable();
+    @include ellipses();
 
-  color: #ffffff;
-  font-size: 16px;
-  position: relative;
-  align-items: center;
-  font-family: "MetricWeb-Semibold", Calibri, sans-serif;
-  font-weight: bold;
-  height: 22px;
-  line-height: 22px;
+    color: #ffffff;
+    font-size: 16px;
+    position: relative;
+    align-items: center;
+    font-family: 'MetricWeb-Semibold', Calibri, sans-serif;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22px;
 }
 
 .app-icon {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 mark {
-  background: orange;
-  font-weight: 500;
+    background: orange;
+    font-weight: 500;
 }

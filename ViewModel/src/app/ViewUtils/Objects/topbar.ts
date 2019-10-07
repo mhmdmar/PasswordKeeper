@@ -1,5 +1,5 @@
-import {topBarTemplate} from '../Interfaces/Templates/topBarTemplate';
+import { topBarTemplate } from '../Interfaces/Templates/topBarTemplate';
 
 export const topBar: topBarTemplate = {
-  title: 'Password Keeper'
+    title: 'Password Keeper'
 };

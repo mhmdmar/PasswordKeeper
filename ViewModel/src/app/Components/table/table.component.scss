@@ -1,56 +1,57 @@
-@import "../../CSS/global";
+@import '../../CSS/global';
 
 $headerBG_Color: lightGreen;
 $headerBG_Color_Hover: yellow;
 $displayStyle: flex;
 $cursor: pointer;
 
-.header, .row {
-  display: $displayStyle;
+.header,
+.row {
+    display: $displayStyle;
 }
 
 .row {
-  @include unselectable();
+    @include unselectable();
 
-  &:hover {
-    background-color: wheat;
-  }
+    &:hover {
+        background-color: wheat;
+    }
 }
 
 .row.chosen {
-  background-color: lightblue;
+    background-color: lightblue;
 
-  &:hover {
-    //background-color: lightcyan;
-  }
+    &:hover {
+        //background-color: lightcyan;
+    }
 }
 
 .header {
-  background-color: $headerBG_Color;
-  font-size: 1rem;
-  font-weight: 900;
+    background-color: $headerBG_Color;
+    font-size: 1rem;
+    font-weight: 900;
 
-  &:hover {
-    background-color: $headerBG_Color_Hover;
-  }
+    &:hover {
+        background-color: $headerBG_Color_Hover;
+    }
 }
 
 .passwordText {
-  text-align: center;
+    text-align: center;
 }
 
 .col {
-  flex: 2; /* distributes space on the line equally among items */
-  cursor: $cursor;
-  @include ellipses();
+    flex: 2; /* distributes space on the line equally among items */
+    cursor: $cursor;
+    @include ellipses();
 }
 
 .util {
-  flex: 1;
-  display: inline-flex;
-  flex-direction: row-reverse;
+    flex: 1;
+    display: inline-flex;
+    flex-direction: row-reverse;
 }
 
 .highlightText {
-  background: yellow;
+    background: yellow;
 }

@@ -1,44 +1,43 @@
-@import "../CSS/global";
+@import '../CSS/global';
 
 .top-bar {
-  background-color: #000000;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  border: 1px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+    background-color: #000000;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-
 li {
-  padding: 0.5em;
-  flex: 2;
+    padding: 0.5em;
+    flex: 2;
 }
 
 .account-name {
-  font-size: 22px;
+    font-size: 22px;
 }
 
 ul li a {
-  text-decoration: none;
-  display: block;
+    text-decoration: none;
+    display: block;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .top-bar-title {
-  @extend .app-btn;
-  cursor: default;
+    @extend .app-btn;
+    cursor: default;
 
-  &:hover {
-    background-color: inherit;
-  }
+    &:hover {
+        background-color: inherit;
+    }
 }
 
 .item-icon {
-  flex: 0.1;
+    flex: 0.1;
 }

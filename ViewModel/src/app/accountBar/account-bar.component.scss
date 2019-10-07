@@ -1,21 +1,21 @@
-@import "../CSS/global";
+@import '../CSS/global';
 
 .right {
-  float: right;
+    float: right;
 }
 
 span {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .accountTable {
-  z-index: 999;
-  background-color: white;
-  border-color: white;
-  margin-left: -20px;
-  position: absolute;
+    z-index: 999;
+    background-color: white;
+    border-color: white;
+    margin-left: -20px;
+    position: absolute;
 }
 
 .account-text {
-  color: black;
+    color: black;
 }

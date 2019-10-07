@@ -1,5 +1,4 @@
 export interface ComponentsEvents {
-  component: string,
-  eventFunction: string
+    component: string;
+    eventFunction: string;
 }
-

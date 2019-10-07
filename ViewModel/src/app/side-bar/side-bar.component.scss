@@ -1,33 +1,32 @@
-@import "../CSS/global";
+@import '../CSS/global';
 
 .flex-container {
-  border-right: #ffffff;
+    border-right: #ffffff;
 }
 
 .sidebar-item {
-  cursor: pointer;
-  max-width: 150px;
-  @include ellipses();
+    cursor: pointer;
+    max-width: 150px;
+    @include ellipses();
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+        outline: 0;
+    }
 
-  &:hover {
-    background: grey;
-  }
+    &:hover {
+        background: grey;
+    }
 }
 
 .sidebar-text {
-  color: black;
-  font-weight: 400;
+    color: black;
+    font-weight: 400;
 }
 
 .active-link {
-  background-color: lightgrey;
+    background-color: lightgrey;
 
-  & > .sidebar-text {
-    font-weight: 600;
-  }
+    & > .sidebar-text {
+        font-weight: 600;
+    }
 }
-

@@ -1,35 +1,34 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+    selector: 'app-table',
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  @Input() template;
+    @Input() template;
 
-  private searchTerm: string;
+    private searchTerm: string;
 
-  constructor() {
-    this.searchTerm = '';
-  }
+    constructor() {
+        this.searchTerm = '';
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {}
 
-  getKeys(obj) {
-    return Object.keys(obj);
-  }
+    getKeys(obj) {
+        return Object.keys(obj);
+    }
 
-  filterList(): Array<object> {
-    return this.template.itemsList.filter((item) => {
-      return this.getKeys(item).some((attribute) => {
-        return item[attribute].toString().includes(this.searchTerm);
-      });
-    });
-  }
+    filterList(): Array<object> {
+        return this.template.itemsList.filter(item => {
+            return this.getKeys(item).some(attribute => {
+                return item[attribute].toString().includes(this.searchTerm);
+            });
+        });
+    }
 
-  updateSearchTerm(searchTerm): void {
-    this.searchTerm = searchTerm;
-  }
+    updateSearchTerm(searchTerm): void {
+        this.searchTerm = searchTerm;
+    }
 }

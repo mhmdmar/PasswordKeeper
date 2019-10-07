@@ -1,17 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormTemplate} from '../../ViewUtils/Interfaces/Templates/FormTemplate';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormTemplate } from '../../ViewUtils/Interfaces/Templates/FormTemplate';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+    selector: 'app-form',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() template: FormTemplate;
+    @Input() template: FormTemplate;
 
-  constructor() {
-  }
+    constructor() {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 }

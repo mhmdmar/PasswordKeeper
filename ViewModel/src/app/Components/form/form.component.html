@@ -1,37 +1,40 @@
 <div class="form">
-  <div *ngIf="template">
-    <form>
-      <div class="formInputContainer" *ngFor="let input of template.inputs; let i = index;">
-        <div *ngIf="input.type==='button'; then inputBtn else inputText">
-        </div>
-        <ng-template #inputBtn>
-          <label>
-            <input [attr.test-id]="input.testID" [ngClass]="input.class" [value]="input.value" [type]="input.type"
-                   (click)="input.callback && input.callback($event)">
-          </label>
-        </ng-template>
-        <ng-template #inputText>
-          <div>
-          <span class="app-text-font" [innerHTML]="input.field">
-            </span>
-          </div>
-          <div class="wrapper">
-            <label class="input-wrapper">
-              <input [attr.test-id]="input.testID" [ngClass]="input.class" [type]="input.type"
-                     [value]="input.value || '' " [placeholder]="input.placeholder"
-                     (input)="input.callback && input.callback($event)">
-            </label>
-            <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.Icon"
-                      (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
-
-          </div>
-        </ng-template>
-      </div>
-      <br>
-      <a *ngIf="template.alternativeRoute" class="app-text-font alternative-link"
-         [attr.test-id]="template.alternativeRoute.testID"
-         (click)="template.alternativeRoute.callback()"
-         [innerHTML]="template.alternativeRoute.alternativeText"></a>
-    </form>
-  </div>
+    <div *ngIf="template">
+        <form>
+            <div class="formInputContainer" *ngFor="let input of template.inputs; let i = index">
+                <div *ngIf="input.type === 'button'; then inputBtn; else inputText"></div>
+                <ng-template #inputBtn>
+                    <label>
+                        <input [attr.test-id]="input.testID" [ngClass]="input.class" [value]="input.value" [type]="input.type" (click)="input.callback && input.callback($event)" />
+                    </label>
+                </ng-template>
+                <ng-template #inputText>
+                    <div>
+                        <span class="app-text-font" [innerHTML]="input.field"> </span>
+                    </div>
+                    <div class="wrapper">
+                        <label class="input-wrapper">
+                            <input
+                                [attr.test-id]="input.testID"
+                                [ngClass]="input.class"
+                                [type]="input.type"
+                                [value]="input.value || ''"
+                                [placeholder]="input.placeholder"
+                                (input)="input.callback && input.callback($event)"
+                            />
+                        </label>
+                        <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                    </div>
+                </ng-template>
+            </div>
+            <br />
+            <a
+                *ngIf="template.alternativeRoute"
+                class="app-text-font alternative-link"
+                [attr.test-id]="template.alternativeRoute.testID"
+                (click)="template.alternativeRoute.callback()"
+                [innerHTML]="template.alternativeRoute.alternativeText"
+            ></a>
+        </form>
+    </div>
 </div>

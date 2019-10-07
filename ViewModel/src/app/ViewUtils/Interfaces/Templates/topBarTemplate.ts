@@ -1,3 +1,3 @@
 export interface topBarTemplate {
-  title: string
+    title: string;
 }

@@ -1,6 +1,6 @@
-import {Icon} from '../../Classes/Icon';
+import { Icon } from '../../Classes/Icon';
 
 export interface itemUtils {
-  Icon: Icon;
-  callback?: Function;
+    Icon: Icon;
+    callback?: Function;
 }
