@@ -2,19 +2,12 @@ import {Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core
 import {icons} from '../ViewUtils/Objects/Icons';
 import {Icon} from '../ViewUtils/Classes/Icon';
 import {AllowIn, ShortcutInput} from 'ng-keyboard-shortcuts';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
-  styles: [`
-      .searchContainer {
-          display: inline-flex;
-      }
-
-      .searchInput {
-          width: 100%;
-          height: 100%;
-      }
-  `],
+  styleUrls: ['./search.component.scss'],
   template: `
       <ng-keyboard-shortcuts [shortcuts]="searchBarShortcuts"></ng-keyboard-shortcuts>
       <div class="searchContainer">
@@ -33,16 +26,24 @@ export class SearchComponent implements OnInit {
   public onfocus: boolean;
   public searchBarShortcuts: Array<any>;
   public searchIcon: Icon = icons.search;
+  private searchTermObservable: Subject<string> = new Subject();
+  private searchInputSelector = '.searchInput';
   @Output() searchTermChanged = new EventEmitter();
 
   constructor(private elRef: ElementRef) {
-    this.searchVisible = false;
     this.searchTerm = '';
+    this.searchVisible = false;
     this.onfocus = false;
   }
 
   ngOnInit(): void {
     this.searchBarShortcuts = this.initShortcuts();
+    this.searchTermObservable
+      .pipe(debounceTime(150))
+      .subscribe((searchTerm) => {
+          this.searchTermChanged.emit(searchTerm);
+        }
+      );
   }
 
   initShortcuts(): ShortcutInput[] {
@@ -66,8 +67,9 @@ export class SearchComponent implements OnInit {
   }
 
   searchTermChange($event: Event): void {
-    this.searchTerm = ($event.target as HTMLInputElement).value;
-    this.searchTermChanged.emit(this.searchTerm);
+    const searchTerm = ($event.target as HTMLInputElement).value;
+    this.searchTerm = searchTerm;
+    this.searchTermObservable.next(searchTerm);
   }
 
   toggleSearch(): void {
@@ -78,7 +80,7 @@ export class SearchComponent implements OnInit {
     if (!this.searchVisible) {
       return;
     }
-    const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector('.searchInput');
+    const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector(this.searchInputSelector);
     searchEl.select();
   }
 
@@ -87,14 +89,14 @@ export class SearchComponent implements OnInit {
       return;
     }
     this.searchVisible = true;
-    this.searchTermChanged.emit(this.searchTerm);
-    const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector('.searchInput');
+    this.searchTermObservable.next(this.searchTerm);
+    const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector(this.searchInputSelector);
     searchEl.focus();
   }
 
   hideSearch(): void {
     this.searchVisible = false;
-    this.searchTermChanged.emit('');
+    this.searchTermObservable.next('');
   }
 
 }

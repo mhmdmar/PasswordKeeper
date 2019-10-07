@@ -14,7 +14,7 @@ import {topBarTemplate} from '../ViewUtils/Interfaces/Templates/topBarTemplate';
 export class TopBarComponent implements OnInit {
   public template: topBarTemplate;
   public title: string;
-  private toggleSidebarIcon: Icon;
+  public toggleSidebarIcon: Icon;
 
   constructor(private eventService: EventsService) {
     this.template = topBar;

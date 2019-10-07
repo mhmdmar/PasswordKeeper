@@ -8,22 +8,28 @@ import {Component, Input, OnInit} from '@angular/core';
 export class TableComponent implements OnInit {
   @Input() template;
 
+  private searchTerm: string;
+
   constructor() {
+    this.searchTerm = '';
+  }
+
+  ngOnInit() {
   }
 
   getKeys(obj) {
     return Object.keys(obj);
   }
 
-  filterList(searchTerm): void {
-    const itemList = this.template.itemsList;
-    this.template.filteredItemsList = itemList.filter((item) => {
+  filterList(): Array<object> {
+    return this.template.itemsList.filter((item) => {
       return this.getKeys(item).some((attribute) => {
-        return item[attribute].toString().includes(searchTerm);
+        return item[attribute].toString().includes(this.searchTerm);
       });
     });
   }
 
-  ngOnInit() {
+  updateSearchTerm(searchTerm): void {
+    this.searchTerm = searchTerm;
   }
 }

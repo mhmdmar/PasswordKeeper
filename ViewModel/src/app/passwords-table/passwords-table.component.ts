@@ -89,14 +89,14 @@ export class PasswordsTableComponent implements OnInit {
   }
 
   changePassword(index: number): void {
-    if (!index) {
+    if (index === undefined || index === null) {
       return;
     }
     this.router.navigate([routesNames.passwordForm.split(':')[0], index]);
   }
 
   removePassword(index: number): void {
-    if (!index) {
+    if (index === undefined || index === null) {
       return;
     }
     const wannaDelete = confirm('Are you sure you want to delete this password');

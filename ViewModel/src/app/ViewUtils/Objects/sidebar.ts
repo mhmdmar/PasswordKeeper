@@ -17,7 +17,7 @@ export const sidebarItems: SidebarItem[] = [
     Icon: icons.users
   },
   {
-    title: 'Table',
+    title: 'Passwords',
     route: routesNames.passwordTable,
     requireLogin: true,
     Icon: icons.password
