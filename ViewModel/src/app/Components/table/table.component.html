@@ -1,7 +1,8 @@
 <div class="custom-table" *ngIf="template">
     <div class="row header">
         <div class="col" *ngFor="let headerColumn of template.headers" [title]="headerColumn.text" [innerHTML]="headerColumn.text"></div>
-        <div *ngIf="template.itemsUtils" class="col util">
+        <div class="col util">
+            <app-dropdown [template]="tableDropdown"></app-dropdown>
             <app-search (searchTermChanged)="updateSearchTerm($event)"></app-search>
         </div>
     </div>

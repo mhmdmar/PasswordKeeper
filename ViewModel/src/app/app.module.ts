@@ -23,6 +23,7 @@ import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { IconComponent } from './Components/icon/icon.component';
+import { DropdownComponent } from './Components/dropdown/dropdown.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { IconComponent } from './Components/icon/icon.component';
         UsersTableComponent,
         TableComponent,
         SearchComponent,
-        IconComponent
+        IconComponent,
+        DropdownComponent
     ],
     imports: [BrowserModule, KeyboardShortcutsModule.forRoot(), AppRoutingModule, RouterModule, HttpClientModule, NgbModule, FormsModule],
     providers: [AuthService, AuthGuard],

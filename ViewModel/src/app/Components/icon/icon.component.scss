@@ -9,11 +9,16 @@ i {
     @include unselectable();
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
         box-shadow: none;
     }
 }
 
+.iconHover {
+    &:hover {
+        background-color: $buttonHover;
+        box-shadow: none;
+    }
+}
 .left {
     float: left;
 }

@@ -40,22 +40,19 @@ export class PasswordsTableComponent implements OnInit {
             keyboardShortcuts: [
                 {
                     key: ['cmd + del'],
-                    label: 'Help',
                     description: 'Remove current password item',
                     command: (): void => this.removePassword(this.template.chosenIndex),
                     preventDefault: true
                 },
                 {
                     key: ['cmd + e'],
-                    label: 'Change current password item',
-                    description: 'Remove current password',
+                    description: 'Change current password item',
                     command: (): void => this.changePassword(this.template.chosenIndex),
                     preventDefault: true
                 },
                 {
                     key: ['up'],
                     label: 'select the above password item',
-                    description: 'Remove current password',
                     command: (): void => {
                         this.template.chosenIndex && this.template.chosenIndex--;
                     },
@@ -64,7 +61,6 @@ export class PasswordsTableComponent implements OnInit {
                 {
                     key: ['down'],
                     label: 'select the below password item',
-                    description: 'Remove current password',
                     command: (): void => {
                         const len: number = this.template.itemsList.length - 1;
                         const chosenIndex = this.template.chosenIndex;

@@ -21,16 +21,15 @@ export const icons = {
     }),
     toggleSidebar: new Icon('format_list_bulleted', 'Toggle sidebar', {
         style: {
-            color: 'white',
-            float: 'left'
+            color: 'white'
         },
-        class: 'left'
+        class: 'left iconHover'
     }),
     home: new Icon('home', 'home', {
-        class: 'left'
+        class: 'left iconHover'
     }),
     users: new Icon('people', 'users', {
-        class: 'left'
+        class: 'left iconHover'
     }),
     password: new Icon('fireplace', 'passwords', {
         class: 'left'
@@ -39,6 +38,10 @@ export const icons = {
         class: 'left'
     }),
     search: new Icon('search', 'toggle search'),
-    edit: new Icon('edit', 'edit (ctrl + e)'),
-    delete: new Icon('delete', 'delete (ctrl + delete)')
+    edit: new Icon('edit', 'edit (ctrl + e)', {
+        class: 'iconHover'
+    }),
+    delete: new Icon('delete', 'delete (ctrl + delete)', {
+        class: 'iconHover'
+    })
 };

@@ -1,5 +1,6 @@
 @import 'states';
 
+$buttonHover: grey;
 $linkColor: #000000;
 $linkHoverColor: #ff0000;
 
@@ -43,7 +44,6 @@ a.custom-link {
     cursor: pointer;
     margin: 0;
     padding: 7px 12px;
-    transition: background-color 0.16s ease-out, box-shadow 0.16s ease-out;
     font-family: Metric, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: 700;
@@ -58,7 +58,7 @@ a.custom-link {
     text-transform: none;
 
     &:hover {
-        background: grey;
+        background: $buttonHover;
     }
 }
 
@@ -80,7 +80,8 @@ a.custom-link {
     color: #ffffff;
 }
 
-mark {
-    background: orange;
-    font-weight: 500;
+.dropdownBtn {
+    &:hover {
+        background: $buttonHover;
+    }
 }

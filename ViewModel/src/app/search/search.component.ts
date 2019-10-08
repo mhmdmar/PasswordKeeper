@@ -11,7 +11,7 @@ import { debounceTime } from 'rxjs/operators';
     template: `
         <ng-keyboard-shortcuts [shortcuts]="searchBarShortcuts"></ng-keyboard-shortcuts>
         <div class="searchContainer">
-            <div>
+            <div class="iconContainer">
                 <app-icon [icon]="searchIcon" (click)="toggleSearch()"></app-icon>
             </div>
             <div [hidden]="!searchVisible">

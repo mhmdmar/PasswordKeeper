@@ -1,7 +1,14 @@
+@import '../CSS/global';
+
 .searchContainer {
     display: inline-flex;
 }
 
+.iconContainer {
+    &:hover {
+        background: $buttonHover;
+    }
+}
 .searchInput {
     width: 100%;
     height: 100%;

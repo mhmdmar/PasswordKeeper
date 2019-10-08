@@ -6,7 +6,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { routesNames } from '../ViewUtils/Objects/routeNames';
 import { DOMHelper } from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
-import { icons } from '../ViewUtils/Objects/Icons';
 import { IconComponent } from '../Components/icon/icon.component';
 
 const DummyUser: User = {
@@ -82,30 +81,6 @@ describe('AccountBarComponent', () => {
         assignDummyUser();
         const userElement: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.user));
         expect(userElement.innerText).toEqual(DummyUser.username);
-    });
-
-    it('Account Info is invisible', () => {
-        const accountInfo: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.userInfo));
-        expect(accountInfo).toBeFalsy();
-    });
-
-    it('Account info is visible when "accountInfoVisible" is true', () => {
-        showAccountInfo();
-        const accountInfo: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.userInfo));
-        expect(accountInfo).toBeTruthy();
-    });
-
-    it('Arrow image is visible when "accountInfoVisible" is true', () => {
-        showAccountInfo();
-        const arrowElement: HTMLElement = fixture.nativeElement.querySelector(DOMHelper.testIdSelector(testID.arrowIcon));
-        expect(arrowElement).toBeTruthy();
-    });
-
-    it('"updateArrowIcon" changes the arrow icon to "collapse"', () => {
-        showAccountInfo();
-        component.updateArrowIcon();
-        fixture.detectChanges();
-        expect(component.arrowIcon.value === icons.collapse.value).toBeTruthy();
     });
 
     it('Logout option exists', () => {

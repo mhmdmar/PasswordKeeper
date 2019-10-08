@@ -14,7 +14,7 @@
     }
 
     &:hover {
-        background: grey;
+        background: $buttonHover
     }
 }
 
@@ -24,7 +24,7 @@
 }
 
 .active-link {
-    background-color: lightgrey;
+    background-color: $buttonHover;
 
     & > .sidebar-text {
         font-weight: 600;

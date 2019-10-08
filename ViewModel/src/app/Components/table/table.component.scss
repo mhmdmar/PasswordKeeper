@@ -1,28 +1,22 @@
 @import '../../CSS/global';
 
-$headerBG_Color: lightGreen;
-$headerBG_Color_Hover: yellow;
+$headerBG_Color: wheat;
+$headerBG_Color_Hover: lightgreen;
 $displayStyle: flex;
 $cursor: pointer;
 
-.header,
 .row {
     display: $displayStyle;
-}
-
-.row {
     @include unselectable();
-
     &:hover {
         background-color: wheat;
     }
-}
+    &.chosen {
+        background-color: lightblue;
 
-.row.chosen {
-    background-color: lightblue;
-
-    &:hover {
-        //background-color: lightcyan;
+        &:hover {
+            //background-color: lightcyan;
+        }
     }
 }
 
@@ -46,10 +40,11 @@ $cursor: pointer;
     @include ellipses();
 }
 
-.util {
+.col.util {
     flex: 1;
     display: inline-flex;
     flex-direction: row-reverse;
+    overflow: visible;
 }
 
 .highlightText {

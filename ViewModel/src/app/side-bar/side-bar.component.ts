@@ -10,7 +10,16 @@ import { ComponentsEvents } from '../ViewUtils/Interfaces/ComponentsEvents';
 
 @Component({
     selector: 'app-side-bar',
-    templateUrl: './side-bar.component.html',
+    template: `
+        <ul class="flex-container column">
+            <ng-container *ngFor="let data of filterSidebar()">
+                <li class="flex-item sidebar-item" *ngIf="!data.accessLevel || data.accessLevel >= curUserPermission" [routerLink]="navigate(data.route)" routerLinkActive="active-link">
+                    <app-icon *ngIf="data.Icon" [icon]="data.Icon"></app-icon>
+                    <span *ngIf="sidebarVisible" class="app-text-font sidebar-text" [innerText]="data.title"></span>
+                </li>
+            </ng-container>
+        </ul>
+    `,
     styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {

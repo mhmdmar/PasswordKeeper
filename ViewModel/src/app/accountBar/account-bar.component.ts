@@ -3,8 +3,7 @@ import { AuthService } from '../Services/auth.service';
 import { Router } from '@angular/router';
 import { routesNames } from '../ViewUtils/Objects/routeNames';
 import { User } from '../ViewUtils/Interfaces/User';
-import { icons } from '../ViewUtils/Objects/Icons';
-import { Icon } from '../ViewUtils/Classes/Icon';
+import { DropdownTemplate } from '../ViewUtils/Interfaces/Templates/DropdownTemplate';
 
 @Component({
     selector: 'app-account-bar',
@@ -14,35 +13,36 @@ import { Icon } from '../ViewUtils/Classes/Icon';
 export class AccountBarComponent implements OnInit {
     public user: User;
     public accountInfoVisible = false;
-    public arrowIcon: Icon;
+    public dropdownTemplate: DropdownTemplate;
     public loginText = 'Login';
     public testID = {
         login: 'login',
         user: 'user',
         userInfo: 'userInfo',
-        logout: 'logout',
-        arrowIcon: 'arrowIcon'
+        logout: 'logout'
     };
 
     constructor(private Auth: AuthService, private router: Router) {
-        this.arrowIcon = icons.expand;
+        this.dropdownTemplate = this.getDropdownTemplate();
     }
 
     ngOnInit(): void {
         this.Auth.curActiveUserObservable.subscribe((user: User) => {
             this.user = user;
+            this.dropdownTemplate.title = (user && user.username) || '';
         });
     }
-
-    toggleAccountInfo(): void {
-        this.accountInfoVisible = !this.accountInfoVisible;
-        this.updateArrowIcon();
+    getDropdownTemplate(): DropdownTemplate {
+        return {
+            title: '',
+            options: [
+                {
+                    value: 'Logout',
+                    callback: () => this.signOut()
+                }
+            ]
+        };
     }
-
-    updateArrowIcon(): void {
-        this.arrowIcon = this.accountInfoVisible ? icons.collapse : icons.expand;
-    }
-
     signOut(): void {
         this.Auth.signOut();
         this.accountInfoVisible = false;
