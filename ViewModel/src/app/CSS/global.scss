@@ -3,14 +3,17 @@
 $buttonHover: grey;
 $linkColor: #000000;
 $linkHoverColor: #ff0000;
-
+$borderSeparator: 1px solid #f0f0f2;
 .flex-container {
     @include displayBox();
-    background-color: white;
     padding: 0;
     margin: 0;
     height: 100%;
     list-style: none;
+}
+
+.right {
+    float: right;
 }
 
 .column {
@@ -27,18 +30,13 @@ $linkHoverColor: #ff0000;
     text-align: center;
 }
 
-a.custom-link {
-    @include unselectable();
-    text-decoration: none;
-    display: block;
-    color: $linkColor;
-
-    &:hover {
-        color: $linkHoverColor;
-    }
+.centerItem {
+    text-align: center;
 }
 
 .app-btn {
+    @include unselectable();
+    @include ellipses();
     color: #000;
     box-shadow: none;
     cursor: pointer;
@@ -60,12 +58,22 @@ a.custom-link {
     &:hover {
         background: $buttonHover;
     }
+    &:focus {
+        outline: none;
+    }
+    &:disabled,
+    &[disabled] {
+        color: grey;
+        cursor: default;
+        &:hover {
+            background: lightgrey;
+        }
+    }
 }
 
 .app-text-font {
     @include unselectable();
     @include ellipses();
-
     color: #ffffff;
     font-size: 16px;
     position: relative;
@@ -74,6 +82,10 @@ a.custom-link {
     font-weight: bold;
     height: 22px;
     line-height: 22px;
+}
+.app-text-font-black {
+    @extend .app-text-font;
+    color: #000000;
 }
 
 .app-icon {

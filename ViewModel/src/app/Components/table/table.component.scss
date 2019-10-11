@@ -1,22 +1,24 @@
 @import '../../CSS/global';
 
-$headerBG_Color: wheat;
-$headerBG_Color_Hover: lightgreen;
+$headerBG_Color: lightgreen;
+$headerBG_Color_Hover: green;
+$rowBG_Color: wheat;
+$rowBG_Color_Hover: lightblue;
 $displayStyle: flex;
 $cursor: pointer;
+$btnBGColor: lightgrey;
 
+.customTable {
+    min-height: 264px;
+}
 .row {
     display: $displayStyle;
     @include unselectable();
     &:hover {
-        background-color: wheat;
+        background-color: $rowBG_Color;
     }
     &.chosen {
-        background-color: lightblue;
-
-        &:hover {
-            //background-color: lightcyan;
-        }
+        background-color: $rowBG_Color_Hover;
     }
 }
 
@@ -26,7 +28,7 @@ $cursor: pointer;
     font-weight: 900;
 
     &:hover {
-        background-color: $headerBG_Color_Hover;
+        background-color: $headerBG_Color;
     }
 }
 
@@ -49,4 +51,21 @@ $cursor: pointer;
 
 .highlightText {
     background: yellow;
+}
+.pagination {
+    align-items: center;
+    justify-content: center;
+}
+.pageIndexBtn[disabled] {
+    min-width: 60px;
+    max-width: 60px;
+    color: green;
+}
+
+.paginationBtn {
+    background: $btnBGColor;
+    background: white;
+    &[disabled]:hover {
+        background: white;
+    }
 }

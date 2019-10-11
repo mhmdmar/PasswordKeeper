@@ -9,10 +9,10 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    max-height: 42px;
 }
 
 li {
-    padding: 0.5em;
     flex: 2;
 }
 
@@ -23,10 +23,6 @@ li {
 ul li a {
     text-decoration: none;
     display: block;
-}
-
-.right {
-    float: right;
 }
 
 .top-bar-title {

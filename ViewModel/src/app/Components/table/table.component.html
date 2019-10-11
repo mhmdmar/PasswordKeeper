@@ -1,18 +1,28 @@
-<div class="custom-table" *ngIf="template">
-    <div class="row header">
-        <div class="col" *ngFor="let headerColumn of template.headers" [title]="headerColumn.text" [innerHTML]="headerColumn.text"></div>
-        <div class="col util">
-            <app-dropdown [template]="tableDropdown"></app-dropdown>
-            <app-search (searchTermChanged)="updateSearchTerm($event)"></app-search>
-        </div>
-    </div>
-    <div *ngFor="let itemsField of filterList(); let i = index">
-        <div class="row" (click)="template.chosenIndex = i" [ngClass]="template.chosenIndex === i ? 'chosen' : ''">
-            <div *ngFor="let item of getKeys(itemsField)" class="col" [title]="itemsField[item]" [innerHTML]="itemsField[item]"></div>
+<div *ngIf="template">
+    <div class="customTable">
+        <div class="row header">
+            <div class="col" *ngFor="let headerColumn of template.headers" [title]="headerColumn.text" [innerHTML]="headerColumn.text"></div>
             <div class="col util">
-                <app-icon *ngFor="let itemUtil of template.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                <app-dropdown [template]="tableDropdown"></app-dropdown>
+                <app-search (searchTermChanged)="updateSearchTerm($event)"></app-search>
+            </div>
+        </div>
+        <div *ngFor="let itemsField of filterItemsList(); let i = index">
+            <div class="row" (click)="template.chosenIndex = i + tableLength * (tableIndex - 1)" [ngClass]="template.chosenIndex !== null && template.chosenIndex % tableLength === i ? 'chosen' : ''">
+                <div *ngFor="let item of itemsField | keys" class="col" [title]="itemsField[item]" [innerHTML]="itemsField[item]"></div>
+                <div class="col util">
+                    <app-icon *ngFor="let itemUtil of template.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                </div>
             </div>
         </div>
     </div>
-    <ng-keyboard-shortcuts [shortcuts]="template.keyboardShortcuts"></ng-keyboard-shortcuts>
+    <div class="centerItem" *ngIf="template.itemsList.length && template.itemsList.length > tableLength">
+        <div class="flex-container pagination">
+            <button class="flex-item app-btn paginationBtn" [innerHTML]="'<-'" [disabled]="tableIndex <= 1" (click)="prevList()"></button>
+            <button class="flex-item app-btn paginationBtn pageIndexBtn" disabled [innerHTML]="tableIndex"></button>
+            <button class="flex-item app-btn paginationBtn" [innerHTML]="'->'" [disabled]="filteredItemsList.length < tableLength" (click)="nextList()"></button>
+        </div>
+    </div>
 </div>
+<!-- Component Shortcuts-->
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

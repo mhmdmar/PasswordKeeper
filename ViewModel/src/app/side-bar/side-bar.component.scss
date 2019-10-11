@@ -1,9 +1,9 @@
 @import '../CSS/global';
 
-.flex-container {
-    border-right: #ffffff;
+.sidebarContainer {
+    background-color: white;
+    border-right: $borderSeparator;
 }
-
 .sidebar-item {
     cursor: pointer;
     max-width: 150px;
@@ -14,7 +14,7 @@
     }
 
     &:hover {
-        background: $buttonHover
+        background: $buttonHover;
     }
 }
 

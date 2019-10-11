@@ -43,5 +43,17 @@ export const icons = {
     }),
     delete: new Icon('delete', 'delete (ctrl + delete)', {
         class: 'iconHover'
+    }),
+    download: new Icon('get_app', 'download', {
+        class: 'iconHover'
+    }),
+    more: new Icon('more_horiz', 'menu', {
+        class: 'iconHover'
+    }),
+    exit: new Icon('exit_to_app', 'logout', {
+        class: 'iconHover'
+    }),
+    android: new Icon('android', 'generate', {
+        class: 'iconHover'
     })
 };

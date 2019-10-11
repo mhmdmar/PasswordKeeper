@@ -25,6 +25,7 @@ export class PasswordsTableComponent implements OnInit {
     getTemplate(): TableTemplate {
         return {
             headers: [{ text: 'Domain' }, { text: 'Username' }, { text: 'Password' }],
+            tableLength: 10,
             itemsList: [],
             itemsUtils: [
                 {
@@ -48,24 +49,6 @@ export class PasswordsTableComponent implements OnInit {
                     key: ['cmd + e'],
                     description: 'Change current password item',
                     command: (): void => this.changePassword(this.template.chosenIndex),
-                    preventDefault: true
-                },
-                {
-                    key: ['up'],
-                    label: 'select the above password item',
-                    command: (): void => {
-                        this.template.chosenIndex && this.template.chosenIndex--;
-                    },
-                    preventDefault: true
-                },
-                {
-                    key: ['down'],
-                    label: 'select the below password item',
-                    command: (): void => {
-                        const len: number = this.template.itemsList.length - 1;
-                        const chosenIndex = this.template.chosenIndex;
-                        chosenIndex !== null && chosenIndex < len && this.template.chosenIndex++;
-                    },
                     preventDefault: true
                 }
             ]

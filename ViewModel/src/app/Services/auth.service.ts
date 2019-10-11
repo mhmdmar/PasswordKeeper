@@ -16,7 +16,7 @@ const storageNamespace = {
 const API = '/api';
 
 function getRoutePath(route): string {
-    return API.concat('/', route);
+    return API.concat(route);
 }
 
 @Injectable({

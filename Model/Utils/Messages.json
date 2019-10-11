@@ -15,6 +15,7 @@
     "userExists": "User was queried successfully",
     "deletion": "User was deleted successfully",
     "update": "User was updated successfully",
-    "allUsers": "All users are here"
+    "allUsers": "All users are here",
+    "success": "Success"
   }
 }

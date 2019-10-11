@@ -1,10 +1,10 @@
 <div class="right">
-    <div *ngIf="!user" class="app-btn" (click)="navigateToLogin()">
-        <span class="app-text-font" [attr.test-id]="testID.login" [innerHTML]="loginText"></span>
+    <div class="dropdown-container " *ngIf="user; else unAuthorized; let car">
+        <app-dropdown [template]="dropdownTemplate"></app-dropdown>
     </div>
-    <div *ngIf="user">
-        <div class="dropdown-container">
-            <app-dropdown [template]="dropdownTemplate"></app-dropdown>
+    <ng-template #unAuthorized>
+        <div class="app-btn" (click)="navigateToLogin()">
+            <span class="app-text-font" [attr.test-id]="testID.login" [innerHTML]="loginText"></span>
         </div>
-    </div>
+    </ng-template>
 </div>

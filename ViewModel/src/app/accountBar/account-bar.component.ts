@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { routesNames } from '../ViewUtils/Objects/routeNames';
 import { User } from '../ViewUtils/Interfaces/User';
 import { DropdownTemplate } from '../ViewUtils/Interfaces/Templates/DropdownTemplate';
+import { icons } from '../ViewUtils/Objects/Icons';
 
 @Component({
     selector: 'app-account-bar',
@@ -37,6 +38,7 @@ export class AccountBarComponent implements OnInit {
             title: '',
             options: [
                 {
+                    icon: icons.exit,
                     value: 'Logout',
                     callback: () => this.signOut()
                 }

@@ -50,26 +50,6 @@ export class UsersTableComponent implements OnInit {
                     description: 'Remove current password',
                     command: () => this.changeUser(this.template.chosenIndex),
                     preventDefault: true
-                },
-                {
-                    key: ['up'],
-                    label: 'select the above password item',
-                    description: 'Remove current password',
-                    command: () => {
-                        this.template.chosenIndex && this.template.chosenIndex--;
-                    },
-                    preventDefault: true
-                },
-                {
-                    key: ['down'],
-                    label: 'select the below password item',
-                    description: 'Remove current password',
-                    command: () => {
-                        const len: number = this.template.itemsList.length - 1;
-                        const chosenIndex = this.template.chosenIndex;
-                        chosenIndex !== null && chosenIndex < len && this.template.chosenIndex++;
-                    },
-                    preventDefault: true
                 }
             ]
         };
