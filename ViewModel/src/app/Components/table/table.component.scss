@@ -69,3 +69,12 @@ $btnBGColor: lightgrey;
         background: white;
     }
 }
+
+.colInputLabel {
+    // override label margin style
+    margin-bottom: 0;
+}
+
+.colInput {
+    height: 24px;
+}

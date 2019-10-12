@@ -65,11 +65,6 @@ class DatabaseHelper {
         return new Response(result, result ? messages.success.entry : messages.warning.emailTaken, username);
     }
 
-    removeUser(username, password) {
-        const result = this._usersList.removeUser(username, password);
-        return new Response(result, result ? messages.success.deletion : messages.warning.userDoesntExist, username);
-    }
-
     updateUserName(username, password, newValue) {
         return this._updateUserByAttribute(username, password, 'username', newValue);
     }
@@ -82,9 +77,41 @@ class DatabaseHelper {
         return this._updateUserByAttribute(username, password, 'email', newValue);
     }
 
+    updateUser(username, password, newUser, index) {
+        const checkUser = this._checkUserArguments(username, password);
+        if (checkUser !== true) {
+            return checkUser;
+        }
+        let message;
+        let success = this._usersList.updateUser(newUser, index);
+        if (success) {
+            message = messages.success.userUpdated;
+        } else if (success === null) {
+            success = false;
+            message = messages.warning.oneAttributeLimit;
+        } else {
+            message = messages.warning.permissionType;
+        }
+        return new Response(success, message, newUser);
+    }
+    _checkUserArguments(username, password, newUser) {
+        const user = this._usersList.getUser(username, password);
+        if (!user || !newUser) {
+            return new Response(false, messages.errors.invalidArguments, newUser);
+        }
+        if (user.permission !== 1) {
+            return new Response(false, messages.warning.unauthorized, username);
+        }
+        return true;
+    }
+    removeUser(index) {
+        const result = this._usersList.removeUser(index);
+        return new Response(result, result ? messages.success.update : messages.warning.wrongIndex, index);
+    }
+
     _updateUserByAttribute(username, password, attribute, value) {
         const result = this._usersList.updateUser(username, password, attribute, value);
-        return new Response(result, result ? messages.success.update : messages.warning.userDoesntExist, username);
+        return new Response(result, result ? messages.success.removed : messages.warning.userDoesntExist, username);
     }
 
     addPasswordItem(username, password, newPassword) {

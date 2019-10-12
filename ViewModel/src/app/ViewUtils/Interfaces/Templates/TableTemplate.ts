@@ -8,6 +8,7 @@ export interface TableTemplate {
     chosenIndex?: number;
     keyboardShortcuts?: ShortcutInput[];
     tableLength?: number;
+    changeItemCallback?: Function;
 }
 
 interface tableHeader {

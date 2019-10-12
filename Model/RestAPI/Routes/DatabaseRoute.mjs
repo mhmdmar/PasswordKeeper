@@ -42,13 +42,19 @@ router.post(routes.changeUserPassword, (req, res) => {
 
 router.post(routes.changeUserEmail, (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.updateUserEmail(body.username, body.password, body.newValue);
+    const resultMessage = databaseHelper.updateUserEmail(body.username, body.password, body.newUserValue);
+    res.status(200).json(resultMessage);
+});
+
+router.post(routes.updateUser, (req, res) => {
+    const body = req.body;
+    const resultMessage = databaseHelper.updateUser(body.username, body.password, body.newUser, body.index);
     res.status(200).json(resultMessage);
 });
 
 router.post(routes.removeUser, (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.removeUser(body.username, body.password);
+    const resultMessage = databaseHelper.removeUser(body.index);
     res.status(200).json(resultMessage);
 });
 

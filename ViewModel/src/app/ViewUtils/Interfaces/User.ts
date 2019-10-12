@@ -4,6 +4,6 @@ export interface User {
     username: string;
     password: string;
     email: string;
-    passwordsList: Array<Password>;
+    passwordsList?: Array<Password>;
     permission: number;
 }

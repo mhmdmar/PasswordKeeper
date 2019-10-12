@@ -5,6 +5,7 @@
     "changeUserName": "/changeUserName",
     "changeUserPassword": "/changeUserPassword",
     "changeUserEmail": "/changeUserEmail",
+    "updateUser": "/updateUser",
     "removeUser": "/removeUser",
     "addPasswordItem": "/addPasswordItem",
     "updatePasswordItem": "/updatePasswordItem",

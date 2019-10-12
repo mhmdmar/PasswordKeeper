@@ -23,32 +23,24 @@ export class UsersTableComponent implements OnInit {
 
     getTemplate(): TableTemplate {
         return {
-            headers: [{ text: 'Email' }, { text: 'Username' }, { text: 'Password' }, { text: 'Permission' }],
+            headers: [{ text: 'Username' }, { text: 'Password' }, { text: 'Email' }, { text: 'Permission' }],
             itemsList: [],
             itemsUtils: [
                 {
                     Icon: icons.delete,
                     callback: index => this.removeUser(index)
-                },
-                {
-                    Icon: icons.edit,
-                    callback: index => this.changeUser(index)
                 }
             ],
             chosenIndex: null,
+            changeItemCallback: (key: string, newValue: string) => {
+                this.changeItem(key, newValue);
+            },
             keyboardShortcuts: [
                 {
                     key: ['cmd + del'],
                     label: 'Help',
                     description: 'Remove current password item',
                     command: () => this.removeUser(this.template.chosenIndex),
-                    preventDefault: true
-                },
-                {
-                    key: ['cmd + e'],
-                    label: 'Change current password item',
-                    description: 'Remove current password',
-                    command: () => this.changeUser(this.template.chosenIndex),
                     preventDefault: true
                 }
             ]
@@ -65,11 +57,31 @@ export class UsersTableComponent implements OnInit {
         }, false);
     }
 
-    changeUser(index?: number): void {
-        console.log('Placeholder ', index);
+    removeUser(index?: number): void {
+        const wannaDelete = confirm('Are you sure you want to delete this password');
+        if (wannaDelete) {
+            this.Auth.removeUser(index, (data: Response) => {
+                if (data.success) {
+                    this.template.chosenIndex = null;
+                    this.template.itemsList.splice(index, 1);
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
     }
 
-    removeUser(index?: number): void {
-        console.log('Placeholder ', index);
+    changeItem(key: string, newValue: string) {
+        const index = this.template.chosenIndex;
+        const user: User = this.template.itemsList[index];
+        if (user[key].toString() !== newValue.toString()) {
+            const temp = user[key];
+            user[key] = newValue;
+            this.Auth.updateUser(user.email, user.username, user.password, user.permission, index, (data: Response) => {
+                if (!data.success) {
+                    user[key] = temp;
+                }
+            });
+        }
     }
 }

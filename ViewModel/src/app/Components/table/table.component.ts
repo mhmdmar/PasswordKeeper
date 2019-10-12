@@ -3,7 +3,9 @@ import { icons } from '../../ViewUtils/Objects/Icons';
 import { DropdownTemplate } from '../../ViewUtils/Interfaces/Templates/DropdownTemplate';
 import { dateUtils } from '../../ViewUtils/Objects/DateUtils';
 import { DOMHelper } from '../../ViewUtils/Objects/DOM_Utils/DOM_Helper';
-import { ShortcutInput } from 'ng-keyboard-shortcuts';
+import { AllowIn, ShortcutInput } from 'ng-keyboard-shortcuts';
+import { TableTemplate } from '../../ViewUtils/Interfaces/Templates/TableTemplate';
+import { firstLetterUppercase } from '../../ViewUtils/Objects/StringUtils';
 const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 @Component({
@@ -12,13 +14,18 @@ const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-    @Input() template;
+    @Input() template: TableTemplate;
     private tableDropdown: DropdownTemplate;
     private searchTerm: string;
     private tableLength: number;
     private tableIndex: number;
-    public shortcuts: ShortcutInput[];
     private filteredItemsList: object[];
+    private colElementInEdit: HTMLElement = null;
+    private colInEditKey: string;
+    public shortcuts: ShortcutInput[];
+
+    public icons = icons;
+    public firstLetterUppercase = firstLetterUppercase;
 
     constructor() {
         this.searchTerm = '';
@@ -26,7 +33,7 @@ export class TableComponent implements OnInit {
         this.filteredItemsList = [];
         this.tableDropdown = this.getDropdownTemplate();
     }
-    tableShortcuts(): object[] {
+    tableShortcuts(): ShortcutInput[] {
         return [
             {
                 key: ['up'],
@@ -65,6 +72,16 @@ export class TableComponent implements OnInit {
                     this.tableIndex > 1 && this.prevList();
                 },
                 preventDefault: true
+            },
+            {
+                key: ['escape'],
+                label: 'exit column edit mode',
+                command: (): void => {
+                    if (this.colElementInEdit !== null) {
+                        this.turnSpanVisible(this.colElementInEdit, false);
+                    }
+                },
+                allowIn: [AllowIn.Input]
             }
         ];
     }
@@ -176,5 +193,42 @@ export class TableComponent implements OnInit {
             );
         }
         return csvData.join('\n');
+    }
+
+    editColumn(event, key) {
+        if (this.colElementInEdit === null) {
+            this.colInEditKey = key;
+            this.turnInputVisible(event.target);
+        }
+    }
+    changeColumn() {
+        const inputContainerElement: any = this.colElementInEdit.querySelector('.inputContainer');
+        const newVal = inputContainerElement.querySelector('input').value;
+        this.template.changeItemCallback && this.template.changeItemCallback(this.colInEditKey, newVal);
+        this.turnSpanVisible(this.colElementInEdit, true);
+    }
+    turnInputVisible(targetElement: HTMLElement) {
+        // sometimes clicking on the div element cause the span to listen to the trigger event
+        targetElement = this.getColDiv(targetElement);
+        const inputContainerElement: any = targetElement.querySelector('.inputContainer');
+        const spanElement: HTMLSpanElement = targetElement.querySelector('span');
+        spanElement.style.display = 'none';
+        inputContainerElement.style.display = 'block';
+        this.colElementInEdit = targetElement;
+    }
+    turnSpanVisible(targetElement: HTMLElement, saveValue = false) {
+        targetElement = this.getColDiv(targetElement);
+        const inputContainerElement: any = targetElement.querySelector('.inputContainer');
+        const spanElement: HTMLSpanElement = targetElement.querySelector('span');
+        spanElement.style.display = 'block';
+        inputContainerElement.style.display = 'none';
+        if (!saveValue) {
+            inputContainerElement.querySelector('input').value = spanElement.innerHTML;
+        }
+        this.colElementInEdit = null;
+        this.colInEditKey = null;
+    }
+    getColDiv(targetElement: HTMLElement) {
+        return targetElement.tagName === 'SPAN' ? targetElement.parentElement : targetElement;
     }
 }

@@ -55,5 +55,8 @@ export const icons = {
     }),
     android: new Icon('android', 'generate', {
         class: 'iconHover'
+    }),
+    done: new Icon('done', 'done', {
+        class: 'iconHover'
     })
 };

@@ -165,4 +165,27 @@ export class AuthService {
                 callback(data);
             });
     }
+    removeUser(index: number, callback: Function): void {
+        this.http
+            .post(getRoutePath(routes.removeUser), {
+                index
+            })
+            .subscribe((data: Response) => {
+                callback(data);
+            });
+    }
+    updateUser(email: string, username: string, password: string, permission = 3, index: number, callback: Function): void {
+        const newUser: User = { email, username, password, permission };
+        const user: User = this.curActiveUser;
+        this.http
+            .post(getRoutePath(routes.updateUser), {
+                username: user.username,
+                password: user.password,
+                newUser,
+                index
+            })
+            .subscribe((data: Response) => {
+                callback(data);
+            });
+    }
 }

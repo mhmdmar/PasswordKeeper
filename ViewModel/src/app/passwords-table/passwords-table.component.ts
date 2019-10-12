@@ -37,6 +37,9 @@ export class PasswordsTableComponent implements OnInit {
                     callback: (index: number): void => this.changePassword(index)
                 }
             ],
+            changeItemCallback: (key: string, newValue: string) => {
+                this.changePasswordItem(key, newValue);
+            },
             chosenIndex: null,
             keyboardShortcuts: [
                 {
@@ -80,6 +83,19 @@ export class PasswordsTableComponent implements OnInit {
                     this.template.chosenIndex = null;
                 } else {
                     alert(data.message);
+                }
+            });
+        }
+    }
+    changePasswordItem(key: string, newValue: string) {
+        const index = this.template.chosenIndex;
+        const passwordItem: Password = this.template.itemsList[index];
+        if (passwordItem[key].toString() !== newValue.toString()) {
+            const temp = passwordItem[key];
+            passwordItem[key] = newValue;
+            this.Auth.updatePasswordItem(passwordItem.domain, passwordItem.username, passwordItem.password, index, (data: Response) => {
+                if (!data.success) {
+                    passwordItem[key] = temp;
                 }
             });
         }

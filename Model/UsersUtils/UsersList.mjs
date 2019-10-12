@@ -1,7 +1,7 @@
-import {User} from "./User";
-import {PasswordItem} from "./Password";
+import { User } from './User';
+import { PasswordItem } from './Password';
 
-const secretPassword = "admin";
+const secretPassword = 'admin';
 
 export class UsersList {
     constructor(list) {
@@ -44,34 +44,55 @@ export class UsersList {
     addUser(username, password, email, passwordsList = [], permission = 3) {
         let success = true;
         if (this._usernameExists(email)) {
-            success = false
+            success = false;
         } else {
             this._users.push(new User(username, password, email, passwordsList, permission));
         }
         return success;
     }
 
-    removeUser(username, password) {
-        const index = this._getUserIndex(username, password);
+    removeUser(index) {
         let success = false;
-        if (index !== -1) {
+        if (this._users[index]) {
             success = true;
             this._users.splice(index, 1);
         }
         return success;
     }
 
-    updateUser(username, password, attribute, value) {
-        let success = false;
-        const index = this._getUserIndex(username, password);
+    updateUser(newUserValue, index) {
         const user = this._users[index];
-        if (user && user[attribute]) {
-            success = true;
-            user[attribute] = value;
+        if (!isNaN(Number(newUserValue.permission))) {
+            // can only change one attribute at a time, so the score should be 1 to indicate that only 1 field is different
+            if (this.checkNewUserValid(user, newUserValue) !== 1) {
+                return null;
+            }
+            user.username = newUserValue.username;
+            user.password = newUserValue.password;
+            user.email = newUserValue.email;
+            user.permission = newUserValue.permission;
+            return true;
+        } else {
+            return false;
         }
-        return success;
     }
-
+    checkNewUserValid(user, newUserValue) {
+        // this shuold return the score of how many attribute are similar
+        let score = 0;
+        if (user.email !== newUserValue.email) {
+            score++;
+        }
+        if (user.password !== newUserValue.password) {
+            score++;
+        }
+        if (user.username !== newUserValue.username) {
+            score++;
+        }
+        if (user.permission !== newUserValue.permission) {
+            score++;
+        }
+        return score;
+    }
     addPasswordItem(username, password, newPassword) {
         let success = false;
         const index = this._getUserIndex(username, password);
@@ -105,5 +126,4 @@ export class UsersList {
         }
         return success;
     }
-
 }

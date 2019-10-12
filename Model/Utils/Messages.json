@@ -1,21 +1,26 @@
 {
-  "errors": {
-    "InvalidParams": "Invalid parameters",
-    "corruptJSONObject": "Request body is not supplied in a valid JSON object format",
-    "invalidArguments": "Invalid Arguments were supplied, check your input"
-  },
-  "warning": {
-    "emailExists": "A user with the same email for this domain already exists",
-    "userDoesntExist": "No username with this password exists in the database",
-    "emailTaken": "Username with this email already exists",
-    "unauthorized": "User that is attempting to access this data isn't authorized"
-  },
-  "success": {
-    "entry": "the user was added to the database successfully",
-    "userExists": "User was queried successfully",
-    "deletion": "User was deleted successfully",
-    "update": "User was updated successfully",
-    "allUsers": "All users are here",
-    "success": "Success"
-  }
+    "errors": {
+        "InvalidParams": "Invalid parameters",
+        "corruptJSONObject": "Request body is not supplied in a valid JSON object format",
+        "invalidArguments": "Invalid Arguments were supplied, check your input"
+    },
+    "warning": {
+        "emailExists": "A user with the same email for this domain already exists",
+        "userDoesntExist": "No username with this password exists in the database",
+        "emailTaken": "Username with this email already exists",
+        "unauthorized": "User that is attempting to access this data isn't authorized",
+        "oneAttributeLimit": "Can only change one attribute of the user at at time",
+        "permissionType": "User permission must be a number",
+        "wrongIndex": "Users list doesn't contain the supplied index"
+    },
+    "success": {
+        "entry": "the user was added to the database successfully",
+        "userExists": "User was queried successfully",
+        "deletion": "User was deleted successfully",
+        "update": "User was updated successfully",
+        "allUsers": "All users are here",
+        "success": "Success",
+        "userUpdated": "User updated successfully",
+        "removed": "User was Removed successfully"
+    }
 }
