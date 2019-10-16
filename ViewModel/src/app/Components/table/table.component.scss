@@ -72,9 +72,14 @@ $btnBGColor: lightgrey;
 
 .colInputLabel {
     // override label margin style
+    width: 100%;
     margin-bottom: 0;
 }
 
 .colInput {
+    width: inherit;
     height: 24px;
+}
+.inputContainer {
+    width: 95%;
 }
