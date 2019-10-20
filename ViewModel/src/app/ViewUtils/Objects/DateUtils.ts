@@ -2,8 +2,11 @@ class DateUtils {
     constructor() {}
 
     getDate(): string {
-        const date = new Date();
-        return DateUtils.fixDateNumber(date.getDay()) + '-' + DateUtils.fixDateNumber(date.getMonth()) + '-' + DateUtils.fixDateNumber(date.getFullYear());
+        const today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1; //January is 0!
+        var year = today.getFullYear();
+        return DateUtils.fixDateNumber(day) + '-' + DateUtils.fixDateNumber(month) + '-' + year;
     }
 
     private static fixDateNumber(number: number): string {

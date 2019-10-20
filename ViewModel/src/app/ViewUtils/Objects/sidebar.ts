@@ -13,7 +13,7 @@ export const sidebarItems: SidebarItem[] = [
         title: 'Users',
         route: routesNames.usersTable,
         requireLogin: true,
-        accessLevel: 1,
+        adminUser: true,
         Icon: icons.users
     },
     {

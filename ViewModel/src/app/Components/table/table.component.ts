@@ -6,6 +6,7 @@ import { DOMHelper } from '../../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 import { AllowIn, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { TableTemplate } from '../../ViewUtils/Interfaces/Templates/TableTemplate';
 import { firstLetterUppercase } from '../../ViewUtils/Objects/StringUtils';
+import { AuthService } from '../../Services/auth.service';
 const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 @Component({
@@ -27,7 +28,7 @@ export class TableComponent implements OnInit {
     public icons = icons;
     public firstLetterUppercase = firstLetterUppercase;
 
-    constructor() {
+    constructor(private Auth: AuthService) {
         this.searchTerm = '';
         this.tableIndex = 1;
         this.filteredItemsList = [];
@@ -78,7 +79,7 @@ export class TableComponent implements OnInit {
                 label: 'exit column edit mode',
                 command: (): void => {
                     if (this.colElementInEdit !== null) {
-                        this.turnSpanVisible(this.colElementInEdit, false);
+                        this.endColumnEditing();
                     }
                 },
                 allowIn: [AllowIn.Input]
@@ -156,22 +157,11 @@ export class TableComponent implements OnInit {
     }
 
     copyToClipboard(val: string) {
-        const element = DOMHelper.createHiddenElement('textarea') as HTMLTextAreaElement;
-        element.value = val;
-        element.setAttribute('readonly', '');
-        element.select();
-        document.execCommand('copy');
-        document.body.removeChild(element);
+        DOMHelper.copyToClipboard(val);
     }
 
     downloadFile(data): void {
-        const blob = new Blob([data], { type: 'text/csv' });
-        const url = window.URL.createObjectURL(blob);
-        const element = DOMHelper.createHiddenElement('a');
-        element.setAttribute('href', url);
-        element.setAttribute('download', 'List_' + dateUtils.getDate() + '.csv');
-        element.click();
-        document.body.removeChild(element);
+        DOMHelper.downloadFile(data, 'List_' + dateUtils.getDate() + '.csv');
     }
 
     arrayToCSV(data: string[]): any {
@@ -195,40 +185,56 @@ export class TableComponent implements OnInit {
         return csvData.join('\n');
     }
 
-    editColumn(event, key) {
+    columnClick(event, key): void {
+        // editing is only allowed to Admin users
+        if (!this.Auth.isAdminUser()) {
+            return;
+        }
+        this.editColumn(event, key);
+    }
+    editColumn(event, key): void {
         if (this.colElementInEdit === null) {
             this.colInEditKey = key;
             this.turnInputVisible(event.target);
         }
     }
-    changeColumn() {
+    changeColumn(): void {
+        // changing column is only allowed to Admin users
+        if (!this.Auth.isAdminUser() || !this.colElementInEdit) {
+            return;
+        }
         const inputContainerElement: any = this.colElementInEdit.querySelector('.inputContainer');
         const newVal = inputContainerElement.querySelector('input').value;
         this.template.changeItemCallback && this.template.changeItemCallback(this.colInEditKey, newVal);
-        this.turnSpanVisible(this.colElementInEdit, true);
+        this.endColumnEditing(true);
     }
-    turnInputVisible(targetElement: HTMLElement) {
+
+    turnInputVisible(targetElement: HTMLElement): void {
         // sometimes clicking on the div element cause the span to listen to the trigger event
-        targetElement = this.getColDiv(targetElement);
-        const inputContainerElement: any = targetElement.querySelector('.inputContainer');
-        const spanElement: HTMLSpanElement = targetElement.querySelector('span');
-        spanElement.style.display = 'none';
-        inputContainerElement.style.display = 'block';
+        targetElement = this.getSpanDiv(targetElement);
+        DOMHelper.turnElementVisible('.inputContainer', targetElement);
+        DOMHelper.turnElementInvisible('span', targetElement);
         this.colElementInEdit = targetElement;
     }
-    turnSpanVisible(targetElement: HTMLElement, saveValue = false) {
-        targetElement = this.getColDiv(targetElement);
-        const inputContainerElement: any = targetElement.querySelector('.inputContainer');
-        const spanElement: HTMLSpanElement = targetElement.querySelector('span');
-        spanElement.style.display = 'block';
-        inputContainerElement.style.display = 'none';
+
+    endColumnEditing(saveEdit = false): void {
+        this.turnSpanVisible(saveEdit);
+    }
+
+    turnSpanVisible(saveValue = false): void {
+        this.colElementInEdit = this.getSpanDiv(this.colElementInEdit);
+        const inputContainerElement: any = this.colElementInEdit.querySelector('.inputContainer');
+        const spanElement: HTMLSpanElement = this.colElementInEdit.querySelector('span');
+        DOMHelper.turnElementVisible(spanElement);
+        DOMHelper.turnElementInvisible(inputContainerElement);
         if (!saveValue) {
             inputContainerElement.querySelector('input').value = spanElement.innerHTML;
         }
         this.colElementInEdit = null;
         this.colInEditKey = null;
     }
-    getColDiv(targetElement: HTMLElement) {
+
+    getSpanDiv(targetElement: HTMLElement): HTMLElement {
         return targetElement.tagName === 'SPAN' ? targetElement.parentElement : targetElement;
     }
 }

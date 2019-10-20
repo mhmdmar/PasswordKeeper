@@ -188,4 +188,7 @@ export class AuthService {
                 callback(data);
             });
     }
+    isAdminUser(): boolean {
+        return this.curActiveUser.permission === 1;
+    }
 }

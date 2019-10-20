@@ -5,7 +5,7 @@ export interface SidebarItem {
     route: string;
     requireLogin: boolean;
     clickEvent?: Function;
-    accessLevel?: number;
+    adminUser?: boolean;
     param?: string | number;
     Icon?: Icon;
 }

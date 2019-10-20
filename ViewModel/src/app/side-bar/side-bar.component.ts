@@ -13,7 +13,7 @@ import { ComponentsEvents } from '../ViewUtils/Interfaces/ComponentsEvents';
     template: `
         <ul class="flex-container sidebarContainer column">
             <ng-container *ngFor="let data of filterSidebar()">
-                <li class="flex-item sidebar-item" *ngIf="!data.accessLevel || data.accessLevel >= curUserPermission" [routerLink]="navigate(data.route)" routerLinkActive="active-link">
+                <li class="flex-item sidebar-item" *ngIf="!data.adminUser || (data.adminUser && Auth.isAdminUser())" [routerLink]="navigate(data.route)" routerLinkActive="active-link">
                     <app-icon *ngIf="data.Icon" [icon]="data.Icon"></app-icon>
                     <span *ngIf="sidebarVisible" class="app-text-font sidebar-text" [innerText]="data.title"></span>
                 </li>
