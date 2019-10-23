@@ -9,6 +9,7 @@ export interface TableTemplate {
     keyboardShortcuts?: ShortcutInput[];
     tableLength?: number;
     changeItemCallback?: Function;
+    editableByAdmin: boolean;
 }
 
 interface tableHeader {

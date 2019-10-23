@@ -43,7 +43,8 @@ export class UsersTableComponent implements OnInit {
                     command: () => this.removeUser(this.template.chosenIndex),
                     preventDefault: true
                 }
-            ]
+            ],
+            editableByAdmin: true
         };
     }
 

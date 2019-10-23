@@ -4,6 +4,7 @@ import { Icon } from '../ViewUtils/Classes/Icon';
 import { AllowIn, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { DOMHelper } from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 
 @Component({
     selector: 'app-search',
@@ -56,7 +57,7 @@ export class SearchComponent implements OnInit {
                 preventDefault: true
             },
             {
-                key: ['escape'],
+                key: ['cmd +  c'],
                 label: 'Close the search bar',
                 allowIn: [AllowIn.Input],
                 command: () => this.hideSearch(),
@@ -89,8 +90,7 @@ export class SearchComponent implements OnInit {
         }
         this.searchVisible = true;
         this.searchTermObservable.next(this.searchTerm);
-        const searchEl: HTMLInputElement = this.elRef.nativeElement.querySelector(this.searchInputSelector);
-        setTimeout(() => searchEl.focus(), 0);
+        DOMHelper.focusElement(this.searchInputSelector);
     }
 
     hideSearch(): void {

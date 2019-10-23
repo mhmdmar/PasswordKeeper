@@ -5,7 +5,6 @@ import { dateUtils } from '../../ViewUtils/Objects/DateUtils';
 import { DOMHelper } from '../../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 import { AllowIn, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { TableTemplate } from '../../ViewUtils/Interfaces/Templates/TableTemplate';
-import { firstLetterUppercase } from '../../ViewUtils/Objects/StringUtils';
 import { AuthService } from '../../Services/auth.service';
 const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -24,9 +23,12 @@ export class TableComponent implements OnInit {
     private colElementInEdit: HTMLElement = null;
     private colInEditKey: string;
     public shortcuts: ShortcutInput[];
-
     public icons = icons;
-    public firstLetterUppercase = firstLetterUppercase;
+    private tableElementSelectors = {
+        inputContainer: '.inputContainer',
+        input: '.colInput',
+        itemSpan: '.itemField'
+    };
 
     constructor(private Auth: AuthService) {
         this.searchTerm = '';
@@ -83,6 +85,16 @@ export class TableComponent implements OnInit {
                     }
                 },
                 allowIn: [AllowIn.Input]
+            },
+            {
+                key: ['enter'],
+                label: 'save column change',
+                command: (): void => {
+                    if (this.colElementInEdit !== null) {
+                        this.changeColumn();
+                    }
+                },
+                allowIn: [AllowIn.Input]
             }
         ];
     }
@@ -133,6 +145,18 @@ export class TableComponent implements OnInit {
         return this.filteredItemsList;
     }
 
+    rowClick(index: number) {
+        const calcIndex = index + this.tableLength * (this.tableIndex - 1);
+        if (calcIndex !== this.template.chosenIndex && this.colElementInEdit) {
+            const discard = confirm('Discard changes');
+            if (discard) {
+                this.endColumnEditing();
+                this.template.chosenIndex = calcIndex;
+            }
+        } else {
+            this.template.chosenIndex = calcIndex;
+        }
+    }
     updateSearchTerm(searchTerm): void {
         this.searchTerm = searchTerm;
     }
@@ -186,8 +210,8 @@ export class TableComponent implements OnInit {
     }
 
     columnClick(event, key): void {
-        // editing is only allowed to Admin users
-        if (!this.Auth.isAdminUser()) {
+        // editing table is only allowed for Admin users
+        if (!this.template.editableByAdmin || !this.Auth.isAdminUser()) {
             return;
         }
         this.editColumn(event, key);
@@ -198,23 +222,23 @@ export class TableComponent implements OnInit {
             this.turnInputVisible(event.target);
         }
     }
+
     changeColumn(): void {
         // changing column is only allowed to Admin users
         if (!this.Auth.isAdminUser() || !this.colElementInEdit) {
             return;
         }
-        const inputContainerElement: any = this.colElementInEdit.querySelector('.inputContainer');
-        const newVal = inputContainerElement.querySelector('input').value;
-        this.template.changeItemCallback && this.template.changeItemCallback(this.colInEditKey, newVal);
         this.endColumnEditing(true);
     }
 
     turnInputVisible(targetElement: HTMLElement): void {
         // sometimes clicking on the div element cause the span to listen to the trigger event
-        targetElement = this.getSpanDiv(targetElement);
-        DOMHelper.turnElementVisible('.inputContainer', targetElement);
-        DOMHelper.turnElementInvisible('span', targetElement);
-        this.colElementInEdit = targetElement;
+        this.colElementInEdit = this.getSpanDiv(targetElement);
+
+        DOMHelper.turnElementVisible(this.tableElementSelectors.inputContainer, this.colElementInEdit);
+        DOMHelper.turnElementInvisible(this.tableElementSelectors.itemSpan, this.colElementInEdit);
+        const colInput: HTMLElement = DOMHelper.queryElement(this.tableElementSelectors.input, this.colElementInEdit);
+        DOMHelper.focusElement(colInput);
     }
 
     endColumnEditing(saveEdit = false): void {
@@ -223,15 +247,21 @@ export class TableComponent implements OnInit {
 
     turnSpanVisible(saveValue = false): void {
         this.colElementInEdit = this.getSpanDiv(this.colElementInEdit);
-        const inputContainerElement: any = this.colElementInEdit.querySelector('.inputContainer');
-        const spanElement: HTMLSpanElement = this.colElementInEdit.querySelector('span');
+        const inputContainerElement: any = this.colElementInEdit.querySelector(this.tableElementSelectors.inputContainer);
+        const spanElement: HTMLSpanElement = this.colElementInEdit.querySelector(this.tableElementSelectors.itemSpan);
         DOMHelper.turnElementVisible(spanElement);
         DOMHelper.turnElementInvisible(inputContainerElement);
-        if (!saveValue) {
-            inputContainerElement.querySelector('input').value = spanElement.innerHTML;
+        const colInput: HTMLInputElement = DOMHelper.queryElement(this.tableElementSelectors.input, this.colElementInEdit) as HTMLInputElement;
+        if (saveValue) {
+            this.saveNewValue(colInput.value);
+        } else {
+            colInput.value = spanElement.innerHTML;
         }
         this.colElementInEdit = null;
         this.colInEditKey = null;
+    }
+    saveNewValue(text: string): void {
+        this.template.changeItemCallback && this.template.changeItemCallback(this.colInEditKey, text);
     }
 
     getSpanDiv(targetElement: HTMLElement): HTMLElement {

@@ -19,7 +19,8 @@ const DummyFormTemplate: TableTemplate = {
             callback: index => this.changeUser(index)
         }
     ],
-    chosenIndex: null
+    chosenIndex: null,
+    editableByAdmin: true
 };
 
 describe('TableComponent', () => {

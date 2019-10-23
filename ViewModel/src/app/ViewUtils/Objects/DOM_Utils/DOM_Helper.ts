@@ -22,11 +22,32 @@ export const DOMHelper = {
         }
         return element;
     },
+    focusElement(element: HTMLElement | string, parentElement?: HTMLElement) {
+        setTimeout(() => this.queryElement(element, parentElement).focus(), 0);
+    },
     turnElementInvisible(element: HTMLElement | string, parentElement?: HTMLElement) {
         this.queryElement(element, parentElement).style.display = 'none';
     },
     turnElementVisible(element: HTMLElement | string, parentElement?: HTMLElement) {
         this.queryElement(element, parentElement).style.display = 'block';
+    },
+    addClass(element: HTMLElement | string, className: string, parentElement?: HTMLElement) {
+        if (!className) {
+            return;
+        }
+        if (className[0] === '.') {
+            className = className.slice(1);
+        }
+        this.queryElement(element, parentElement).classList.add(className);
+    },
+    removeClass(element: HTMLElement | string, className: string, parentElement?: HTMLElement) {
+        if (!className) {
+            return;
+        }
+        if (className[0] === '.') {
+            className = className.slice(1);
+        }
+        this.queryElement(element, parentElement).classList.remove(className);
     },
     copyToClipboard(val: string) {
         const element: HTMLTextAreaElement = this.createHiddenElement('textarea') as HTMLTextAreaElement;

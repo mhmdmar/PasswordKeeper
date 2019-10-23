@@ -8,9 +8,9 @@
             </div>
         </div>
         <div *ngFor="let itemsField of filterItemsList(); let i = index">
-            <div class="row" (click)="template.chosenIndex = i + tableLength * (tableIndex - 1)" [ngClass]="template.chosenIndex !== null && template.chosenIndex % tableLength === i ? 'chosen' : ''">
+            <div class="row" (click)="rowClick(i)" [ngClass]="template.chosenIndex !== null && template.chosenIndex % tableLength === i ? 'chosen' : ''">
                 <div *ngFor="let item of itemsField | keys" class="col" [id]="'item-' + item + '-' + i" (dblclick)="columnClick($event, item)">
-                    <span [title]="itemsField[item]">{{ itemsField[item] }}</span>
+                    <span class="itemField" [title]="itemsField[item]">{{ itemsField[item] }}</span>
                     <div class="inputContainer" style="display:none;">
                         <label class="colInputLabel">
                             <input class="colInput" [value]="itemsField[item]" type="text" />

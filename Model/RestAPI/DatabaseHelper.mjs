@@ -78,7 +78,7 @@ class DatabaseHelper {
     }
 
     updateUser(username, password, newUser, index) {
-        const checkUser = this._checkUserArguments(username, password);
+        const checkUser = this._checkUserArguments(username, password, newUser);
         if (checkUser !== true) {
             return checkUser;
         }

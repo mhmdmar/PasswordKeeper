@@ -54,7 +54,8 @@ export class PasswordsTableComponent implements OnInit {
                     command: (): void => this.changePassword(this.template.chosenIndex),
                     preventDefault: true
                 }
-            ]
+            ],
+            editableByAdmin: true
         };
     }
 

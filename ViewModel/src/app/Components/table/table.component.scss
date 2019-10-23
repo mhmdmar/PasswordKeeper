@@ -79,6 +79,7 @@ $btnBGColor: lightgrey;
 .colInput {
     width: inherit;
     height: 24px;
+    margin-left: -2px; // align with span
 }
 .inputContainer {
     width: 95%;

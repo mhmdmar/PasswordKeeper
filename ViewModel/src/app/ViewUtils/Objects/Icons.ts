@@ -37,7 +37,7 @@ export const icons = {
     addPassword: new Icon('add_to_photos', 'add password', {
         class: 'left'
     }),
-    search: new Icon('search', 'toggle search'),
+    search: new Icon('search', 'toggle search (ctrl + f/c to open/close)'),
     edit: new Icon('edit', 'edit (ctrl + e)', {
         class: 'iconHover'
     }),
