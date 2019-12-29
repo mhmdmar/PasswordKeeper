@@ -11,13 +11,9 @@ import { DOMHelper } from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
     styleUrls: ['./search.component.scss'],
     template: `
         <ng-keyboard-shortcuts [shortcuts]="searchBarShortcuts"></ng-keyboard-shortcuts>
-        <div class="searchContainer">
-            <div class="iconContainer">
-                <app-icon [icon]="searchIcon" (click)="toggleSearch()"></app-icon>
-            </div>
-            <div [hidden]="!searchVisible">
-                <input class="searchInput" [value]="searchTerm" (input)="searchTermChange($event)" type="search" />
-            </div>
+        <div class="searchWrapper">
+            <app-icon [icon]="searchIcon" (click)="toggleSearch()"></app-icon>
+            <input [hidden]="!searchVisible" class="searchInput" [value]="searchTerm" (input)="searchTermChange($event)" type="search" />
         </div>
     `
 })
@@ -73,7 +69,11 @@ export class SearchComponent implements OnInit {
     }
 
     toggleSearch(): void {
-        this.searchVisible = !this.searchVisible;
+        if (this.searchVisible) {
+            this.hideSearch();
+        } else {
+            this.showSearch();
+        }
     }
 
     selectSearchTerm(): void {

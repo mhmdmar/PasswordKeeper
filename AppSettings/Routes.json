@@ -1,10 +1,8 @@
 {
     "getUsers": "/getUsers",
+    "test": "/test",
     "getUser": "/getUser",
     "insertUser": "/insertUser",
-    "changeUserName": "/changeUserName",
-    "changeUserPassword": "/changeUserPassword",
-    "changeUserEmail": "/changeUserEmail",
     "updateUser": "/updateUser",
     "removeUser": "/removeUser",
     "addPasswordItem": "/addPasswordItem",

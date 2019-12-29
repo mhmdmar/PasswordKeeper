@@ -1,5 +1,5 @@
 <div class="right">
-    <div class="dropdown-container " *ngIf="user; else unAuthorized; let car">
+    <div class="dropdown-container " *ngIf="user; else unAuthorized">
         <app-dropdown [template]="dropdownTemplate"></app-dropdown>
     </div>
     <ng-template #unAuthorized>

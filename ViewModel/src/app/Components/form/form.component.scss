@@ -74,6 +74,8 @@ a.alternative-link {
 }
 
 .wrapper {
+    width: 100%;
+    display: inline-flex;
     position: relative;
 }
 
@@ -86,4 +88,7 @@ a.alternative-link {
 
 i {
     margin-top: -50px;
+}
+.utilContainer {
+    display: inline-flex;
 }

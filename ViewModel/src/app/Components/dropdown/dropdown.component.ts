@@ -7,7 +7,7 @@ import { icons } from '../../ViewUtils/Objects/Icons';
     template: `
         <div ngbDropdown class="d-inline-block">
             <button class="invisibleBtn dropdownBtn" [ngClass]="hideShowMoreBtn()" id="dropdown" ngbDropdownToggle>
-                <span class="app-text-font" *ngIf="template.title" [innerHTML]="template.title"></span>
+                <span [attr.test-id]="template.testId" class="app-text-font" *ngIf="template.title" [innerHTML]="template.title"></span>
                 <app-icon *ngIf="template.icon" [icon]="template.icon"></app-icon>
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdown" *ngIf="template.options">

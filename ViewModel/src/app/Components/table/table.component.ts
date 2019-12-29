@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { icons } from '../../ViewUtils/Objects/Icons';
-import { DropdownTemplate } from '../../ViewUtils/Interfaces/Templates/DropdownTemplate';
-import { dateUtils } from '../../ViewUtils/Objects/DateUtils';
 import { DOMHelper } from '../../ViewUtils/Objects/DOM_Utils/DOM_Helper';
 import { AllowIn, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { TableTemplate } from '../../ViewUtils/Interfaces/Templates/TableTemplate';
 import { AuthService } from '../../Services/auth.service';
-const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 @Component({
     selector: 'app-table',
@@ -15,7 +12,6 @@ const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 })
 export class TableComponent implements OnInit {
     @Input() template: TableTemplate;
-    private tableDropdown: DropdownTemplate;
     private searchTerm: string;
     private tableLength: number;
     private tableIndex: number;
@@ -34,7 +30,6 @@ export class TableComponent implements OnInit {
         this.searchTerm = '';
         this.tableIndex = 1;
         this.filteredItemsList = [];
-        this.tableDropdown = this.getDropdownTemplate();
     }
     tableShortcuts(): ShortcutInput[] {
         return [
@@ -80,9 +75,7 @@ export class TableComponent implements OnInit {
                 key: ['escape'],
                 label: 'exit column edit mode',
                 command: (): void => {
-                    if (this.colElementInEdit !== null) {
-                        this.endColumnEditing();
-                    }
+                    this.endColumnEditing();
                 },
                 allowIn: [AllowIn.Input]
             },
@@ -97,33 +90,6 @@ export class TableComponent implements OnInit {
                 allowIn: [AllowIn.Input]
             }
         ];
-    }
-    getDropdownTemplate(): DropdownTemplate {
-        return {
-            icon: icons.more,
-            options: [
-                {
-                    icon: icons.download,
-                    value: 'Download List',
-                    title: 'Download List',
-                    callback: () => {
-                        const csvData = this.arrayToCSV(this.template.itemsList);
-                        this.downloadFile(csvData);
-                    }
-                },
-                {
-                    icon: icons.android,
-                    value: 'Generate Password',
-                    title: 'Generate Password',
-                    callback: () => {
-                        const password: string = this.generatePassword(12, charSet);
-                        if (confirm(`copy to clipboard - ${password}`)) {
-                            this.copyToClipboard(password);
-                        }
-                    }
-                }
-            ]
-        };
     }
     ngOnInit() {
         this.shortcuts = this.template.keyboardShortcuts.concat(this.tableShortcuts());
@@ -158,6 +124,7 @@ export class TableComponent implements OnInit {
         }
     }
     updateSearchTerm(searchTerm): void {
+        this.endColumnEditing(false);
         this.searchTerm = searchTerm;
     }
     nextList(): void {
@@ -169,49 +136,9 @@ export class TableComponent implements OnInit {
         this.template.chosenIndex = (this.tableIndex - 1) * this.tableLength;
     }
 
-    generatePassword(length = 12, charSet): string {
-        if (!charSet) {
-            throw new Error('charset is not supplied');
-        }
-        return Array.apply(null, Array(length || 10))
-            .map(function() {
-                return charSet.charAt(Math.random() * charSet.length);
-            })
-            .join('');
-    }
-
-    copyToClipboard(val: string) {
-        DOMHelper.copyToClipboard(val);
-    }
-
-    downloadFile(data): void {
-        DOMHelper.downloadFile(data, 'List_' + dateUtils.getDate() + '.csv');
-    }
-
-    arrayToCSV(data: string[]): any {
-        const csvData: string[] = [];
-        // get the headers
-        const headers: string[] = Object.keys(data[0]);
-        csvData.push(headers.join(','));
-
-        // loop over the rows
-        for (const row of data) {
-            csvData.push(
-                headers
-                    .map(header => {
-                        // escape quotes to match CSV format
-                        const escapedHeader = row[header].toString().replace(/"/g, '\\"');
-                        return `"${escapedHeader}"`;
-                    })
-                    .join(',')
-            );
-        }
-        return csvData.join('\n');
-    }
-
     columnClick(event, key): void {
         // editing table is only allowed for Admin users
-        if (!this.template.editableByAdmin || !this.Auth.isAdminUser()) {
+        if (this.template.editableByAdmin === false || !this.Auth.isAdminUser()) {
             return;
         }
         this.editColumn(event, key);
@@ -242,7 +169,9 @@ export class TableComponent implements OnInit {
     }
 
     endColumnEditing(saveEdit = false): void {
-        this.turnSpanVisible(saveEdit);
+        if (this.colElementInEdit !== null) {
+            this.turnSpanVisible(saveEdit);
+        }
     }
 
     turnSpanVisible(saveValue = false): void {
@@ -266,5 +195,11 @@ export class TableComponent implements OnInit {
 
     getSpanDiv(targetElement: HTMLElement): HTMLElement {
         return targetElement.tagName === 'SPAN' ? targetElement.parentElement : targetElement;
+    }
+    capitalizeFirstLetter(text) {
+        return text.charAt(0).toUpperCase() + text.substring(1);
+    }
+    getKeys(obj) {
+        return Object.keys(obj);
     }
 }

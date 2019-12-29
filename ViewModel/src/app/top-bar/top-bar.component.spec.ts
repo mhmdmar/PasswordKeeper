@@ -6,6 +6,7 @@ import { AccountBarComponent } from '../accountBar/account-bar.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DOMHelper } from '../ViewUtils/Objects/DOM_Utils/DOM_Helper';
+import { DropdownComponent } from '../Components/dropdown/dropdown.component';
 
 describe('TopBarComponent', () => {
     let component: TopBarComponent;
@@ -13,7 +14,7 @@ describe('TopBarComponent', () => {
     let testID;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TopBarComponent, IconComponent, AccountBarComponent],
+            declarations: [TopBarComponent, IconComponent, AccountBarComponent, DropdownComponent],
             imports: [RouterTestingModule, HttpClientTestingModule]
         }).compileComponents();
     }));

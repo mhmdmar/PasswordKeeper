@@ -8,7 +8,7 @@ import routes from '../../../../AppSettings/Routes.json';
 
 const storageNamespace = {
     user: 'User',
-    username: 'Username',
+    email: 'Email',
     password: 'Password',
     permission: 'Permission',
     loggedIn: 'loggedIn'
@@ -54,10 +54,10 @@ export class AuthService {
         this.loggedIn = value;
     }
 
-    login(username: string, password: string, callback: Function): void {
+    login(email: string, password: string, callback: Function): void {
         this.http
             .post(getRoutePath(routes.getUser), {
-                username,
+                email,
                 password
             })
             .subscribe((data: Response) => {
@@ -70,7 +70,7 @@ export class AuthService {
 
     assignUserToSession(user: User): void {
         this.setLoggedIn(true);
-        localStorage.setItem(storageNamespace.username, user.username);
+        localStorage.setItem(storageNamespace.email, user.email);
         localStorage.setItem(storageNamespace.password, user.password);
         localStorage.setItem(storageNamespace.permission, user.permission.toString());
         this.curActiveUser = user;
@@ -79,9 +79,9 @@ export class AuthService {
     restoreUserInSession(callback: Function): void {
         const userInSession: boolean = localStorage.getItem(storageNamespace.loggedIn) !== null;
         if (userInSession) {
-            const username: string = localStorage.getItem(storageNamespace.username);
+            const email: string = localStorage.getItem(storageNamespace.email);
             const password: string = localStorage.getItem(storageNamespace.password);
-            this.login(username, password, (data: Response) => {
+            this.login(email, password, (data: Response) => {
                 if (data.success) {
                     this.curActiveUser = data.response;
                 }
@@ -92,7 +92,7 @@ export class AuthService {
     }
 
     removeUserInSession(): void {
-        localStorage.removeItem(storageNamespace.username);
+        localStorage.removeItem(storageNamespace.email);
         localStorage.removeItem(storageNamespace.password);
         localStorage.removeItem(storageNamespace.permission);
         this.curActiveUser = undefined;
@@ -116,12 +116,13 @@ export class AuthService {
     }
 
     removePasswordItem(index: number, callback: Function): void {
+        const passwordToDelete = this.curActiveUser.passwordsList[index];
         const user: User = this.curActiveUser;
         this.http
             .post(getRoutePath(routes.removePasswordItem), {
                 username: user.username,
                 password: user.password,
-                index
+                id: passwordToDelete.id
             })
             .subscribe((data: Response) => {
                 if (data.success) {
@@ -136,7 +137,7 @@ export class AuthService {
         const user: User = this.curActiveUser;
         this.http
             .post(getRoutePath(routes.addPasswordItem), {
-                username: user.username,
+                username: user.email,
                 password: user.password,
                 newPassword
             })
@@ -151,12 +152,12 @@ export class AuthService {
     updatePasswordItem(domain: string, username: string, password: string, index: number, callback: Function): void {
         const newPassword: Password = { domain, username, password };
         const user: User = this.curActiveUser;
+        newPassword.id = this.curActiveUser.passwordsList[index].id;
         this.http
             .post(getRoutePath(routes.updatePasswordItem), {
-                username: user.username,
+                username: user.email,
                 password: user.password,
-                newPassword,
-                index
+                newPassword
             })
             .subscribe((data: Response) => {
                 if (data.success) {
@@ -165,24 +166,20 @@ export class AuthService {
                 callback(data);
             });
     }
-    removeUser(index: number, callback: Function): void {
+    removeUser(email: number, callback: Function): void {
         this.http
             .post(getRoutePath(routes.removeUser), {
-                index
+                email
             })
             .subscribe((data: Response) => {
                 callback(data);
             });
     }
-    updateUser(email: string, username: string, password: string, permission = 3, index: number, callback: Function): void {
-        const newUser: User = { email, username, password, permission };
-        const user: User = this.curActiveUser;
+    updateUser(email, newUser, callback: Function): void {
         this.http
             .post(getRoutePath(routes.updateUser), {
-                username: user.username,
-                password: user.password,
-                newUser,
-                index
+                email,
+                newUser
             })
             .subscribe((data: Response) => {
                 callback(data);

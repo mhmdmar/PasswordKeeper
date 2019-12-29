@@ -1,9 +1,14 @@
 @import '../CSS/global';
 
-.searchContainer {
+.searchWrapper {
+    width: 100%;
     display: inline-flex;
+    margin-bottom: 2px;
 }
-
+input {
+    padding: 0;
+    width: 100%;
+}
 .iconContainer {
     &:hover {
         background: $buttonHover;
@@ -11,6 +16,4 @@
 }
 .searchInput {
     min-width: 30px;
-    width: 100%;
-    height: 100%;
 }

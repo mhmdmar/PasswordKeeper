@@ -1,5 +1,5 @@
 import express from 'express';
-import { router } from './Routes/DatabaseRoute';
+import { router } from './Routes/DatabaseRoute.mjs';
 
 export const app = express();
 
@@ -9,3 +9,4 @@ app.use(function(req, res, next) {
     next();
 });
 app.use('/', express.json(), router);
+

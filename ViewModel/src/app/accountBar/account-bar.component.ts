@@ -13,7 +13,6 @@ import { icons } from '../ViewUtils/Objects/Icons';
 })
 export class AccountBarComponent implements OnInit {
     public user: User;
-    public accountInfoVisible = false;
     public dropdownTemplate: DropdownTemplate;
     public loginText = 'Login';
     public testID = {
@@ -36,6 +35,7 @@ export class AccountBarComponent implements OnInit {
     getDropdownTemplate(): DropdownTemplate {
         return {
             title: '',
+            testId: this.testID.user,
             options: [
                 {
                     icon: icons.exit,
@@ -47,7 +47,6 @@ export class AccountBarComponent implements OnInit {
     }
     signOut(): void {
         this.Auth.signOut();
-        this.accountInfoVisible = false;
         this.navigateToLogin();
     }
 

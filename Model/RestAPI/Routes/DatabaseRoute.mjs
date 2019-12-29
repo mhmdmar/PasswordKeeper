@@ -1,7 +1,6 @@
 import express from 'express';
-import routes from '../../../AppSettings/Routes';
-import { databaseHelper } from '../DatabaseHelper';
-
+import routes from '../../../AppSettings/Routes.json';
+import { databaseHelperSQL } from '../DatabaseHelperSQL.mjs';
 export const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,76 +9,58 @@ router.get('/', (req, res) => {
 
 /* Users Routes */
 
-router.get(routes.getUsers, (req, res) => {
+router.get(routes.getUsers, async (req, res) => {
     const permission = req.query.permission;
-    const includePasswords = req.query.includePasswords === 'true';
-    const resultMessage = databaseHelper.getUsers(permission, includePasswords);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.getUsers(permission);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.getUser, (req, res) => {
+router.post(routes.getUser, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.getUser(body.username, body.password);
-    res.status(200).json(resultMessage);
-});
-router.post(routes.insertUser, (req, res) => {
-    const body = req.body;
-    const resultMessage = databaseHelper.insertUser(body.username, body.password, body.email);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.getUser(body.email, body.password);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.changeUserName, (req, res) => {
+router.post(routes.insertUser, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.updateUserName(body.username, body.password, body.newValue);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.insertUser(body.username, body.password, body.email, body.passwordsList);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.changeUserPassword, (req, res) => {
+router.post(routes.updateUser, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.updateUserPassword(body.username, body.password, body.newValue);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.updateUser(body.email, body.newUser);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.changeUserEmail, (req, res) => {
+router.post(routes.removeUser, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.updateUserEmail(body.username, body.password, body.newUserValue);
-    res.status(200).json(resultMessage);
-});
-
-router.post(routes.updateUser, (req, res) => {
-    const body = req.body;
-    const resultMessage = databaseHelper.updateUser(body.username, body.password, body.newUser, body.index);
-    res.status(200).json(resultMessage);
-});
-
-router.post(routes.removeUser, (req, res) => {
-    const body = req.body;
-    const resultMessage = databaseHelper.removeUser(body.index);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.removeUser(body.email);
+    res.status(result.status).json(result.responseMessage);
 });
 
 /* User Password List Routes */
 
-router.post(routes.addPasswordItem, (req, res) => {
+router.post(routes.addPasswordItem, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.addPasswordItem(body.username, body.password, body.newPassword);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.addPasswordItem(body.username, body.password, body.newPassword, body.email);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.updatePasswordItem, (req, res) => {
+router.post(routes.updatePasswordItem, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.updatePasswordItem(body.username, body.password, body.index, body.newPassword);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.updatePasswordItem(body.username, body.password, body.newPassword);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.removePasswordItem, (req, res) => {
+router.post(routes.removePasswordItem, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.removePasswordItem(body.username, body.password, body.index);
-    res.status(200).json(resultMessage);
+    const result = await databaseHelperSQL.removePasswordItem(body.username, body.password, body.id);
+    res.status(result.status).json(result.responseMessage);
 });
 
-router.post(routes.getPasswordsList, (req, res) => {
+router.post(routes.getPasswordsList, async (req, res) => {
     const body = req.body;
-    const resultMessage = databaseHelper.getPasswords(body.username, body.password, body.startRange, body.endRange);
-    res.status(200).json(resultMessage);
+    const result = databaseHelperSQL.getPasswords(body.username, body.password, body.startRange, body.endRange);
+    res.status(result.status).json(result.responseMessage);
 });

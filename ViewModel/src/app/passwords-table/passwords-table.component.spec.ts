@@ -7,14 +7,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SearchComponent } from '../search/search.component';
 import { IconComponent } from '../Components/icon/icon.component';
 import { KeyboardShortcutsComponent } from 'ng-keyboard-shortcuts';
-
+import { DropdownComponent } from '../Components/dropdown/dropdown.component';
 describe('PasswordsTableComponent', () => {
     let component: PasswordsTableComponent;
     let fixture: ComponentFixture<PasswordsTableComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PasswordsTableComponent, TableComponent, SearchComponent, IconComponent, KeyboardShortcutsComponent],
+            declarations: [PasswordsTableComponent, TableComponent, SearchComponent, IconComponent, KeyboardShortcutsComponent, DropdownComponent],
             imports: [RouterTestingModule, HttpClientTestingModule]
         }).compileComponents();
     }));

@@ -4,6 +4,7 @@ export interface DropdownTemplate {
     options: dropdownOption[];
     title?: string;
     icon?: Icon;
+    testId?: string;
     callback?: Function;
 }
 

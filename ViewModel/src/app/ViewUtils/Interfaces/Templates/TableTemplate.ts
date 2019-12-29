@@ -1,5 +1,6 @@
 import { ShortcutInput } from 'ng-keyboard-shortcuts';
 import { itemUtils } from './Utils';
+import { DropdownTemplate } from './DropdownTemplate';
 
 export interface TableTemplate {
     headers: tableHeader[];
@@ -10,6 +11,7 @@ export interface TableTemplate {
     tableLength?: number;
     changeItemCallback?: Function;
     editableByAdmin: boolean;
+    dropdownUtils?: DropdownTemplate;
 }
 
 interface tableHeader {

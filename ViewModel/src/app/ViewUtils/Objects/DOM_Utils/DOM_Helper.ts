@@ -26,10 +26,12 @@ export const DOMHelper = {
         setTimeout(() => this.queryElement(element, parentElement).focus(), 0);
     },
     turnElementInvisible(element: HTMLElement | string, parentElement?: HTMLElement) {
-        this.queryElement(element, parentElement).style.display = 'none';
+        const el: HTMLElement = this.queryElement(element, parentElement);
+        if (el) el.style.display = 'none';
     },
     turnElementVisible(element: HTMLElement | string, parentElement?: HTMLElement) {
-        this.queryElement(element, parentElement).style.display = 'block';
+        const el: HTMLElement = this.queryElement(element, parentElement);
+        if (el) el.style.display = 'block';
     },
     addClass(element: HTMLElement | string, className: string, parentElement?: HTMLElement) {
         if (!className) {

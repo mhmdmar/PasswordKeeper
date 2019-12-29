@@ -1,6 +1,5 @@
-import { User } from './User';
-import { PasswordItem } from './Password';
-
+import { User } from './User.mjs';
+import { PasswordItem } from './Password.mjs';
 const secretPassword = 'admin';
 
 export class UsersList {

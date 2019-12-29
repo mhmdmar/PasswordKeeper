@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
         if (validateForm.valid) {
             this.Auth.registerUserDetails(this.email, this.username, this.password, (data: Response) => {
                 if (data.success) {
-                    this.Auth.login(this.username, this.password, (data: Response) => {
+                    this.Auth.login(this.email, this.password, (data: Response) => {
                         if (data.success) {
                             this.router.navigate([routesNames.passwordTable]);
                         } else {

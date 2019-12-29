@@ -16,7 +16,7 @@ import { icons } from '../ViewUtils/Objects/Icons';
 })
 export class LoginComponent implements OnInit {
     public submitText: string;
-    public username: string;
+    public email: string;
     public password: string;
     public template: FormTemplate;
     public testID = {
@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
                 {
                     class: 'formInput',
                     type: 'text',
-                    field: 'Username',
+                    field: 'Email',
                     testID: this.testID.usernameInput,
-                    placeholder: 'Username',
-                    callback: ($event): void => (this.username = $event.target.value)
+                    placeholder: 'Email',
+                    callback: ($event): void => (this.email = $event.target.value)
                 },
                 {
                     class: 'formInput',
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.username = this.password = '';
+        this.email = this.password = '';
         this.submitText = 'click to sign up';
         this.template = this.getData();
     }
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
     login(): void {
         const validateForm: FormValidation = this.validateForm();
         if (validateForm.valid) {
-            this.Auth.login(this.username, this.password, (data: Response) => {
+            this.Auth.login(this.email, this.password, (data: Response) => {
                 if (data.success) {
                     this.router.navigate([routesNames.passwordTable]);
                 } else {
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     }
 
     emptyInputExists(): boolean {
-        return this.username === '' || this.password === '';
+        return this.email === '' || this.password === '';
     }
 
     validateForm(): FormValidation {

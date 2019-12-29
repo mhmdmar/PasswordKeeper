@@ -23,7 +23,9 @@
                                 (input)="input.callback && input.callback($event)"
                             />
                         </label>
-                        <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                        <div class="utilContainer">
+                            <app-icon *ngFor="let itemUtil of input.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                        </div>
                     </div>
                 </ng-template>
             </div>

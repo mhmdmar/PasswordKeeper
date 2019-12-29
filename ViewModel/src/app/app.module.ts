@@ -19,7 +19,6 @@ import { FormComponent } from './Components/form/form.component';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableComponent } from './Components/table/table.component';
-import { KeysPipe } from './Components/CustomPipes/KeysPipe';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
@@ -43,8 +42,7 @@ import { DropdownComponent } from './Components/dropdown/dropdown.component';
         TableComponent,
         SearchComponent,
         IconComponent,
-        DropdownComponent,
-        KeysPipe
+        DropdownComponent
     ],
     imports: [BrowserModule, KeyboardShortcutsModule.forRoot(), AppRoutingModule, RouterModule, HttpClientModule, NgbModule, FormsModule],
     providers: [AuthService, AuthGuard],
