@@ -1,6 +1,6 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 //
-// import { UsersTableComponent } from './users-table.component';
+// import { UsersTableComponent } from './usersList-table.component';
 //
 // describe('UsersTableComponent', () => {
 //   let component: UsersTableComponent;

@@ -25,11 +25,9 @@ export class TableComponent implements OnInit {
         input: '.colInput',
         itemSpan: '.itemField'
     };
-
     constructor(private Auth: AuthService) {
         this.searchTerm = '';
         this.tableIndex = 1;
-        this.filteredItemsList = [];
     }
     tableShortcuts(): ShortcutInput[] {
         return [
@@ -38,7 +36,7 @@ export class TableComponent implements OnInit {
                 label: 'select the above password item',
                 command: (): void => {
                     if (this.template.chosenIndex !== null) {
-                        const chosenIndex = this.template.chosenIndex % this.tableLength;
+                        const chosenIndex = this.template.chosenIndex;
                         chosenIndex && this.template.chosenIndex--;
                     }
                 },
@@ -49,8 +47,8 @@ export class TableComponent implements OnInit {
                 label: 'select the below password item',
                 command: (): void => {
                     if (this.template.chosenIndex !== null) {
-                        const chosenIndex = this.template.chosenIndex % this.tableLength;
-                        chosenIndex < this.filteredItemsList.length - 1 && this.template.chosenIndex++;
+                        const chosenIndex = this.template.chosenIndex;
+                        chosenIndex < this.template.itemsList.length - 1 && this.template.chosenIndex++;
                     }
                 },
                 preventDefault: true
@@ -59,7 +57,7 @@ export class TableComponent implements OnInit {
                 key: ['right'],
                 label: 'show more items',
                 command: (): void => {
-                    this.filteredItemsList.length >= this.tableLength && this.nextList();
+                    // this.filteredItemsList.length >= this.tableLength && this.nextList();
                 },
                 preventDefault: true
             },
@@ -96,19 +94,15 @@ export class TableComponent implements OnInit {
         this.tableLength = this.template.tableLength || 10;
         this.template.chosenIndex = (this.tableIndex - 1) * this.tableLength;
     }
-
-    filterItemsList(): Array<object> {
-        this.filteredItemsList = this.template.itemsList
-            .filter(item => {
-                return Object.keys(item).some(attribute => {
-                    return item[attribute]
-                        .toString()
-                        .toLowerCase()
-                        .includes(this.searchTerm.toLowerCase());
-                });
-            })
-            .splice((this.tableIndex - 1) * this.tableLength, this.tableLength);
-        return this.filteredItemsList;
+    filter(): void {
+        this.template.itemsList.map(item => {
+            item.hide = !Object.keys(item).some(attr =>
+                item[attr]
+                    .toString()
+                    .toLowerCase()
+                    .includes(this.searchTerm.toLowerCase())
+            );
+        });
     }
 
     rowClick(index: number) {
@@ -126,6 +120,7 @@ export class TableComponent implements OnInit {
     updateSearchTerm(searchTerm): void {
         this.endColumnEditing(false);
         this.searchTerm = searchTerm;
+        this.filter();
     }
     nextList(): void {
         this.tableIndex++;
@@ -137,7 +132,7 @@ export class TableComponent implements OnInit {
     }
 
     columnClick(event, key): void {
-        // editing table is only allowed for Admin users
+        // editing table is only allowed for Admin usersList
         if (this.template.editableByAdmin === false || !this.Auth.isAdminUser()) {
             return;
         }
@@ -151,7 +146,7 @@ export class TableComponent implements OnInit {
     }
 
     changeColumn(): void {
-        // changing column is only allowed to Admin users
+        // changing column is only allowed to Admin usersList
         if (!this.Auth.isAdminUser() || !this.colElementInEdit) {
             return;
         }
@@ -159,7 +154,7 @@ export class TableComponent implements OnInit {
     }
 
     turnInputVisible(targetElement: HTMLElement): void {
-        // sometimes clicking on the div element cause the span to listen to the trigger event
+        // sometimes clicking on the div element cause the span to listen to the trigger event (bubble)
         this.colElementInEdit = this.getSpanDiv(targetElement);
 
         DOMHelper.turnElementVisible(this.tableElementSelectors.inputContainer, this.colElementInEdit);
@@ -191,6 +186,7 @@ export class TableComponent implements OnInit {
     }
     saveNewValue(text: string): void {
         this.template.changeItemCallback && this.template.changeItemCallback(this.colInEditKey, text);
+        this.filter();
     }
 
     getSpanDiv(targetElement: HTMLElement): HTMLElement {

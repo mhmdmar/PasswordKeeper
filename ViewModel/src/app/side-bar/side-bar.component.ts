@@ -49,7 +49,7 @@ export class SideBarComponent implements OnInit {
     }
 
     filterSidebar(): SidebarItem[] {
-        // filter the sidebar for unauthorized users
+        // filter the sidebar for unauthorized usersList
         return sidebarItems.filter(field => !field.requireLogin || this.Auth.loggedIn);
     }
 

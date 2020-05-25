@@ -9,19 +9,21 @@
                 <app-dropdown [template]="template.dropdownUtils"></app-dropdown>
             </div>
         </div>
-        <div *ngFor="let itemsField of filterItemsList(); let i = index">
-            <div class="row" (click)="rowClick(i)" [ngClass]="template.chosenIndex !== null && template.chosenIndex % tableLength === i ? 'chosen' : ''">
-                <div *ngFor="let item of getKeys(itemsField)" class="col" [id]="'item-' + item + '-' + i" (dblclick)="columnClick($event, item)">
-                    <span class="itemField" [title]="itemsField[item]">{{ itemsField[item] }}</span>
-                    <div class="inputContainer" style="display:none;">
-                        <label class="colInputLabel">
-                            <input class="colInput" [value]="itemsField[item]" type="text" />
-                        </label>
-                        <app-icon [icon]="icons.done" (click)="changeColumn()"></app-icon>
+        <div *ngFor="let itemsField of template.itemsList; let i = index">
+            <div *ngIf="!itemsField['hide']">
+                <div class="row" (click)="rowClick(i)" [ngClass]="template.chosenIndex !== null && template.chosenIndex === i ? 'chosen' : ''">
+                    <div *ngFor="let item of getKeys(itemsField)" class="col" [id]="'item-' + item + '-' + i" (dblclick)="columnClick($event, item)">
+                        <span class="itemField" [title]="itemsField[item]">{{ itemsField[item] }}</span>
+                        <div class="inputContainer" style="display:none;">
+                            <label class="colInputLabel">
+                                <input class="colInput" [value]="itemsField[item]" type="text" />
+                            </label>
+                            <app-icon [icon]="icons.done" (click)="changeColumn()"></app-icon>
+                        </div>
                     </div>
-                </div>
-                <div class="col util">
-                    <app-icon *ngFor="let itemUtil of template.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                    <div class="col util">
+                        <app-icon *ngFor="let itemUtil of template.itemsUtils" [icon]="itemUtil.Icon" (click)="itemUtil.callback && itemUtil.callback(i)"></app-icon>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,7 +32,7 @@
         <div class="flex-container pagination">
             <button class="flex-item app-btn paginationBtn" [innerHTML]="'<-'" [disabled]="tableIndex <= 1" (click)="prevList()"></button>
             <button class="flex-item app-btn paginationBtn pageIndexBtn" disabled [innerHTML]="tableIndex"></button>
-            <button class="flex-item app-btn paginationBtn" [innerHTML]="'->'" [disabled]="filteredItemsList.length < tableLength" (click)="nextList()"></button>
+            <button class="flex-item app-btn paginationBtn" [innerHTML]="'->'" [disabled]="this.template.itemsList.length < tableLength" (click)="nextList()"></button>
         </div>
     </div>
 </div>

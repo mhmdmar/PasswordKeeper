@@ -1,21 +1,20 @@
-import http from 'http';
-import { app } from './app.mjs';
-import { databaseHelperSQL } from './DatabaseHelperSQL.mjs';
+import * as http from "http";
+import {app} from "./app";
+import {databaseHelperSQL} from "./Database/databaseHelper";
 const port = process.env.PORT || 3000;
 const server = http.createServer(app);
-server.on('close', function() {
+server.on("close", function() {
     // Save the database on server close event
     databaseHelperSQL.closeConnection();
-    databaseHelper.saveDB();
 });
 
-process.on('SIGINT', function() {
+process.on("SIGINT", function() {
     server.close();
 });
 
 const runServer = () => {
-    console.log('Server is running on port' + port);
-    console.log('.....');
+    console.log("Server is running on port" + port);
+    console.log(".....");
     databaseHelperSQL.connect();
     server.listen(port);
 };
