@@ -219,14 +219,6 @@ class DatabaseHelperSQL {
             newPassword
         );
     }
-    async getPasswords(
-        username: string,
-        password: string,
-        startRange: number,
-        endRange: number
-    ) {
-        return this.getUserPasswords(username);
-    }
 
     connect() {
         this.client.connect();
