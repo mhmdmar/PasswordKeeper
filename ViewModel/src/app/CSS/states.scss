@@ -24,3 +24,12 @@
     -webkit-flex-direction: $direction;
     flex-direction: $direction;
 }
+
+
+
+@mixin prominentHighlight {
+    &::ng-deep* {
+        color: black;
+        font-weight: 600;
+    }
+}

@@ -1,22 +1,20 @@
-@import '../../CSS/global';
+@import "../../CSS/global";
 
 i {
     vertical-align: bottom;
     cursor: pointer;
-    //float: right;
     z-index: 99;
-    color: black;
-    @include unselectable();
-
+    color: #555555;
     &:hover {
-        box-shadow: none;
+        color: black;
     }
+    @include unselectable();
 }
 
 .iconHover {
     &:hover {
-        background-color: $buttonHover;
         box-shadow: none;
+        color: black;
     }
 }
 .left {

@@ -1,17 +1,14 @@
-@import '../../CSS/global';
+@import "../../CSS/global";
 
 // override bootstrap hover and select icon
 .dropdown-toggle {
     color: grey;
-    &[aria-expanded='true']::after {
-        color: white;
+    &[aria-expanded="true"]::after {
+        color: black;
     }
     &:hover {
-        color: lightgrey;
+        color: black;
     }
-}
-.dropdown-item:hover {
-    background: $buttonHover;
 }
 
 .hideMenu {

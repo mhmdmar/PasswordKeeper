@@ -1,9 +1,15 @@
-@import 'states';
+@import "states";
 
-$buttonHover: grey;
+$buttonHover: lightgrey;
 $linkColor: #000000;
 $linkHoverColor: #ff0000;
 $borderSeparator: 1px solid #f0f0f2;
+
+.clickable {
+    &:hover {
+        background: $buttonHover;
+    }
+}
 .flex-container {
     @include displayBox();
     padding: 0;
@@ -56,7 +62,7 @@ $borderSeparator: 1px solid #f0f0f2;
     text-transform: none;
 
     &:hover {
-        background: $buttonHover;
+        @include prominentHighlight();
     }
     &:focus {
         outline: none;
@@ -74,11 +80,11 @@ $borderSeparator: 1px solid #f0f0f2;
 .app-text-font {
     @include unselectable();
     @include ellipses();
-    color: #ffffff;
+    color: #000000;
     font-size: 16px;
     position: relative;
     align-items: center;
-    font-family: 'MetricWeb-Semibold', Calibri, sans-serif;
+    font-family: "MetricWeb-Semibold", Calibri, sans-serif;
     font-weight: bold;
     height: 22px;
     line-height: 22px;
@@ -94,6 +100,6 @@ $borderSeparator: 1px solid #f0f0f2;
 
 .dropdownBtn {
     &:hover {
-        background: $buttonHover;
+        @include prominentHighlight();
     }
 }

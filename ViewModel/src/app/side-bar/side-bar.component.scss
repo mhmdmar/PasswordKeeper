@@ -1,20 +1,23 @@
-@import '../CSS/global';
+@import "../CSS/global";
 
 .sidebarContainer {
     background-color: white;
     border-right: $borderSeparator;
+    border-top: $borderSeparator;
 }
 .sidebar-item {
     cursor: pointer;
     max-width: 150px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     @include ellipses();
 
     &:focus {
         outline: 0;
     }
-
     &:hover {
-        background: $buttonHover;
+        @include prominentHighlight();
     }
 }
 
@@ -24,9 +27,14 @@
 }
 
 .active-link {
-    background-color: $buttonHover;
-
+    background-color: lightblue;
+    @include prominentHighlight();
     & > .sidebar-text {
         font-weight: 600;
     }
+}
+
+.sidebar-visible {
+    min-width: 160px;
+    max-width: 200px;
 }
